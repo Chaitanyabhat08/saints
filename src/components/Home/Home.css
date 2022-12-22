@@ -1,0 +1,132 @@
+.Banner{
+    background-image: url("/src/images/bcground.jpeg");
+    background-size: cover;
+    height:100vmin;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Banner > h1{
+    margin:1vmax;
+    font:600 2.5vmax "Roboto", "Helvetica Neue",
+}
+.Banner >p{
+    font:300 1.4vmax "Roboto"
+}
+.Banner > a > button{
+    margin-bottom: 5vmax;
+    size: 2vmax;
+    cursor: pointer;
+    background-color: transparent;
+    border:1px rgba(144,144,144,255);
+    border-radius: 20%;
+    padding: 0.6vmax;
+    transition: all 0.5s;
+    width:3.6vmax;
+    font:600 1vmax "Roboto", "Helvetica Neue";
+    scroll-behavior: smooth;
+}
+.Banner > a > button:hover {
+background-color: rgba(255,255,255,0);
+color:white;
+}
+/* If you use default color banner */
+.Banner::after{ 
+    content:"";
+    width:100vm;
+    height:100vmin;
+    background-color: #ffffff;
+    position:absolute;
+    top: 20px;
+    left:0;
+    max-width: 100%;
+    clip-path: polygon(100% 68%, 0 100%, 100% 100%);
+}
+.homeHeading{
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 1.4vmax;
+    border-bottom: 1px solid rgba(21,21,21,0.5);
+    width: 20vmax;
+    padding: 1vmax;
+    margin:5vmax auto;
+}
+.container{
+    display: flex;
+    margin:2vmax auto;
+    width:80vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+}
+.productCard{
+    width:15vmax;
+    display: flex;
+    flex-direction:column;
+    text-decoration: none;
+    color:rgb(48,48,48);
+    margin:2vmax;
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+}
+
+.productCard > div{
+    display: flex;
+    padding: 0.5vmax;
+    justify-content: flex-start;
+}
+.productCard > div > span{
+    margin:0.5vmax;
+    padding-top: 0.2vmax;
+    font: 600 1vmax Montserrat;
+    color:tomato;
+}
+.productCard > p {
+    font:600 1.1vmax Montserrat;
+    margin:1vmax 0.5vmax;
+    margin-bottom: 0;
+    text-align: center;
+}
+.productCard > span{
+    color: tomato;
+    font:600 1.2vmax "Franklin", "Helvetica Neue";
+    text-align: center;
+}
+.productCard:hover{
+    box-shadow: 0 0 5px rgba(15, 15, 15, 0.36);
+    transform: translateY(1.3vmax);
+}
+@media screen and (max-width:600px){
+    .productCard>p{
+        font-size: 1.7vmax;
+    }
+    .productCard > div {
+        margin: 0vmax;
+        display: block;
+    }
+    .productCard > span{
+        font-size: 1.5vmax;
+    }
+    .productCard > div > span {
+        margin: 0 0.5vmax;
+        font:300 1vmax "Roboto"
+    }
+}
+
+.productCard > img {
+  padding: 5px;
+  transition: transform .2s; /* Animation */
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.productCard > img:hover{
+    padding: 2px;
+    align-items: center;
+    border-radius: 3px;
+  background-color:whitesmoke;
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}

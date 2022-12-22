@@ -1,0 +1,178 @@
+.ProductDetails{
+    background-color: rgb(227, 227, 205);
+    width:100vw; 
+    max-width: 100%;
+    padding:6vmax;
+    box-sizing: border-box;
+    display:flex;
+}
+
+.ProductDetails > div{
+    width:100%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2vmax;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+.ProductDetails > div:last-child{
+    align-items: flex-start;
+}
+.ProductDetails > section-1{
+    display: flex;
+    align-items: center;
+}
+.CarouselImage{
+    width: 30vw;
+    height: 30vw;
+    align-items: center;
+    margin:5px;
+    display: flex;
+}
+.detailsBlock-1 > h2{
+    color: rgb(40, 38, 38);
+    font:600 1.6vmx "Roboto";
+}
+.detailsBlock-1 > p{
+    color:rgb(30, 32, 30);
+    font:200 0.6vmax cursive;
+}
+.detailsBlock-2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-top:1px solid rgba(0,0,0,0.205);
+    border-bottom:1px solid rgba(0,0,0,0.205);
+    width:70%;
+    padding: 0.5vmax 0;
+}
+.detailsBlock-2 >span{
+    font:200 1vmax cursive;
+    padding-top:5px ;
+    margin:2px;
+    color: rgba(54,54,54,0.582);
+}
+.buttonSet{
+    display: flex;
+    flex-direction: column;
+}
+.addToCart{
+background-color: rgb(48, 48, 46);
+border:5px;
+cursor: pointer;
+padding:2px;
+border-color: rgb(181, 147, 35);
+border-radius: 15px;
+margin: 5px;
+color:white;
+height:40px;
+width:200px;
+transition: all 0.5s;
+}
+.addToCart:hover{
+    background-color: grey;
+    color:black;
+    transform: scale(1.1);
+}
+.buyNow{
+background-color: rgb(48, 48, 46);
+border:5px;
+padding:2px;
+cursor: pointer;
+border-color: rgb(181, 147, 35);
+border-radius: 15px;
+margin: 5px;
+color: white;
+height:40px;
+width:200px;
+transition: all 0.5s;
+}
+.buyNow:hover{
+    background-color: grey;
+    color:black;
+    transform: scale(1.1);
+}
+.negative{
+  margin: 5px;
+  width:22px;
+  height: 22px;
+  background-color: #1d1b1b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.positive{
+  margin: 5px;
+  width:22px;
+  height: 22px;
+  background-color: #1d1b1b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.5s;
+}
+.negative:hover{
+    background-color: grey;
+  transform: scale(1.1);
+}
+.positive:hover{
+background-color: grey;
+  transform: scale(1.1);
+}
+.unitInput{
+ width:35px;
+  height: 20px;
+  background-color: #1d1b1b;
+  color: white;
+  border: none;
+  border-radius: 2px;
+}
+.unitInput:hover{
+    background-color: grey;
+}
+.submitReview{
+    background-color: rgba(89, 136, 224, 0.668);
+     width:200px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  margin-top:1vmax
+}
+.submitReview:hover{
+    background-color: rgba(17, 36, 69, 0.668);
+  transform: scale(1.1);
+}
+.detailsBlock-3{
+    width: 70%;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.detailsBlock-3 > h1{
+    color:rgba(14, 2, 2, 0.795);
+    font:400 1.8vmax "Franklin Gothic Medium";
+    margin:1vmax 0;
+}
+.displayBlock-3-1{
+    display: flex;
+    align-items: center;
+}
+.detailsBlock-3 > p{
+    border-top:1px solid rgba(0,0,0,0.205) ;
+    border-bottom: 1px solid rgba(0,0,0,0.205);
+    padding:1vmax 0 ;
+    color:rgba(0,0,0,0.651);
+    font:400 1vmax "Roboto";
+    margin:1vmax 0;
+}
+.detailsBlock-4{
+    color: rgba(0,0,0,0.897);
+    font:500 1vmax "sans-serif";
+}
+.detailsBlock-4>p{
+    color: rgba(0,0,0,0.534);
+    font:400 0.8vmax "sans-serif";
+}
