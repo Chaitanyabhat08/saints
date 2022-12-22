@@ -176,3 +176,24 @@ background-color: grey;
     color: rgba(0,0,0,0.534);
     font:400 0.8vmax "sans-serif";
 }
+
+@media screen and (max-width:600px) {
+    .ProductDetails{
+        flex-direction: column;
+        height: unset;
+    }
+    .ProductDetails > div:last-child{
+        align-items: center;
+    }
+    .detailsBlock-1>h2{
+        font-size: 2.8vmax;
+        text-align: center;
+    }
+    .detailsBlock-1 > p{
+        text-align: center;
+        font-size: 1vmax;
+    }
+    .detailsBlock-2{
+        justify-content: center;
+    }
+}

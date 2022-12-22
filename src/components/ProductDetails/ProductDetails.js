@@ -48,7 +48,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="detailsBlock-2">
                     <ReactStars {...options} />
-                    <span>({product.numOfReviews})</span>
+                    <span>({product.numOfReviews} Reviews)</span>
                 </div>
                 <div className="detailsBlock-3">
                     <h3>{`$${product.price}`}</h3>
