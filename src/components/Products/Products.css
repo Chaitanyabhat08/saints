@@ -1,0 +1,151 @@
+.productsHeading{
+    margin:2vmax auto;
+    width:15vw;
+    border-bottom: 1px solid rgba(0,0,0,0.171);
+    padding:2vmax;
+    color:rgba(0,0,0,0.678);
+    font:500 2vmax "Roboto";
+    text-align: center;
+}
+.products{
+    display: flex;
+    justify-content:safe;
+    flex-wrap: wrap;
+    background-color: rgb(227, 227, 205);
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.19);
+    margin-top:30px;
+    overflow-y: auto;
+    overflow-x:auto ;
+    min-height: 30vmax;
+
+}
+@media screen and (max-width:600px) {
+    .products{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 20vmax;
+    }
+    .ProductCard{
+        font-size: 1.7vmax;
+        display: flex;
+        flex-direction: column;
+    }
+    .productCard > img{
+       width: 190px;
+       height: 190px;
+       transition: none;
+       display: block;
+       min-width: 180px;
+    }
+    .products > .filterBox{
+        margin-bottom: 100px;
+        align-items: center;
+    }
+}
+
+.paginationBox{
+    display: flex;
+    align-items: center;
+    margin:6vmax;
+    justify-content: center;
+    text-align: center;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+}
+.page-item{
+    background-color: rgb(255,255,255);
+    list-style: none;
+     border: 1.5px solid rgba(0,0,0,0.170);
+     padding:1vmax 1vmax;
+     align-items: center;
+     transition: all 0.3s;
+     cursor: pointer;
+     color: black;
+}
+.page-item:first-child{
+    border-radius: 5px 0 0 5px;
+}
+.page-item:last-child{
+    border-radius: 0 5px 5px 0;
+}
+.page-link{
+    text-decoration: none;
+    font:300 0.8vmax "Roboto";
+    color:rgb(80,80,80);
+    transition: all 0.3s;
+}
+.page-item:hover{
+    background-color: rgb(229, 226, 217);
+}
+.page-item:hover .page-link{
+    color: black;
+}
+.pageItemActive{
+    background-color: tomato;
+}
+.pageLinkActive{
+    background-color: tomato;
+}
+.filterBox{
+    display: flex;
+    flex-direction: column;
+    width:14.5vmax;
+    top:10vmax;
+    margin-top: 30px;
+    height: 100px;
+    left:4vmax;
+    padding:10px;
+    border:none;
+    background-color: rgb(227, 227, 205);
+    color:black;
+    min-width: 17.5vmax;
+}
+.categoryBox{
+    padding-top:2vmax;
+    margin-top:15px;
+    min-width: 17.5vmax;
+}
+.ratingsBox{
+    padding-top:2vmax;
+    margin-top:15px;
+    min-width: 17.5vmax;
+}
+.together{
+    display: flex;
+}
+.productCard > img{
+    object-fit: cover;
+    transition: none;
+    display: block;
+}
+.clearFilters{
+    margin-top: 30px;
+    height: 25px;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 15px;
+    background-color:tomato;
+    cursor: pointer;
+}
+.clearFilters :hover{
+    background-color:rgb(177, 68, 51);
+}
+.filterDiv{
+    width:18.8vmax;
+    height: 25vmax;
+    margin-top: 30px;
+    margin-left: 3px;
+    text-decoration: none;
+    color:rgb(48,48,48);
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    min-width: 200px;
+    border-radius: 5px;
+}

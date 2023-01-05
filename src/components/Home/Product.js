@@ -12,15 +12,18 @@ const Product = ({ product }) => {
     isHalf:true
 }
     return (
+        <div className="productDiv">
         <Link className="productCard" to={`/products/getProductDetails/${product._id}`}>
             <img src={product.images[0].url} alt={product.name} />
             <p>{product.name}</p>
             <div>
                 <ReactStars {...options} /><span>({ product.numOfReviews } Reviews)</span>
             </div>
-            <span>{`$${product.price}`}</span>
+            <span>{`₹${product.price}`}</span>
             </Link>
+        </div>
   )
 }
+
 
 export default Product

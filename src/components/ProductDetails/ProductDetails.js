@@ -3,17 +3,25 @@ import { useParams } from 'react-router-dom';
 import Carousel from 'react-material-ui-carousel';
 import './ProductDetails.css';
 import { useSelector, useDispatch } from 'react-redux';
-import {getProductDetails} from '../../actions/productActions';
+import {clearErrors, getProductDetails} from '../../actions/productActions';
 import ReactStars from 'react-rating-stars-component';
-import Loader from "../layout/Loader/Loader"
+import Loader from "../layout/Loader/Loader";
+import ReviewCard from "./ReviewCard.js";
+import MetaData from '../layout/MetaData';
+import {useAlert } from 'react-alert'
 
 const ProductDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const alert = useAlert();
     const { product, loading, error } = useSelector((state) => state.productDetails);
     useEffect(() => {
+        if (error) {
+            alert.show(error);
+            dispatch(clearErrors());
+        }
         dispatch(getProductDetails(id));
-    }, [dispatch, id]);
+    }, [dispatch, id, alert,error]);
     let options = {
         edit: false,
         color: "rgba(20,20,20,0.1)",
@@ -24,10 +32,11 @@ const ProductDetails = () => {
     }
     return (
         loading ? <Loader /> 
-        :
-    <Fragment>
+            :
+            <Fragment>
+            <MetaData title={`s&s ${product.name}`} />
         <div className="ProductDetails">
-            <div className="section-1">
+                <div className="image">
                 <Carousel>
                     {
                         product.images && product.images.map((item, i) => (
@@ -41,9 +50,9 @@ const ProductDetails = () => {
                     }
                 </Carousel>
             </div>
-            <div>
+            <div className="detailsBlock">
                 <div className="detailsBlock-1">
-                    <h2>{product.name}</h2>
+                    <h1>{product.name}</h1>
                     <p>ProductId #{product._id}</p>
                 </div>
                 <div className="detailsBlock-2">
@@ -51,7 +60,7 @@ const ProductDetails = () => {
                     <span>({product.numOfReviews} Reviews)</span>
                 </div>
                 <div className="detailsBlock-3">
-                    <h3>{`$${product.price}`}</h3>
+                    <h2>{`₹${product.price}`}</h2>
                     <div className="detailsBlock-3-1">
                         <div className="detailsBlock-3-2">
                             <button className='negative'>-</button>
@@ -73,9 +82,17 @@ const ProductDetails = () => {
                 <div className="detailsBlock-4">
                     <b>DESCRIPTION:</b><p>{product.description}</p>
                 </div>
-                <button className="submitReview">SUBMIT FEEDBACK</button>
+                <button className="submitReview">SUBMIT REVIEW</button>
             </div>
         </div>
+                <h3 className="reviewsHeading">REVIEWS</h3>
+                {product.reviews && product.reviews[0] ? (
+                    <div className="reviews">
+                    {product.reviews && product.reviews.map((each)=> <ReviewCard review={each}/>)}
+                    </div>
+                ) : (<div className="noReviews">
+                        <button className="firstButton">Be the first to review</button>
+                </div>)}
     </Fragment>
   )
 }

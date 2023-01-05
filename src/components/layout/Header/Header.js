@@ -11,7 +11,9 @@ const Header = () => {
             profileIcon={true}
             profileIconColor="rgba(35, 35, 35,0.8)"
             ProfileIconElement={MdAccountCircle}
-            profileIconColorHover= "white"
+            profileIconColorHover="white"
+            profileIconUrl='/users/loginUser'
+            logoAnimationTime="1"
             searchIcon={true}
             searchIconColor="rgba(35, 35, 35,0.8)"
             SearchIconElement={MdSearch}
@@ -22,20 +24,20 @@ const Header = () => {
             cartIconColorHover="white"
             cartIconMargin="15px"
             burgerColor="black"
-            burgerColorHover="white"
+            burgerColorHover="grey"
             logo={logo}
             logoWidth="20vmax"
             navColor1="rgb(227, 227, 205)"
             logoHoverSize="20px"
             logoHoverColor="black"
             link1Text="Home"
-            link2Text="Product"
-            link3Text="Contact"
-            link4Text="About"
-            link1url="/"
-            link2url="/product"
-            link3url="/contact"
-            link4url="/about"
+            link2Text="Our Products"
+            link3Text="Contact Us"
+            link4Text="About Us"
+            link1Url="/"
+            link2Url='/products/getallProducts'
+            link3Url="/contact"
+            link4Url="/about"
             link1Size="1.2vmax"
             link1Color="rgba(35,35,35,0.8)"
             nav1justifyContent="flex-end"
@@ -47,6 +49,7 @@ const Header = () => {
             link4ColorHover="white"
             link1Margin="2.5vmax"
         />
+    
     );
 }
 export default Header
