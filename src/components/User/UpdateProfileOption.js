@@ -1,10 +1,9 @@
-import React, { Fragment, useRef, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { MailOutline } from '@material-ui/icons';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import FaceIcon from '@mui/icons-material/Face';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import Loader from "../layout/Loader/Loader";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { clearErrors, LoadUser, UpdateProfile } from '../../actions/userAction';
@@ -27,7 +26,7 @@ const UpdateProfileOption = () => {
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [address, setAddress] = useState("");
-    const updateProfileSubmit = (e) => {
+    const updateProfileSubmit = async (e) => {
         e.preventDefault();
         const myForm = new FormData();
         myForm.set("name", name);
@@ -35,7 +34,7 @@ const UpdateProfileOption = () => {
         myForm.set("phoneNumber", phoneNumber);
         myForm.set("address", address);
         myForm.set("avatar", avatar);
-        dispatch(UpdateProfile(myForm));
+        await dispatch(UpdateProfile(myForm));
         alert.success("Profile updated successfully!");
         navigateTo("/users/getMyDetails");
     }

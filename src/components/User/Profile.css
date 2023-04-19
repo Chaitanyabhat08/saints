@@ -1,6 +1,8 @@
 .profileContainer{
     background-color: rgb(227, 227, 205);
     width:100vw; 
+    height:100vh;
+    display: flex;
     max-width: 100%;
     padding:6vmax;
     box-sizing: border-box;
@@ -9,6 +11,7 @@
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
     overflow: hidden;
+    position:fixed;
 }
 
 .profileContainer > div:first-child{
@@ -69,6 +72,7 @@
     width:100%;
     text-align: flex-start;
     justify-content: flex-start;
+    flex-wrap: nowrap;
     padding: 2vmax;
     margin:10px;
     height:36.2vmax;
@@ -82,7 +86,11 @@
     font:400 1vmax cursive;
     margin:0.2vmax;
 }
-.buttonSet{
+input{
+    display: flex;
+    align-items: flex-start;
+}
+.profileContainer>.buttonSet{
     border:none;
     background-color: grey;
     font:400 1vmax "Oswald";
@@ -109,7 +117,7 @@ align-items: flex-start;
     color:white;
     font:400 1vmax "Oswald";
 }
-.buttonSet:hover{
+.profileContainer>.buttonSet:hover{
     background-color: rgb(96, 80, 80);
 }
 @media screen and (max-width: 600px){

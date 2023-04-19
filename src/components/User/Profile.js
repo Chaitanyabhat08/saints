@@ -37,7 +37,7 @@ const Profile = () => {
                         <div className="middle">
                             <div>
                                 <h4>Contact</h4>
-                                <input className="inputField" value={user.phoneNmber} disabled></input>
+                                <input className="inputField" value={user.phoneNumber} disabled></input>
                             </div>
                             <div>
                                 <h4>Email</h4>

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect ,useState} from 'react';
 import { useParams } from 'react-router-dom';
 import Carousel from 'react-material-ui-carousel';
 import './ProductDetails.css';
@@ -8,13 +8,16 @@ import ReactStars from 'react-rating-stars-component';
 import Loader from "../layout/Loader/Loader";
 import ReviewCard from "./ReviewCard.js";
 import MetaData from '../layout/MetaData';
-import {useAlert } from 'react-alert'
+import { useAlert } from 'react-alert';
+import { addItemToCart } from '../../actions/cartAction';
 
 const ProductDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const alert = useAlert();
-    const { product, loading, error } = useSelector((state) => state.productDetails);
+    const { product,  loading, error } = useSelector((state) => state.productDetails);
+    const [itemsCount, setItemsCount] = useState(1);
+
     useEffect(() => {
         if (error) {
             alert.show(error);
@@ -30,12 +33,26 @@ const ProductDetails = () => {
         value: product.rating,
         isHalf: true
     }
+    const handleIncrement = () => { 
+        if (product.stock <= itemsCount) return;
+        const qty = itemsCount + 1;
+        setItemsCount(qty);
+    }
+    const handleDecrement = () => { 
+        if (itemsCount <= 1) return;
+        const qty = itemsCount - 1;
+        setItemsCount(qty);
+    }
+    const addToCartHandler = () => { 
+        dispatch(addItemToCart(id, itemsCount));
+        alert.success("Items added successfully");
+    }
     return (
         loading ? <Loader /> 
             :
             <Fragment>
             <MetaData title={`s&s ${product.name}`} />
-        <div className="ProductDetails">
+            <div className="ProductDetails">
                 <div className="image">
                 <Carousel>
                     {
@@ -63,12 +80,12 @@ const ProductDetails = () => {
                     <h2>{`₹${product.price}`}</h2>
                     <div className="detailsBlock-3-1">
                         <div className="detailsBlock-3-2">
-                            <button className='negative'>-</button>
-                            <input className="unitInput" value="1" type="number" />
-                            <button className='positive'>+</button>
+                            <button className='negative' onClick={handleDecrement}>-</button>
+                                    <input className="unitInput" value={itemsCount} type="number" readOnly/>
+                                    <button className='positive' onClick={handleIncrement}>+</button>
                         </div>{" "}
                         <div className="buttonSet">
-                            <button className="addToCart"><b>ADD TO CART</b></button>
+                            <button className="addToCart" onClick={addToCartHandler}><b>ADD TO CART</b></button>
                             <button className="buyNow"><b>BUY NOW</b></button>
                         </div>
                     </div>

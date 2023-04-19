@@ -6,7 +6,6 @@ import {
     PRODUCT_DETAILS_ERROR,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
-    LOAD_USER
 } from "../constants/product";
 
 export const productReducer = (state = { products: [] }, action) => {

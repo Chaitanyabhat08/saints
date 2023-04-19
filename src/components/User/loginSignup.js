@@ -24,22 +24,27 @@ const LoginSignup = () => {
         email: "",
         password: "",
     })
+    const [passwordShown, setPasswordShown] = useState(false);
+    const togglePassword = () => {
+      setPasswordShown(!passwordShown);
+    };
+
     const { name, email, password } = user;
     const [avatar, setAvatar] = useState();
     const [avatarPreview, setAvatarPreview] = useState("/man.png")
 
-    const loginSubmit = (e) => {
+    const loginSubmit = async (e) => {
         e.preventDefault();
-        dispatch(Login(loginEmail, loginPassword))
+        await dispatch(Login(loginEmail, loginPassword))
     }
-    const registerSubmit = (e) => {
+    const registerSubmit = async (e) => {
         e.preventDefault();
         const myForm = new FormData();
         myForm.set("name", name);
         myForm.set("email", email);
         myForm.set("password", password);
         myForm.set("avatar", avatar);
-        dispatch(Register(myForm))
+        await dispatch(Register(myForm))
     }
     useEffect(() => {
         if (error) {
@@ -60,7 +65,6 @@ const LoginSignup = () => {
                 setAvatar(reader.result);
               }
             };
-      
             reader.readAsDataURL(e.target.files[0]);
         } else {
             setUser({ ...user, [e.target.name]: e.target.value })
@@ -105,7 +109,7 @@ const LoginSignup = () => {
                                         required
                                         value={password}
                                         onChange={registerDataChange}
-                                    />
+                                    />                
                                 </div>
                                 <img className="avaImage" src={avatarPreview} alt="Avatar Preview" />
                                 <div id="registerImage">
@@ -140,7 +144,7 @@ const LoginSignup = () => {
                                 <div className="loginPasswordInput">
                                     <LockOpen />
                                     <input
-                                        type="password"
+                                        type={passwordShown ? "text" : "password"}
                                         className="passwordInput"
                                         placeholder="enter password"
                                         required
@@ -150,7 +154,7 @@ const LoginSignup = () => {
                                 </div>
                                 <button type="submit" value="Login" className="loginButton" disabled={loading ? true : false}>Login</button>
                             </form>
-                            <Link to="/password/forgot">Forgot Password?</Link>
+                            <Link to="/users/forgotPassword">Forgot Password?</Link>
                         </div>
                     </div>
                 </div>

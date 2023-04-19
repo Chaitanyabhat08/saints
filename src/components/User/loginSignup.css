@@ -43,7 +43,7 @@ label{
 	cursor: pointer;
 	transition: .5s ease-in-out;
 }
-input{
+.container>input{
 	width: 60%;
 	height: 20px;
 	background: #e0dede;
@@ -55,7 +55,7 @@ input{
 	outline: none;
 	border-radius: 5px;
 }
-button{
+.container>button{
 	width: 60%;
 	height: 40px;
 	margin: 10px auto;
@@ -72,7 +72,7 @@ button{
 	transition: .2s ease-in;
 	cursor: pointer;
 }
-button:hover{
+.container>button:hover{
 	background: #6d44b8;
 }
 .login{

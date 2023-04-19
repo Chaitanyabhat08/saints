@@ -35,8 +35,8 @@ const UserOptions = ({ user }) => {
   function account() {
     navigateTo('/users/getMyDetails');
   }
-  function logoutUser() {
-    dispatch(LogOutUser());
+  async function logoutUser() {
+    await dispatch(LogOutUser());
     navigateTo('/users/loginUser');
     alert.show( "Logged out Successfully!");
   }

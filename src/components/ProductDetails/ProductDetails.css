@@ -55,7 +55,7 @@
     margin:2px;
     color: rgba(54,54,54,0.582);
 }
-.buttonSet{
+.ProductDetails>.buttonSet{
     display: flex;
     flex-direction: column;
 }

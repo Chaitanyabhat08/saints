@@ -1,76 +1,63 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import './updatePassword.css';
+import './ResetPassword.css';
 import Loader from '../layout/Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
-import { clearErrors, UpdatePassword, LoadUser } from '../../actions/userAction';
+import { useNavigate, useParams } from "react-router-dom";
+import { clearErrors, ResetPassword } from '../../actions/userAction';
 import { useAlert } from 'react-alert';
-import { UPDATE_PASSWORD_RESET } from '../../constants/userConstant';
 import MetaData from '../layout/MetaData';
 import LockIcon from '@mui/icons-material/Lock';
-import VpnKeyOffIcon from '@mui/icons-material/VpnKeyOff';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
-const UpdatePasswordOption = () => {
+const ResetPasswordOption = () => {
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
     const alert = useAlert();
+    const { token } = useParams();
 
-    const { user } = useSelector((state) => state.user);
-    const { error, isUpdated, loading } = useSelector((state) => state.profile);
-    const [oldPassword, setoldPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
+    console.log(token);
+
+    const { error, success, loading } = useSelector((state) => state.resetPassword);
+
+    const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    
     const updatePasswordSubmit = async(e) => {
         e.preventDefault();
         const myForm = new FormData();
-        myForm.set("oldPassword", oldPassword);
-        myForm.set("newPassword", newPassword);
+        myForm.set("newPassword", password);
         myForm.set("confirmPassword", confirmPassword);
-        await dispatch(UpdatePassword(myForm));
+        await dispatch(ResetPassword(token, myForm));
     }
+
     useEffect(() => {
         if (error) {
             alert.show(error);
             dispatch(clearErrors());
         }
-        if (isUpdated) {
-            alert.show("Profile Updated Successfully!");
-            dispatch(LoadUser());
-            navigateTo("/users/getMyDetails");
-            dispatch({
-                type: UPDATE_PASSWORD_RESET
-            });
+        if (success) {
+            alert.show("Password Updated Successfully!");
+            navigateTo("/users/loginUser");
         }
-    }, [dispatch, alert, error, navigateTo, isUpdated]);
+    }, [dispatch, alert, error, navigateTo, success]);
   return (
     loading?
     <Loader /> :
     <Fragment>
-        <MetaData title={`Update your Pssword ${user.name}`} />
-            <div className="container3">
-                <div className="main3">
-                    <div className="update">
+        <MetaData title={`Update your Pssword`} />
+            <div className="container5">
+                <div className="main5">
+                    <div className="update5">
                         <form encType="multipart/form-data" onSubmit={updatePasswordSubmit}>
-                        <label for="chk" aria-hidden="true">Update Your Password</label>
-                            <div className="updatePasswordInput">
-                              <VpnKeyOffIcon/>
-                            <input
-                                type="password"
-                                name="Old Password"
-                                placeholder="Enter your old password"
-                                required="true"
-                                value={oldPassword}
-                                onChange={(e)=>setoldPassword(e.target.value)} />
-                            </div>
+                        <label for="chk" aria-hidden="true">Reset Your Password</label>
                               <div className="updatePasswordInput">
                                   <VpnKeyIcon />
-                                  <input type="password"
+                                  <input type="text"
                                     name="New Password"
                                     placeholder="Enter your new password"
                                     required
-                                    value={newPassword}
-                                    onChange={(e)=>setNewPassword(e.target.value)}
+                                    value={password}
+                                    onChange={(e)=>setPassword(e.target.value)}
                                   />
                               </div>
                               <div className="updatePasswordInput">
@@ -85,7 +72,7 @@ const UpdatePasswordOption = () => {
                             </div>
                             <button type="submit"
                                 value="register"
-                                className="updateBtn"
+                                className="updatePsdBtn"
                                 disabled={loading ? true : false}
                             >Update</button>
                         </form>
@@ -95,5 +82,4 @@ const UpdatePasswordOption = () => {
     </Fragment>
 )
 }
-
-export default UpdatePasswordOption
+export default ResetPasswordOption

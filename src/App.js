@@ -17,6 +17,8 @@ import Profile from './components/User/Profile.js';
 // import ProtectedRoute from './components/Route/ProtectedRoute';
 import UpdateProfileOption from './components/User/UpdateProfileOption.js';
 import UpdatePasswordOption from './components/User/UpdatePasswordOption.js';
+import ForgotPasswordOption from './components/User/ForgotPasswordOption.js';
+import ResetPasswordOption from './components/User/ResetPasswordOption.js';
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -46,6 +48,8 @@ function App() {
         {user && isAuthenticated && <Route path="/users/getMyDetails" element={<Profile />}></Route>}
         {user && isAuthenticated && <Route path="/users/updateProfile" element={<UpdateProfileOption />}></Route>}
         {user && isAuthenticated && <Route path="/users/updatePassword" element={<UpdatePasswordOption />}></Route>}
+        <Route path="/users/forgotPassword" element={<ForgotPasswordOption />}></Route>
+        <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
       </Routes>
       <Footer />
     </Router> 
