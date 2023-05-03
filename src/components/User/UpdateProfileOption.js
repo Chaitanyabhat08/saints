@@ -82,7 +82,7 @@ const UpdateProfileOption = () => {
                         <div className="main2">
                             <div className="update">
                                 <form encType="multipart/form-data" onSubmit={updateProfileSubmit}>
-                                <label for="chk" aria-hidden="true">Update Your Profile:)</label>
+                                <label for="chk" aria-hidden="true">Update Your Profile :</label>
                                 <div className="updatemailInput">
                                         <FaceIcon/>
                                     <input

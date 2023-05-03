@@ -2,7 +2,7 @@
     scroll-behavior: smooth;
 }
 .Banner{
-    background-image: url("/src/images/new1.png");
+    background-image: url("../../images/new1.png");
     background-size: cover;
     height:100vmin;
     text-align: center;

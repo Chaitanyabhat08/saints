@@ -23,7 +23,8 @@ const Profile = () => {
             {loading ?
                 (<Fragment>
                     <Loader />
-                </Fragment> ) : (<Fragment>
+                </Fragment>) : (
+                    <Fragment>
                     <MetaData title={`${user.name}'s profile`} />
                     <div className="profileContainer">
                         <div className="row">
