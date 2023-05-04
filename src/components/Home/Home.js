@@ -7,7 +7,8 @@ import { getProduct,clearErrors } from '../../actions/productActions';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../layout/Loader/Loader';
 import { useAlert } from 'react-alert';
-
+import images from './Images';
+import ImageCarousel from './ImageCarousel';
 const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Home = () => {
             <Loader />
           </Fragment> : <Fragment>
         <MetaData title="Saints&Sinners"/>
+        <div><ImageCarousel images={images} /></div>
         <div className="Banner">
           <p>Welcome To <b>Saints&Sinners</b></p>
           <h1> Find Our Products Below</h1>
