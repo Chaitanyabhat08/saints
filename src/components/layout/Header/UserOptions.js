@@ -9,7 +9,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import { LogOutUser } from '../../../actions/userAction';
-import zIndex from '@mui/material/styles/zIndex';
 import Backdrop from "@material-ui/core/Backdrop";
 
 const UserOptions = ({ user }) => {

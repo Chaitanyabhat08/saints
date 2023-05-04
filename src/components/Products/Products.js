@@ -13,15 +13,15 @@ import { Tooltip,Select } from 'antd';
 const Option = Select;
 
 const categories = [
-    { name: "Tshirts", code: "ts1" },
-    { name:"Electronics", code:"ele"},
-    { name: "Sweatshirts", code: "sw2" },
-    { name: "shirts", code: "sh3" },
-    { name:"pants",code: "pa4" },
-    { name: "sweatpants", code: "sw5" },
-    { name: "caps", code: "cp6" },
-    { name: "socks", code: "sk7" },
-    { name: "Active Wear", code:"aw8" }
+    { name: "Tshirts", code: "Tshirt" },
+    { name: "Gadgets", code:"Gadgets"},
+    { name: "Sweatshirts", code: "SweatShirts" },
+    { name: "Shirts", code: "Shirts" },
+    { name:"Pants",code: "Pants" },
+    { name: "Sweatpants", code: "SweatPants" },
+    { name: "Caps", code: "Capes" },
+    { name: "Socks", code: "Socks" },
+    { name: "Active Wear", code:"ActiveWear" }
 ]
 const Ratings = [
     { name:'4.5 and above',value:'4.5'},
