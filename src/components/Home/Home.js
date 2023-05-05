@@ -10,6 +10,7 @@ import Loader from '../layout/Loader/Loader';
 import { useAlert } from 'react-alert';
 import images from './Images';
 import ImageCarousel from './ImageCarousel';
+import  Banner  from './Banner';
 const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -40,8 +41,9 @@ const Home = () => {
           <Fragment>
             <Loader />
           </Fragment> : <Fragment>
-        <MetaData title="Saints&Sinners"/>
-        <div><ImageCarousel images={images} /></div>
+          <MetaData title="Saints&Sinners"/>
+            {/* <div><ImageCarousel images={images} /></div> */}
+            <div><Banner /></div>
         <div className="Banner">
           <p>Welcome To <b>Saints&Sinners</b></p>
           <h1> Find Our Products Below</h1>
@@ -49,9 +51,10 @@ const Home = () => {
             <button>
               <BsFillSaveFill/>
             </button>
-          </a>
-        </div>
-            <h2 className="homeHeading">Featured Products</h2>
+              </a>
+            </div>
+ 
+            <h2 className="homeHeading">Featured Categories</h2>
         <div className="container" id="container">
           {categories.map(category => (
             <CategoryCard category={category}/>
