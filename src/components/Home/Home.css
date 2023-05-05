@@ -48,6 +48,9 @@
     max-width: 100%;
     clip-path: polygon(100% 68%, 0 100%, 100% 100%);
 }
+.categorySection{
+    background-color: black;
+}
 .homeHeading{
     text-align: center;
     font-family: Montserrat;
@@ -57,7 +60,7 @@
     padding: 1vmax;
     margin:5vmax auto;
 }
-.container{
+.container1{
     display: flex;
     margin:2vmax auto;
     width:80vw;
@@ -65,6 +68,14 @@
     justify-content: center;
     max-width: 100%;
     animation: fadeIn 5s;
+}
+.container1 > h3{
+     font-size: 32px;
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, gray, whitesmoke, white, whitesmoke, gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .productCard{
     width:15vmax;
@@ -127,10 +138,9 @@
     .productCard > span{
         font-size: 1.5vmax;
     }
-    .container{
+    .container1{
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        align-items: last baseline;
     }
     .productCard > div > span {
         margin: 0 0.5vmax;

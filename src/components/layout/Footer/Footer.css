@@ -1,11 +1,13 @@
 footer {
     margin-top: 10vmax;
     padding:2vmax;
-    background-color:rgb(227, 227, 205);
+    background-color: black;
+    color:whitesmoke;
     display: flex;
     align-items: center;
     box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .left{
     width: 30%;
     display: flex;
@@ -14,7 +16,7 @@ footer {
     margin: 0%;
 }
 .left > h4{
-font-family: Rockwell;
+font-family: 600 1.5vmax Montserrat;
 font-size: 1vmax;
 }
 .left > p {
@@ -47,7 +49,7 @@ font-size: 1vmax;
     align-items: center;
 }
 .right > h4{
-    font-family: Rockwell;
+    font-family: 600 1.5vmax Montserrat;
     font-size: 1.4vmax;
     text-decoration: underline;
 }
