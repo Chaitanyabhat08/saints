@@ -19,6 +19,7 @@ import UpdateProfileOption from './components/User/UpdateProfileOption.js';
 import UpdatePasswordOption from './components/User/UpdatePasswordOption.js';
 import ForgotPasswordOption from './components/User/ForgotPasswordOption.js';
 import ResetPasswordOption from './components/User/ResetPasswordOption.js';
+import Navbar from '../src/NavBar';
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -35,7 +36,8 @@ function App() {
   return (
     <Router>
       {user && isAuthenticated && <UserOptions user={user} />}
-      <Header /> 
+      <Header />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/products/getProductDetails/:id" element={<ProductDetails />} render={(props) => (
@@ -52,7 +54,7 @@ function App() {
         <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
       </Routes>
       <Footer />
-    </Router> 
+    </Router>
   );
 }
 
