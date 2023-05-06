@@ -35,8 +35,6 @@ function App() {
 
   return (
     <Router>
-      {user && isAuthenticated && <UserOptions user={user} />}
-      <Header />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>

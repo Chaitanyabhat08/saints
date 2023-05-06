@@ -1,6 +1,11 @@
 import React from "react";
+import Header from './components/layout/Header/Header';
+import { useSelector } from 'react-redux';
+import UserOptions from "./components/layout/Header/UserOptions";
 
 const Navbar = () => {
+  const { isAuthenticated, user } = useSelector(state => state.user);
+ 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <button
@@ -17,6 +22,10 @@ const Navbar = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
+          <li>
+            {user && isAuthenticated ? <UserOptions user={user} /> : <button className="btn btn-primary" href="">Login</button>}
+            <Header />
+          </li>
           <li className="nav-item active">
             <a className="nav-link" href="#">
               Contact US <span className="sr-only">(current)</span>

@@ -51,6 +51,13 @@
 .categorySection{
     background-color: black;
 }
+.categorySection>h2{
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, gray, whitesmoke, white, whitesmoke, gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .homeHeading{
     text-align: center;
     font-family: Montserrat;

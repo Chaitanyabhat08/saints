@@ -1,17 +1,16 @@
 import React, { Fragment,useEffect } from 'react';
 import { BsFillSaveFill } from 'react-icons/bs';
 import './Home.css';
-import Product from './ProductCard.js';
 import CategoryCard from './CategoryCard.js';
 import MetaData from '../layout/MetaData';
 import { getProduct,clearErrors } from '../../actions/productActions';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../layout/Loader/Loader';
 import { useAlert } from 'react-alert';
-import images from './Images';
-import ImageCarousel from './ImageCarousel';
-import  Banner  from './Banner';
+import Banner from './Banner';
+
 const Home = () => {
+  const { isAuthenticated, user } = useSelector(state => state.user);
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, error, products, productCount } = useSelector(state => state.products);

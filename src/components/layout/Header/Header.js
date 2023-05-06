@@ -25,7 +25,7 @@ const Header = () => {
             CartIconElement={MdAddShoppingCart}
             cartIconColorHover="white"
             cartIconMargin="15px"
-            burgerColor="rgb(255,255,225)"
+            burgerColor="black"
             burgerColorHover="white"
             logo={logo}
             logoWidth="20vmax"
