@@ -25,9 +25,6 @@ const LoginSignup = () => {
         password: "",
     })
     const [passwordShown, setPasswordShown] = useState(false);
-    const togglePassword = () => {
-      setPasswordShown(!passwordShown);
-    };
 
     const { name, email, password } = user;
     const [avatar, setAvatar] = useState();

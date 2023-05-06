@@ -1,31 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from './components/layout/Header/Header';
 import { useSelector } from 'react-redux';
 import UserOptions from "./components/layout/Header/UserOptions";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector(state => state.user);
- 
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
+  const history = useNavigate();
+  const [searchData, setSearchData] = useState(null);
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+  const searchProducts = (ProductData) => {
+    setSearchData(ProductData);
+    if (ProductData.trim()) {
+      history(`/products/getallproducts/${ProductData}`)
+  } else {
+      history('/');
+  }
+}
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" style={{position: "sticky"}}>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{paddingLeft: "80px"}}>
         <ul className="navbar-nav mr-auto">
-          <li>
-            {user && isAuthenticated ? <UserOptions user={user} /> : <button className="btn btn-primary" href="">Login</button>}
-            <Header />
-          </li>
+          <Header/>
           <li className="nav-item active">
             <a className="nav-link" href="#">
               Contact US <span className="sr-only">(current)</span>
@@ -115,17 +112,31 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
-        <form className="form-inline my-2 my-lg-0">
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-        </form>
+        <div className="d-flex align-items-center" style={{paddingRight:"50px"}}>
+          <form className="form-inline my-2 my-lg-0 mr-3">
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={searchData}
+              onChange={(e) => searchProducts(e.target.value)}
+            />
+          </form>
+          {user && isAuthenticated ? (
+  <UserOptions user={user} />
+) : (
+  <button className="btn btn-primary" onClick={() => history('/users/loginUser')}>
+    Login
+  </button>
+)}
+
+        </div>
       </div>
     </nav>
   );
+  
 };
 
 export default Navbar;
+     

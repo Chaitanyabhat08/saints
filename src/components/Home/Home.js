@@ -10,10 +10,9 @@ import { useAlert } from 'react-alert';
 import Banner from './Banner';
 
 const Home = () => {
-  const { isAuthenticated, user } = useSelector(state => state.user);
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { loading, error, products, productCount } = useSelector(state => state.products);
+  const { loading, error } = useSelector(state => state.products);
   const categoriesForHer = [
     {
       name: "Tshirts", code: "Tshirt", images: [{ url: 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSr_I2tfnXHGIhtnzi3Zr8hwjX7b8jR7fnTNPirZrq-f3vnCgyWIOjGvl4vgSPMkN1yc_iLMhKeiUfmCeJfbny_P7reL9yFW0kpL4ctYsA&usqp=CAE' }], gender: 'F'

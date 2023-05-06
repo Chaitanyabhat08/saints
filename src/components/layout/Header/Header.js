@@ -9,7 +9,6 @@ import './Header.css'
 const Header = () => {
     return (
         <ReactNavbar
-            className='Header'
             profileIcon={true}
             profileIconColor="gray"
             ProfileIconElement={MdAccountCircle}

@@ -1,5 +1,3 @@
-import React, { Fragment, useEffect ,useState} from 'react';
-import { ADD_TO_CART } from '../constants/cartConstants';
 import axios from 'axios';
 import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../constants/userConstant';
 
