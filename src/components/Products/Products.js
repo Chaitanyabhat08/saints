@@ -178,7 +178,7 @@ const Products = () => {
                                     activeClass="pageItemActive"
                                     activeLinkClass="pageLinkActive"
                                 />
-                            </div>:<div></div>
+                            </div>:<div><h3> No products found!!</h3></div>
                         }
                     </Fragment>
             }

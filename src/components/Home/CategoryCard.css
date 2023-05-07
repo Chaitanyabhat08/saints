@@ -44,8 +44,8 @@
     text-align: center;
     font-size: 22px;
     color: transparent;
-    background-clip: text;
-    background-image: linear-gradient(to right, gray, whitesmoke, white, whitesmoke, gray);
+   background-clip: text;
+    background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

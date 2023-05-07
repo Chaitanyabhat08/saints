@@ -7,7 +7,7 @@ const Product = ({ product }) => {
     edit: false,
     color:"rgba(20,20,20,0.1)",
     activeColor: "Tomato",
-    size:window.innerWidth < 600 ? 20:25,
+    size:window.innerWidth < 300 ? 10:15,
     value: product.rating,
     isHalf:true
 }
