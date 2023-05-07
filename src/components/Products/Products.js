@@ -1,4 +1,4 @@
-import React, { Fragment,useEffect, useState} from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import './Products.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,8 +8,9 @@ import Loader from '../layout/Loader/Loader';
 import Product from "../Home/ProductCard";
 import Pagination from 'react-js-pagination';
 import MetaData from '../layout/MetaData';
+
 import { Typography, Slider } from '@material-ui/core';
-import { Tooltip,Select } from 'antd';
+import { Tooltip, Select } from 'antd';
 const Option = Select;
 
 const categories = [
@@ -35,9 +36,14 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
     const [category, setCategory] = useState(null);
+    const [sortOpt, SetSortOpt] = useState('Recom');
     const [rating, setRating] = useState();
+    const [genderSelected, setGenderSelected] = useState('All');
     const setCurrentPageNo = (e) => {
         setCurrentPage(e);
+    }
+    const handlegender = (e) => {
+        setGenderSelected(e.target.value)
     }
     const priceHandler = (e,newPrice) => {
         setPrice(newPrice);
@@ -57,17 +63,50 @@ const Products = () => {
         }
         dispatch(getProduct(keyWord,currentPage,price,category,rating));
     }, [dispatch,keyWord,currentPage,price,category,rating,error,alert]);
-
+    const menuItems = [
+        { label: 'Recommended', value: 'Recom' },
+        { label: 'Whats new?', value: 'whn' },
+        { label: 'Popularity', value: 'pop' },
+        { label: 'Price: Low-high', value: 'PLH' },
+        { label: 'Price: High-low', value: 'PHL' },
+        // ...
+    ];
     return (
         <Fragment>
             {
                 loading ? <Loader /> :
                     <Fragment>
-                    <MetaData title="Our Products"/>
-                    <h2 className="productsHeading">Our Products</h2>
-                        <div className="products">
-                        <div className="filterDiv">
-                        <div className="filterBox">
+                        <div className='titleSec'>
+                            <MetaData title="Our Products" />
+                            <h1 className="productsHeading">Our Products</h1>
+                        </div>
+                        <div className='sort'>
+                            <Select
+                                label="Sort By:"
+                                name='SORT BY'
+                                value={sortOpt}
+                                style={{ width: 200 }}
+                                placeholder="Sort By:"
+                                onChange={SetSortOpt}
+                            >
+                                {menuItems.map((menu) => (
+                                   <Option key={menu.value} value={menu.value} >
+                                        <Tooltip placement='top' title={menu.label}>{menu.label}</Tooltip>
+                                    </Option>
+                                ))}
+                            </Select> 
+                        </div>
+                        <div className='MainSec'>
+                            <div className="filterBox">
+                                <div className='genderSelection'>
+                                    <p>Men</p>
+                                            <input type="radio" value="Men" checked={ genderSelected=== 'Men'} onChange={handlegender} placeholder='Men'/>
+                                    <p>Women</p> 
+                                            <input type="radio" value="Women" checked={genderSelected === 'Women'} onChange={handlegender} />
+                                    <p>Kids</p>
+                                            <input type="radio" value="Kids" checked={genderSelected === 'Kids'} onChange={handlegender} />
+                                           
+                                </div>
                             <Typography>Price</Typography>
                                 <Slider
                                 value={price}
@@ -77,9 +116,8 @@ const Products = () => {
                                 min={0}
                                 max={3000}
                                 step={100}
-                                marks
-                                color="secondary"
                                 />
+                                <hr/>
                                 <div className="categoryBox">
                                 <Typography>Category</Typography> 
                                 <Select
@@ -115,15 +153,15 @@ const Products = () => {
                                     </div>
                                 
                                 <div>
-                                    <button className="clearFilters" type="button" onClick={removeFilters}><b>Clear Filters X</b></button>
+                                    <button className="clearFilters" type="button" onClick={removeFilters}><b>Clear Filters</b></button>
                                 </div>
                                 </div>
-                                </div>
+                        <div className="products">
                             {products && products.map((product) =>
                                 <Product key={product._id} product={product}/>
                             )}
                         </div>
-
+                    </div>
                         { resultPerPage > 8 ?
                             <div className="paginationBox">
                                 <Pagination
@@ -142,9 +180,9 @@ const Products = () => {
                                 />
                             </div>:<div></div>
                         }
-                </Fragment>
+                    </Fragment>
             }
-      </Fragment>
+    </Fragment>
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaSearch } from 'react-icons/fa';
 import Header from './components/layout/Header/Header';
 import { useSelector } from 'react-redux';
 import UserOptions from "./components/layout/Header/UserOptions";
@@ -9,10 +10,10 @@ const Navbar = () => {
   const history = useNavigate();
   const [searchData, setSearchData] = useState(null);
 
-  const searchProducts = (ProductData) => {
-    setSearchData(ProductData);
-    if (ProductData.trim()) {
-      history(`/products/getallproducts/${ProductData}`)
+  const searchProducts = () => {
+    setSearchData(searchData);
+    if (searchData.trim()) {
+      history(`/products/getallproducts/${searchData}`)
   } else {
       history('/');
   }
@@ -112,7 +113,7 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
-        <div className="d-flex align-items-center" style={{paddingRight:"50px"}}>
+        <div className="d-flex align-items-center" style={{paddingRight:"60px"}}>
           <form className="form-inline my-2 my-lg-0 mr-3">
             <input
               className="form-control mr-sm-2"
@@ -120,11 +121,12 @@ const Navbar = () => {
               placeholder="Search"
               aria-label="Search"
               value={searchData}
-              onChange={(e) => searchProducts(e.target.value)}
+              onChange={(e) => setSearchData(e.target.value)}
             />
           </form>
+          <FaSearch onClick={searchProducts} style={{"cursor": "pointer", "margin":"5px"}} />
           {user && isAuthenticated ? (
-  <UserOptions user={user} />
+        <UserOptions user={user} />
 ) : (
   <button className="btn btn-primary" onClick={() => history('/users/loginUser')}>
     Login

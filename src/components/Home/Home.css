@@ -49,19 +49,20 @@
     clip-path: polygon(100% 68%, 0 100%, 100% 100%);
 }
 .categorySection{
-    background-color: black;
+    background-color: white;
+    height: 53vmax;
 }
 .categorySection>h2{
     color: transparent;
     background-clip: text;
-    background-image: linear-gradient(to right, gray, whitesmoke, white, whitesmoke, gray);
+    background-image: linear-gradient(to right, gray, rgb(164, 161, 161), gray, rgb(164, 161, 161), gray);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .homeHeading{
     text-align: center;
     font-family: Montserrat;
-    font-size: 1.4vmax;
+    font-size: 1.8vmax;
     border-bottom: 1px solid rgba(21,21,21,0.5);
     width: 20vmax;
     padding: 1vmax;
@@ -70,7 +71,7 @@
 .container1{
     display: flex;
     margin:2vmax auto;
-    width:80vw;
+    width:100%;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
@@ -80,7 +81,7 @@
      font-size: 32px;
     color: transparent;
     background-clip: text;
-    background-image: linear-gradient(to right, gray, whitesmoke, white, whitesmoke, gray);
+    background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -97,6 +98,7 @@
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     min-width: 200px;
     border-radius: 5px;
+    background-color: whitesmoke;
 }
 
 .productCard > div{

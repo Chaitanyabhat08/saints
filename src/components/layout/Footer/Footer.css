@@ -1,11 +1,11 @@
 footer {
     margin-top: 10vmax;
     padding:2vmax;
-    background-color: black;
-    color:whitesmoke;
+    background-color: whitesmoke;
+    color: black;
     display: flex;
     align-items: center;
-    box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .left{
@@ -18,10 +18,18 @@ footer {
 .left > h4{
 font-family: 600 1.5vmax Montserrat;
 font-size: 1vmax;
+ background-clip: text;
+    background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .left > p {
     text-align: center;
-    font-family:Rockwell;
+    font-family:Montessarat;
+     background-clip: text;
+    background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .left > img {
     width:5vmax;
@@ -36,7 +44,11 @@ font-size: 1vmax;
     max-width: 60%;
     margin: 0.5vmax auto;
     font-size: 1vmax;
-    font-family:  Rockwell;
+    font-family:  Montessarat;
+     background-clip: text;
+    background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .mid > img {
     width:150px;
@@ -51,7 +63,10 @@ font-size: 1vmax;
 .right > h4{
     font-family: 600 1.5vmax Montserrat;
     font-size: 1.4vmax;
-    text-decoration: underline;
+     background-clip: text;
+    background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .right > a{
     text-decoration: none;

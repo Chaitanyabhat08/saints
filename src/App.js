@@ -19,6 +19,7 @@ import ForgotPasswordOption from './components/User/ForgotPasswordOption.js';
 import ResetPasswordOption from './components/User/ResetPasswordOption.js';
 import Navbar from '../src/NavBar';
 
+
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
 
