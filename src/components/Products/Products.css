@@ -42,13 +42,23 @@
     flex-wrap: wrap;
     background-color: whitesmoke;
     border-radius: 10px;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.19);
-    margin-top:30px;
     overflow-y: auto;
-    overflow-x:auto ;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+    overflow-x:auto;
     min-height: 30vmax;
-
+    margin-top:30px; 
 }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .form-container {
+    margin-right: 20px;
+  }
+  .form-check {
+    margin-bottom: 50px;
+  }
+  
 
 .paginationBox{
     display: flex;
@@ -97,19 +107,61 @@
 .pageLinkActive{
     background-color: tomato;
 }
+.genderSelection {
+    display: flex;
+    flex-direction: column;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.radioText {
+    margin-left: 5px;
+    margin-top: 2px;
+    font-size: 12px;
+    order: 1;
+}
+input[type="radio"] {
+    order: 2;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .form-check-input {
+    margin-right: 5px;
+    margin-left: 165px;
+    margin-top: 50px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .form-check-label {
+    font-size: 12px;
+  }
+  .heading {
+    margin-left: 80px;
+    font-size: 12px;
+  }
 .filterBox{
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     margin: 30px 30px;
     border:none;
-    width:18.8vmax;
+    width:20vmax;
+    height: 50vmax;
     height: 42vmax;
     margin-left: 3px;
     text-decoration: none;
-    color:rgb(48,48,48);
     transition: all 0.5s;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
     min-width: 200px;
     border-radius: 5px;
     color:black;

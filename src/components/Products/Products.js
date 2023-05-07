@@ -80,6 +80,39 @@ const Products = () => {
                             <MetaData title="Our Products" />
                             <h1 className="productsHeading">Our Products</h1>
                         </div>
+                        <div className="ratingsBox">
+                                <Typography component="legend">Ratings</Typography> 
+                                <Select
+                                    name='Ratings'
+                                    value={rating}
+                                    style={{ width: 200 }}
+                                    placeholder="Select Ratings"
+                                    onChange={setRating}
+                                >
+                                    {Ratings.map((rating) => (
+                                        <Option key={rating.value} value={rating.value}>
+                                            <Tooltip placement='top' title={rating.name}>{rating.name}⭐</Tooltip>
+                                        </Option>
+                                    ))}
+                                    </Select> 
+                                    </div>
+                        <div className="categoryBox">
+                                <Typography>Category</Typography> 
+                                <Select
+                                    name='Categories'
+                                    value={category}
+                                    showSearch
+                                    style={{ width: 200 }}
+                                    placeholder="Select a Category"
+                                    onChange={setCategory}
+                                >
+                                    {categories.map((category) => (
+                                        <Option key={category.code} value={category.code}>
+                                            <Tooltip placement='top' title={category.name}>{category.name}</Tooltip>
+                                        </Option>
+                                    ))}
+                                    </Select> 
+                                </div>
                         <div className='sort'>
                             <Select
                                 label="Sort By:"
@@ -118,40 +151,58 @@ const Products = () => {
                                 step={100}
                                 />
                                 <hr/>
-                                <div className="categoryBox">
-                                <Typography>Category</Typography> 
-                                <Select
-                                    name='Categories'
-                                    value={category}
-                                    showSearch
-                                    style={{ width: 200 }}
-                                    placeholder="Select a Category"
-                                    onChange={setCategory}
-                                >
-                                    {categories.map((category) => (
-                                        <Option key={category.code} value={category.code}>
-                                            <Tooltip placement='top' title={category.name}>{category.name}</Tooltip>
-                                        </Option>
-                                    ))}
-                                    </Select> 
-                                </div>
-                                <div className="ratingsBox">
-                                <Typography component="legend">Ratings</Typography> 
-                                <Select
-                                    name='Ratings'
-                                    value={rating}
-                                    style={{ width: 200 }}
-                                    placeholder="Select Ratings"
-                                    onChange={setRating}
-                                >
-                                    {Ratings.map((rating) => (
-                                        <Option key={rating.value} value={rating.value}>
-                                            <Tooltip placement='top' title={rating.name}>{rating.name}⭐</Tooltip>
-                                        </Option>
-                                    ))}
-                                    </Select> 
-                                    </div>
-                                
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                        </label>
+                                        </div>
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked></input>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                        Checked checkbox
+                                        </label>
+                                        </div>
+                                    <div className="form-container">
+                        <h5 class="heading">Discount Range</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" ></input>
+                                <label class="form-check-label" for="exampleRadios1">
+                                10% ABOVE
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></input>
+                                    <label class="form-check-label" for="exampleRadios2">
+                            20% ABOVE
+                                    </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" ></input>
+                                <label class="form-check-label" for="exampleRadios3">
+                            30% ABOVE
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option3" ></input>
+                                <label class="form-check-label" for="exampleRadios3">
+                            40% ABOVE
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option3" ></input>
+                                <label class="form-check-label" for="exampleRadios3">
+                            50% ABOVE
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="option3" ></input>
+                                <label class="form-check-label" for="exampleRadios3">
+                            60% ABOVE
+                                </label>
+                            </div>
+                            </div>
+                         
                                 <div>
                                     <button className="clearFilters" type="button" onClick={removeFilters}><b>Clear Filters</b></button>
                                 </div>
@@ -178,7 +229,7 @@ const Products = () => {
                                     activeClass="pageItemActive"
                                     activeLinkClass="pageLinkActive"
                                 />
-                            </div>:<div><h3> No products found!!</h3></div>
+                            </div>:<div></div>
                         }
                     </Fragment>
             }
