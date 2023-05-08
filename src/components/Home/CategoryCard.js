@@ -5,7 +5,7 @@ import './CategoryCard.css';
 const CategoryCard = ({ category }) => {
   return (
     <div className="CategoryDiv">
-      <Link className="CategoryCard" to={`/products/categoryWise/${category.code}`}>
+      <Link className="CategoryCard" to={`/products/getallproducts/categorywise?category=${category.code}`}>
         <img src={category.images[0].url} alt={category.name} />
         <p>{category.name}</p>
       </Link>

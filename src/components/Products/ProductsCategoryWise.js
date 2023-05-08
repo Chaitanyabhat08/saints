@@ -31,7 +31,6 @@ const Ratings = [
     { name:'Below 3',value: 0}
 ]
 const ProductsCategoryWise = () => {
-    console.log('came!!!!!!')
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
@@ -55,6 +54,7 @@ const ProductsCategoryWise = () => {
         setRating();
     }
     const { loading, error, product, productsCount, resultPerPage } = useSelector(state => state.productCateory);
+    console.log("thsisisiis", product);
     const {category} = useParams();
     useEffect(() => {
         if (error) { 
@@ -63,14 +63,12 @@ const ProductsCategoryWise = () => {
         }
         dispatch(getProductCategoryWise(category));
     }, [error, dispatch, category]);
-    console.log("prrodduuudud", product);
     const menuItems = [
         { label: 'Recommended', value: 'Recom' },
         { label: 'Whats new?', value: 'whn' },
         { label: 'Popularity', value: 'pop' },
         { label: 'Price: Low-high', value: 'PLH' },
         { label: 'Price: High-low', value: 'PHL' },
-        // ...
     ];
     return (
         <Fragment>
@@ -208,11 +206,11 @@ const ProductsCategoryWise = () => {
                                     <button className="clearFilters" type="button" onClick={removeFilters}><b>Clear Filters</b></button>
                                 </div>
                                 </div>
-                        <div className="products">
-                            {product.products && product.products.map((product) =>
+                        {/* <div className="products">
+                            {product && product.products.map((product) =>
                                 <Product key={product._id} product={product}/>
                             )}
-                        </div>
+                        </div> */}
                     </div>
                         { resultPerPage > 8 ?
                             <div className="paginationBox">
@@ -238,4 +236,4 @@ const ProductsCategoryWise = () => {
   )
 }
 
-export default ProductsCategoryWise
+export default ProductsCategoryWise;

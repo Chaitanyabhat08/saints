@@ -35,9 +35,9 @@ export const getProductCategoryWise = (category) => async (dispatch) => {
     try {
         console.log("it reached action");
         dispatch({ type: PRODUCT_CATEGORY_REQUEST });
-        let link = `/api/v1/products/categoryWise/${category}`;
+        let link = `/api/v1/products/getallproducts/categorywise?category=${category}`;
         const { data } = await axios.get(link);
-        console.log("dataaaaa", data);
+        console.log("this is data", data);
         dispatch({
             type: PRODUCT_CATEGORY_SUCCESS,
             payload: data,
