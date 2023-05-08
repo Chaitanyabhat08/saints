@@ -50,7 +50,7 @@ function App() {
         {user && isAuthenticated && <Route path="/users/updatePassword" element={<UpdatePasswordOption />}></Route>}
         <Route path="/users/forgotPassword" element={<ForgotPasswordOption />}></Route>
         <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
-        <Route path="/products/getallproducts" element={<ProductsCategoryWise />}></Route>
+        <Route path="/products/categoryWise/:category" element={<ProductsCategoryWise />} render={(props) => { <ProductsCategoryWise category={props.match.params.category}/>}}></Route>
       </Routes>
       <Footer />
     </Router>

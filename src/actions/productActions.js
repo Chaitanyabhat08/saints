@@ -31,11 +31,13 @@ export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category,rati
         })
     }
 };
-export const getProductCategoryWise = (category, gender) => async (dispatch) => {
+export const getProductCategoryWise = (category) => async (dispatch) => {
     try {
+        console.log("it reached action");
         dispatch({ type: PRODUCT_CATEGORY_REQUEST });
-        let link = `/api/v1/products/getallproducts?category=${category}&gender=${gender}`;
+        let link = `/api/v1/products/categoryWise/${category}`;
         const { data } = await axios.get(link);
+        console.log("dataaaaa", data);
         dispatch({
             type: PRODUCT_CATEGORY_SUCCESS,
             payload: data,

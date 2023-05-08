@@ -4,7 +4,6 @@ import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../constants/userConstant';
 export const addItemToCart = (id, quantity) => async(dispatch,getState) => {
     try {
         const { data } = await axios.get(`/api/v1/products/getProductDetails/${id}`);
-        console.log(data);
         dispatch({
             type: LOGIN_SUCCESS, payload: {
                 product: data.prduct._id,

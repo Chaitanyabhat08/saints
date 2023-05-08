@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import './Products.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { clearErrors, getProduct, getProductCategoryWise } from '../../actions/productActions';
+import { clearErrors, getProductCategoryWise } from '../../actions/productActions';
 import { useAlert } from 'react-alert';
 import Loader from '../layout/Loader/Loader';
 import Product from "../Home/ProductCard";
@@ -31,7 +31,6 @@ const Ratings = [
     { name:'Below 3',value: 0}
 ]
 const ProductsCategoryWise = () => {
-    console.log('hereeeeeeee')
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
@@ -55,15 +54,14 @@ const ProductsCategoryWise = () => {
         setRating();
     }
     const { loading, error, product, productsCount, resultPerPage } = useSelector(state => state.productCateory);
-    const {category, gender} = useParams();
-    console.log('category', category,gender);
+    const {category} = useParams();
     useEffect(() => {
         if (error) { 
             alert.show(error);
             dispatch(clearErrors());
         }
-        dispatch(getProductCategoryWise(category, gender));
-    }, [dispatch, category,gender]);
+        dispatch(getProductCategoryWise(category));
+    }, [error, dispatch, category]);
     console.log("prrodduuudud", product);
     const menuItems = [
         { label: 'Recommended', value: 'Recom' },
