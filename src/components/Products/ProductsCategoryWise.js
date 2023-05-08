@@ -31,6 +31,7 @@ const Ratings = [
     { name:'Below 3',value: 0}
 ]
 const ProductsCategoryWise = () => {
+    console.log('came!!!!!!')
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
