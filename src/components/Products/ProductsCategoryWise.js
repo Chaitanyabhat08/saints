@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import './Products.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { clearErrors, getProduct } from '../../actions/productActions';
+import { clearErrors, getProduct, getProductCategoryWise } from '../../actions/productActions';
 import { useAlert } from 'react-alert';
 import Loader from '../layout/Loader/Loader';
 import Product from "../Home/ProductCard";
@@ -30,12 +30,12 @@ const Ratings = [
     { name: '3 and above', value: 3 },
     { name:'Below 3',value: 0}
 ]
-const Products = () => {
+const ProductsCategoryWise = () => {
+    console.log('hereeeeeeee')
     const dispatch = useDispatch();
-    const alert = useAlert();
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
-    const [category, setCategory] = useState(null);
+    //const [category, setCategory] = useState(null);
     const [sortOpt, SetSortOpt] = useState('Recom');
     const [rating, setRating] = useState();
     const [genderSelected, setGenderSelected] = useState('All');
@@ -51,19 +51,20 @@ const Products = () => {
     function removeFilters (){
         setCurrentPage(1);
         setPrice([0, 3000]);
-        setCategory(null);
+        //setCategory(null);
         setRating();
     }
-    const { loading, error, products, productsCount, resultPerPage } = useSelector(state => state.products);
-
-    const {keyWord} = useParams();
+    const { loading, error, product, productsCount, resultPerPage } = useSelector(state => state.productCateory);
+    const {category, gender} = useParams();
+    console.log('category', category,gender);
     useEffect(() => {
         if (error) { 
             alert.show(error);
             dispatch(clearErrors());
         }
-        dispatch(getProduct(keyWord,currentPage,price,category,rating));
-    }, [dispatch,keyWord,currentPage,price,category,rating,error,alert]);
+        dispatch(getProductCategoryWise(category, gender));
+    }, [dispatch, category,gender]);
+    console.log("prrodduuudud", product);
     const menuItems = [
         { label: 'Recommended', value: 'Recom' },
         { label: 'Whats new?', value: 'whn' },
@@ -105,7 +106,7 @@ const Products = () => {
                                     showSearch
                                     style={{ width: 200 }}
                                     placeholder="Select a Category"
-                                    onChange={setCategory}
+                                    //onChange={setCategory}
                                 >
                                     {categories.map((category) => (
                                         <Option key={category.code} value={category.code}>
@@ -209,7 +210,7 @@ const Products = () => {
                                 </div>
                                 </div>
                         <div className="products">
-                            {products && products.map((product) =>
+                            {product.products && product.products.map((product) =>
                                 <Product key={product._id} product={product}/>
                             )}
                         </div>
@@ -238,4 +239,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default ProductsCategoryWise

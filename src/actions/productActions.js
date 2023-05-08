@@ -6,7 +6,10 @@ import {
     CLEAR_ERROR,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_ERROR,
-    PRODUCT_DETAILS_SUCCESS
+    PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_CATEGORY_REQUEST,
+    PRODUCT_CATEGORY_SUCCESS,
+    PRODUCT_CATEGORY_ERROR
 } from "../constants/product";
 
 export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category,rating=0) => async (dispatch) => {
@@ -30,16 +33,16 @@ export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category,rati
 };
 export const getProductCategoryWise = (category, gender) => async (dispatch) => {
     try {
-        dispatch({ type: ALL_PRODUCT_REQUEST });
+        dispatch({ type: PRODUCT_CATEGORY_REQUEST });
         let link = `/api/v1/products/getallproducts?category=${category}&gender=${gender}`;
         const { data } = await axios.get(link);
         dispatch({
-            type: ALL_PRODUCT_SUCCESS,
+            type: PRODUCT_CATEGORY_SUCCESS,
             payload: data,
         });
     } catch (error) {
         dispatch({
-            type: ALL_PRODUCT_ERROR,
+            type: PRODUCT_CATEGORY_ERROR,
             payload: error.response.data.message,
         })
     }

@@ -67,7 +67,8 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
     }
 }
 
-export const productCategoryReducer = (state = { product: {} }, action) => {
+export const productCategoryReducer = (state = { product: [] }, action) => {
+    console.log(action.payload);
     switch (action.type) {
         case PRODUCT_CATEGORY_REQUEST:
             return {
@@ -77,7 +78,7 @@ export const productCategoryReducer = (state = { product: {} }, action) => {
         case PRODUCT_CATEGORY_SUCCESS:
             return {
                 loading: false,
-                product: action.payload.product,
+                product: action.payload.products,
             }
         case PRODUCT_CATEGORY_ERROR:
             return {
