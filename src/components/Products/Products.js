@@ -18,7 +18,8 @@ const categories = [
     { name: "Gadgets", code:"Gadgets"},
     { name: "Sweatshirts", code: "SweatShirts" },
     { name: "Shirts", code: "Shirts" },
-    { name:"Pants",code: "Pants" },
+    { name: "Pants", code: "Pants" },
+    { name: "Kurtis", code: "Kurtis" },
     { name: "Sweatpants", code: "SweatPants" },
     { name: "Caps", code: "Capes" },
     { name: "Socks", code: "Socks" },
@@ -35,7 +36,7 @@ const Products = () => {
     const alert = useAlert();
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
-    const [category, setCategory] = useState(null);
+    const [categoryFilter, setCategoryFilter] = useState(null);
     const [sortOpt, SetSortOpt] = useState('Recom');
     const [rating, setRating] = useState();
     const [genderSelected, setGenderSelected] = useState('All');
@@ -51,19 +52,26 @@ const Products = () => {
     function removeFilters (){
         setCurrentPage(1);
         setPrice([0, 3000]);
-        setCategory(null);
+        setCategoryFilter(null);
         setRating();
     }
     const { loading, error, products, productsCount, resultPerPage } = useSelector(state => state.products);
 
-    const {keyWord} = useParams();
+    const { keyWord, gender, category } = useParams();
+    console.log('keyWord: ', keyWord);
+    console.log('gender: ', gender);
+    console.log('category: ', category);
     useEffect(() => {
         if (error) { 
             alert.show(error);
             dispatch(clearErrors());
         }
-        dispatch(getProduct(keyWord,currentPage,price,category,rating));
-    }, [dispatch,keyWord,currentPage,price,category,rating,error,alert]);
+        dispatch(getProduct(keyWord, currentPage, price, category, rating, gender));
+        if (categoryFilter) {
+            dispatch(getProduct(keyWord, currentPage, price, categoryFilter, rating, gender));
+        }
+    }, [dispatch, keyWord, currentPage, price, category, rating, error, categoryFilter,alert, gender]);
+    
     const menuItems = [
         { label: 'Recommended', value: 'Recom' },
         { label: 'Whats new?', value: 'whn' },
@@ -101,11 +109,11 @@ const Products = () => {
                                 <Typography>Category</Typography> 
                                 <Select
                                     name='Categories'
-                                    value={category}
+                                    value={categoryFilter}
                                     showSearch
                                     style={{ width: 200 }}
                                     placeholder="Select a Category"
-                                    onChange={setCategory}
+                                    onChange={setCategoryFilter}
                                 >
                                     {categories.map((category) => (
                                         <Option key={category.code} value={category.code}>

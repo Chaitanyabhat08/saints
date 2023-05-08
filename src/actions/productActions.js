@@ -7,17 +7,15 @@ import {
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_ERROR,
     PRODUCT_DETAILS_SUCCESS,
-    PRODUCT_CATEGORY_REQUEST,
-    PRODUCT_CATEGORY_SUCCESS,
-    PRODUCT_CATEGORY_ERROR
 } from "../constants/product";
 
-export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category,rating=0) => async (dispatch) => {
+export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category,rating=0,gender) => async (dispatch) => {
     try {
+        console.log('hey its actions');
         dispatch({ type: ALL_PRODUCT_REQUEST });
-        let link = `/api/v1/products/getallproducts?keyword=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`;
-        if (category) {
-          link = `/api/v1/products/getallproducts?keyword=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}`;
+        let link = `/api/v1/products/getallproducts?keyWord=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`;
+        if (category && gender) {
+            link = `/api/v1/products/getallproducts?keyword=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}&category=${category}&gender=${gender}`;
         }
         const { data } = await axios.get(link);
         dispatch({
@@ -27,24 +25,6 @@ export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category,rati
     } catch (error) {
         dispatch({
             type: ALL_PRODUCT_ERROR,
-            payload: error.response.data.message,
-        })
-    }
-};
-export const getProductCategoryWise = (category) => async (dispatch) => {
-    try {
-        console.log("it reached action");
-        dispatch({ type: PRODUCT_CATEGORY_REQUEST });
-        let link = `/api/v1/products/getallproducts/categorywise?category=${category}`;
-        const { data } = await axios.get(link);
-        console.log("this is data", data);
-        dispatch({
-            type: PRODUCT_CATEGORY_SUCCESS,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: PRODUCT_CATEGORY_ERROR,
             payload: error.response.data.message,
         })
     }

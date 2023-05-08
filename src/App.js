@@ -17,7 +17,6 @@ import UpdateProfileOption from './components/User/UpdateProfileOption.js';
 import UpdatePasswordOption from './components/User/UpdatePasswordOption.js';
 import ForgotPasswordOption from './components/User/ForgotPasswordOption.js';
 import ResetPasswordOption from './components/User/ResetPasswordOption.js';
-import ProductsCategoryWise from "./components/Products/ProductsCategoryWise"
 import Navbar from '../src/NavBar';
 
 
@@ -42,7 +41,7 @@ function App() {
           <ProductDetails id={props.match.params.id} />
         )}></Route>
         <Route path="/products/getallproducts/" element={<Products />} ></Route>
-        <Route path="/products/getallproducts/:keyWord" element={<Products />} ></Route>
+        <Route path="/products/getallproducts/:keyWord" element={<Products />}></Route>
         <Route path="/Search" element={<Search />}></Route>
         <Route path="/users/loginUser" element={<LoginSignup />}></Route>
         {user && isAuthenticated && <Route path="/users/getMyDetails" element={<Profile />}></Route>}
@@ -50,7 +49,6 @@ function App() {
         {user && isAuthenticated && <Route path="/users/updatePassword" element={<UpdatePasswordOption />}></Route>}
         <Route path="/users/forgotPassword" element={<ForgotPasswordOption />}></Route>
         <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
-        <Route path="/products/getallproducts/categorywise/:category" element={<ProductsCategoryWise/>}/>
       </Routes>
       <Footer />
     </Router>

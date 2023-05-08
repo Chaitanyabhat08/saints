@@ -1,18 +1,14 @@
-import React, { Fragment,useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { BsFillSaveFill } from 'react-icons/bs';
 import './Home.css';
 import CategoryCard from './CategoryCard.js';
 import MetaData from '../layout/MetaData';
-import { getProductCategoryWise,clearErrors } from '../../actions/productActions';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loader from '../layout/Loader/Loader';
-import { useAlert } from 'react-alert';
 import Banner from './Banner';
 
 const Home = () => {
-  const alert = useAlert();
-  const dispatch = useDispatch();
-  const { loading, error } = useSelector(state => state.products);
+  const { loading } = useSelector(state => state.products);
   const categoriesForHer = [
     {
       name: "Tshirts", code: "Tshirt", images: [{ url: 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSr_I2tfnXHGIhtnzi3Zr8hwjX7b8jR7fnTNPirZrq-f3vnCgyWIOjGvl4vgSPMkN1yc_iLMhKeiUfmCeJfbny_P7reL9yFW0kpL4ctYsA&usqp=CAE' }], gender: 'F'
@@ -57,7 +53,7 @@ const Home = () => {
               <div className="container1" id="container1">
                 <h3>For Her </h3>
                 {categoriesForHer.map(category => (
-                  <CategoryCard category={category} />
+                  <CategoryCard category={category}/>
                 ))}
               </div>
             </div>

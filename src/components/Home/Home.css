@@ -14,10 +14,10 @@
 }
 .Banner > h1{
     margin:1vmax;
-    font:600 2.5vmax "Roboto", "Helvetica Neue",
+    font:600 2.5vmax "Montessarat",
 }
 .Banner >p{
-    font:300 1.4vmax "Roboto"
+    font:300 1.4vmax "Montessarat"
 }
 .Banner > a > button{
     margin-bottom: 5vmax;

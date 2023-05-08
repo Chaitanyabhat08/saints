@@ -6,9 +6,6 @@ import {
     PRODUCT_DETAILS_ERROR,
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
-    PRODUCT_CATEGORY_REQUEST,
-    PRODUCT_CATEGORY_SUCCESS,
-    PRODUCT_CATEGORY_ERROR
 } from "../constants/product";
 
 export const productReducer = (state = { products: [] }, action) => {
@@ -53,33 +50,6 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
                 product: action.payload.product,
             }
         case PRODUCT_DETAILS_ERROR:
-            return {
-                loading: false,
-                error: action.payload,
-            }
-        case CLEAR_ERROR:
-            return {
-                ...state,
-                error: null,
-            }
-        default:
-            return state;
-    }
-}
-
-export const productCategoryReducer = (state = { product: [] }, action) => {
-    switch (action.type) {
-        case PRODUCT_CATEGORY_REQUEST:
-            return {
-                loading: true,
-                ...state,
-            }
-        case PRODUCT_CATEGORY_SUCCESS:
-            return {
-                loading: false,
-                product: action.payload.products,
-            }
-        case PRODUCT_CATEGORY_ERROR:
             return {
                 loading: false,
                 error: action.payload,
