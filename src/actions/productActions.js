@@ -15,7 +15,7 @@ export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category,rati
         dispatch({ type: ALL_PRODUCT_REQUEST });
         let link = `/api/v1/products/getallproducts?keyWord=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`;
         if (category && gender) {
-            link = `/api/v1/products/getallproducts?keyword=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}&category=${category}&gender=${gender}`;
+          link = `/api/v1/products/getallproducts?keyword=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}&gender=${gender}`;
         }
         const { data } = await axios.get(link);
         dispatch({

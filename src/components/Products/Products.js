@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import './Products.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams,useLocation } from 'react-router-dom';
 import { clearErrors, getProduct } from '../../actions/productActions';
 import { useAlert } from 'react-alert';
 import Loader from '../layout/Loader/Loader';
@@ -29,11 +29,12 @@ const Ratings = [
     { name:'4.5 and above',value:'4.5'},
     { name: '4 & above', value: '4' },
     { name: '3 and above', value: 3 },
-    { name:'Below 3',value: 0}
+    { name:'All',value: 0}
 ]
 const Products = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
+    const location = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
     const [categoryFilter, setCategoryFilter] = useState(null);
@@ -57,7 +58,10 @@ const Products = () => {
     }
     const { loading, error, products, productsCount, resultPerPage } = useSelector(state => state.products);
 
-    const { keyWord, gender, category } = useParams();
+    const { keyWord } = useParams();
+    const category = decodeURIComponent(new URLSearchParams(location.search).get('category'));
+    const gender = decodeURIComponent(new URLSearchParams(location.search).get('gender'));
+    console.log(categoryFilter);
     console.log('keyWord: ', keyWord);
     console.log('gender: ', gender);
     console.log('category: ', category);
@@ -66,8 +70,10 @@ const Products = () => {
             alert.show(error);
             dispatch(clearErrors());
         }
-        dispatch(getProduct(keyWord, currentPage, price, category, rating, gender));
-        if (categoryFilter) {
+        //link = `/api/v1/products/getallproducts?keyword=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}&gender=${gender}`;
+        if (category) {
+            dispatch(getProduct(keyWord, currentPage, price, category, rating, gender));
+        } else {
             dispatch(getProduct(keyWord, currentPage, price, categoryFilter, rating, gender));
         }
     }, [dispatch, keyWord, currentPage, price, category, rating, error, categoryFilter,alert, gender]);
