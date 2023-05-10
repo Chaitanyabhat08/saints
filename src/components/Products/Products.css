@@ -13,12 +13,14 @@
 }
 .sort{
     display: flex;
-    flex-direction: column;
+    float: right;
     border-radius: 5px;
     align-items: flex-end;
     text-align: center;
     height: 2.5vmax;
+    margin-top: 25px;
     margin-right: 20px;
+    padding-bottom: 40px;
 }
 .sort:first-child{
     width: 10vmax;
@@ -53,13 +55,10 @@
     flex-wrap: wrap;
   }
   .form-container {
-    margin-right: 20px;
-  }
-  .form-check {
-    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
   }
   
-
 .paginationBox{
     display: flex;
     align-items: center;
@@ -115,13 +114,13 @@
 .radioLabel {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 
 .radioText {
-    margin-left: 5px;
-    margin-top: 2px;
-    font-size: 12px;
+    /* margin-left: 5px;
+    margin-top: 2px; */
+    font-size: 5px;
     order: 1;
 }
 input[type="radio"] {
@@ -130,16 +129,12 @@ input[type="radio"] {
 
 .form-check {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    align-items: flex-end;
+  /* margin-bottom: 10px;   */
   }
 
   .form-check-input {
-    margin-right: 5px;
     margin-left: 165px;
-    margin-top: 50px;
-    width: 14px;
-    height: 14px;
   }
 
   .form-check-label {
@@ -153,11 +148,9 @@ input[type="radio"] {
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;
-    margin: 30px 30px;
-    border:none;
-    width:20vmax;
+    margin: 20px 20px;
+    width:18vmax;
     height: 50vmax;
-    height: 42vmax;
     margin-left: 3px;
     text-decoration: none;
     transition: all 0.5s;
@@ -166,6 +159,10 @@ input[type="radio"] {
     border-radius: 5px;
     color:black;
     min-width: 17.5vmax;
+    object-fit: fill;
+}
+.genderSelection{
+    flex-wrap: wrap;
 }
 .categoryBox{
     padding-top:2vmax;

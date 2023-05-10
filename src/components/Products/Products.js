@@ -95,8 +95,25 @@ const Products = () => {
                             <MetaData title="Our Products" />
                             <h1 className="productsHeading">Our Products</h1>
                         </div>
-                        <div className="ratingsBox">
-                                <Typography component="legend">Ratings</Typography> 
+                        <div className='sort'>
+                            <div className="sortbyBox">
+                            <Typography>Sort by:</Typography>
+                            <Select
+                                name='SORT BY'
+                                value={sortOpt}
+                                style={{ width: 200 }}
+                                placeholder="Sort By:"
+                                onChange={SetSortOpt}
+                            >
+                                {menuItems.map((menu) => (
+                                   <Option key={menu.value} value={menu.value} >
+                                        <Tooltip placement='top' title={menu.label}>{menu.label}</Tooltip>
+                                    </Option>
+                                ))}
+                                </Select>
+                            </div>    
+                            <div className="ratingsBox">
+                                <Typography component="legend">Ratings</Typography>
                                 <Select
                                     name='Ratings'
                                     value={rating}
@@ -109,10 +126,10 @@ const Products = () => {
                                             <Tooltip placement='top' title={rating.name}>{rating.name}⭐</Tooltip>
                                         </Option>
                                     ))}
-                                    </Select> 
-                                    </div>
-                        <div className="categoryBox">
-                                <Typography>Category</Typography> 
+                                </Select>
+                            </div>
+                            <div className="categoryBox">
+                                <Typography>Category</Typography>
                                 <Select
                                     name='Categories'
                                     value={categoryFilter}
@@ -126,35 +143,26 @@ const Products = () => {
                                             <Tooltip placement='top' title={category.name}>{category.name}</Tooltip>
                                         </Option>
                                     ))}
-                                    </Select> 
-                                </div>
-                        <div className='sort'>
-                            <Select
-                                label="Sort By:"
-                                name='SORT BY'
-                                value={sortOpt}
-                                style={{ width: 200 }}
-                                placeholder="Sort By:"
-                                onChange={SetSortOpt}
-                            >
-                                {menuItems.map((menu) => (
-                                   <Option key={menu.value} value={menu.value} >
-                                        <Tooltip placement='top' title={menu.label}>{menu.label}</Tooltip>
-                                    </Option>
-                                ))}
-                            </Select> 
+                                </Select>
+                            </div>
                         </div>
                         <div className='MainSec'>
                             <div className="filterBox">
-                                <div className='genderSelection'>
-                                    <p>Men</p>
-                                            <input type="radio" value="Men" checked={ genderSelected=== 'Men'} onChange={handlegender} placeholder='Men'/>
-                                    <p>Women</p> 
-                                            <input type="radio" value="Women" checked={genderSelected === 'Women'} onChange={handlegender} />
-                                    <p>Kids</p>
-                                            <input type="radio" value="Kids" checked={genderSelected === 'Kids'} onChange={handlegender} />
-                                           
+                                <div className='genderSelection'> 
+                                    <div>
+                                        <input class="meninput" type="radio" value="Men" checked={genderSelected === 'Men'} onChange={handlegender} placeholder='Men' name="men"></input>
+                                        <input class="womeninput" type="radio" value="Women" checked={genderSelected === 'Women'} onChange={handlegender} name="women"></input>
+                                        <input class="kidsinput" type="radio" value="Kids" checked={genderSelected === 'Kids'} onChange={handlegender} name="kids" ></input>
+                                    </div>
+                                    <div>
+                                        <h6>Men</h6>
+                                        <h6>WoMen</h6>
+                                        <h6>kids</h6>
+                                    </div>
+
                                 </div>
+                                <div>
+                                <hr />
                             <Typography>Price</Typography>
                                 <Slider
                                 value={price}
@@ -164,21 +172,10 @@ const Products = () => {
                                 min={0}
                                 max={3000}
                                 step={100}
-                                />
-                                <hr/>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        Default checkbox
-                                        </label>
-                                        </div>
-                                        <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked></input>
-                                        <label class="form-check-label" for="flexCheckChecked">
-                                        Checked checkbox
-                                        </label>
-                                        </div>
-                                    <div className="form-container">
+                                    />
+                                </div>
+                                 <hr />
+                        <div className="form-container">
                         <h5 class="heading">Discount Range</h5>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" ></input>
@@ -189,7 +186,7 @@ const Products = () => {
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></input>
                                     <label class="form-check-label" for="exampleRadios2">
-                            20% ABOVE
+                                    20% ABOVE
                                     </label>
                             </div>
                             <div class="form-check">
@@ -197,7 +194,7 @@ const Products = () => {
                                 <label class="form-check-label" for="exampleRadios3">
                             30% ABOVE
                                 </label>
-                            </div>
+                                    </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option3" ></input>
                                 <label class="form-check-label" for="exampleRadios3">
@@ -217,11 +214,11 @@ const Products = () => {
                                 </label>
                             </div>
                             </div>
-                         
+                                <hr />
                                 <div>
                                     <button className="clearFilters" type="button" onClick={removeFilters}><b>Clear Filters</b></button>
                                 </div>
-                                </div>
+                            </div>
                         <div className="products">
                             {products && products.map((product) =>
                                 <Product key={product._id} product={product}/>

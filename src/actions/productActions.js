@@ -9,7 +9,7 @@ import {
     PRODUCT_DETAILS_SUCCESS,
 } from "../constants/product";
 
-export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category,rating=0,gender) => async (dispatch) => {
+export const getProduct = (keyWord="",currentPage=1,price=[0,3000],category='',rating=0,gender='') => async (dispatch) => {
     try {
         console.log('hey its actions');
         dispatch({ type: ALL_PRODUCT_REQUEST });
