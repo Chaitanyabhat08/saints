@@ -19,6 +19,9 @@
 .Banner >p{
     font:300 1.4vmax "Montessarat"
 }
+.productDiv{
+    object-fit: fill;
+}
 .Banner > a > button{
     margin-bottom: 5vmax;
     size: 2vmax;
@@ -85,7 +88,40 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.productCard{
+.buttonSec{
+    display: none;
+    flex-direction: column;
+    object-fit: cover;
+    margin:0;
+
+}
+.button > button{
+    background-color: gray;
+    color: rgb(40, 25, 25);
+    align-items: center;
+}
+.button> .btn:hover{
+    background-color: rgb(50, 48, 48);
+    color: whitesmoke;
+    text-decoration: none;
+}
+.button :first-child{
+    margin-right:10px;
+}
+
+.buttonSec > div:nth-child(2) > button {
+    background-color: gray;
+    color: rgb(40, 24, 24);
+    text-align: center;
+    margin-top:10px;
+    width: 100%;
+}
+.buttonSec > div:nth-child(2)> button:hover{
+     background-color: rgb(50, 48, 48);
+     color:white;
+}
+.productDiv{
+    cursor: pointer;
     width:15vmax;
     height: 25vmax;
     display: flex;
@@ -99,17 +135,24 @@
     min-width: 200px;
     border-radius: 5px;
     background-color: whitesmoke;
-    object-fit: fill;
-    min-height: 25vmax;
+    object-fit: contain;
+    min-height: 22vmax;
+    text-align: center;
+}
+.productDiv:hover{
+    height:29.5vmax;
+}
+.productDiv:hover .buttonSec{
+    display: flex;
 }
 
 .productCard > div{
     display: flex;
-    padding: 0.5vmax;
-    justify-content: flex-start;
+    margin:0;
+    justify-content: center;
 }
 .productCard > div > span{
-    padding-top:0.18vmax;
+    padding-top:0.10vmax;
     font: 300 1vmax Montserrat;
      background-clip: text;
     background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
@@ -134,9 +177,29 @@
     -webkit-text-fill-color: transparent;
     font:600 1.2vmax "Montessarat";
 }
-.productCard:hover{
+.productDiv:hover{
     box-shadow: 0 0 5px rgba(15, 15, 15, 0.36);
     transform: translateY(1.3vmax);
+}
+.productCard > img {
+ max-width: 100%;
+  max-height: 100%; 
+  object-fit: contain; 
+  transition: transform .2s;
+  width: 14.5vmax;
+  height: 17vmax;
+  min-height: 15vmax;
+  min-width:15vmax;
+  object-fit: fill;
+  border-radius: 5px;
+  padding: 2px;
+}
+.productCard > img:hover{
+    padding: 2px;
+    align-items: center;
+    border-radius: 3px;
+    background-color:whitesmoke;
+    transform: scale(1.15);
 }
 @media screen and (max-width:600px){
     .productCard>p{
@@ -178,26 +241,3 @@
     }
 }
 
-.productCard > img {
- max-width: 100%;
-  max-height: 100%; 
-  object-fit: contain; 
-  transition: transform .2s;
-  width: 14.5vmax;
-  height: 17vmax;
-  min-height: 15vmax;
-  min-width:15vmax;
-  object-fit: fill;
-  border-radius: 5px;
-  padding: 2px;
-}
-.productDiv{
-    display: flex;
-}
-.productCard > img:hover{
-    padding: 2px;
-    align-items: center;
-    border-radius: 3px;
-    background-color:whitesmoke;
-    transform: scale(1.15);
-}

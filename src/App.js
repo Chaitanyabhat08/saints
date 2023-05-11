@@ -12,6 +12,7 @@ import LoginSignup from './components/User/loginSignup';
 import Store from "./Store";
 import { LoadUser } from './actions/userAction';
 import Profile from './components/User/Profile.js';
+import Cart from './components/cart/cart.js';
 // import ProtectedRoute from './components/Route/ProtectedRoute';
 import UpdateProfileOption from './components/User/UpdateProfileOption.js';
 import UpdatePasswordOption from './components/User/UpdatePasswordOption.js';
@@ -47,6 +48,7 @@ function App() {
         {user && isAuthenticated && <Route path="/users/getMyDetails" element={<Profile />}></Route>}
         {user && isAuthenticated && <Route path="/users/updateProfile" element={<UpdateProfileOption />}></Route>}
         {user && isAuthenticated && <Route path="/users/updatePassword" element={<UpdatePasswordOption />}></Route>}
+        {user && isAuthenticated && <Route path="/Cart" element={<Cart />}></Route>}
         <Route path="/users/forgotPassword" element={<ForgotPasswordOption />}></Route>
         <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
       </Routes>

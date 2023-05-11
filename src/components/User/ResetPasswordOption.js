@@ -15,8 +15,6 @@ const ResetPasswordOption = () => {
     const alert = useAlert();
     const { token } = useParams();
 
-    console.log(token);
-
     const { error, success, loading } = useSelector((state) => state.resetPassword);
 
     const [password, setPassword] = useState("");

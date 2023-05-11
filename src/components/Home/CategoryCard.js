@@ -4,7 +4,6 @@ import './CategoryCard.css';
 
 const CategoryCard = ({ category }) => {
   const keyword = "";
-  console.log(category)
   return (
     <div className="CategoryDiv">
       <Link className="CategoryCard" to={`/products/getallproducts/${encodeURIComponent(keyword)}?category=${encodeURIComponent(category.code)}&gender=${encodeURIComponent(category.gender)}`}>

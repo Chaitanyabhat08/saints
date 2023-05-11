@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import './Products.css';
+    
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams,useLocation } from 'react-router-dom';
 import { clearErrors, getProduct } from '../../actions/productActions';
@@ -8,6 +9,7 @@ import Loader from '../layout/Loader/Loader';
 import Product from "../Home/ProductCard";
 import Pagination from 'react-js-pagination';
 import MetaData from '../layout/MetaData';
+import { Input } from '@mui/material';
 
 import { Typography, Slider } from '@material-ui/core';
 import { Tooltip, Select } from 'antd';
@@ -37,15 +39,16 @@ const Products = () => {
     const location = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
-    const [categoryFilter, setCategoryFilter] = useState(null);
+    const [categoryFilter, setCategoryFilter] = useState('All');
     const [sortOpt, SetSortOpt] = useState('Recom');
     const [rating, setRating] = useState();
-    const [genderSelected, setGenderSelected] = useState('All');
+    const [genderSelected, setGenderSelected] = useState();
     const setCurrentPageNo = (e) => {
         setCurrentPage(e);
     }
     const handlegender = (e) => {
-        setGenderSelected(e.target.value)
+        setGenderSelected(e.target.value);
+
     }
     const priceHandler = (e,newPrice) => {
         setPrice(newPrice);
@@ -58,32 +61,28 @@ const Products = () => {
     }
     const { loading, error, products, productsCount, resultPerPage } = useSelector(state => state.products);
 
-    const { keyWord } = useParams();
-    const category = decodeURIComponent(new URLSearchParams(location.search).get('category'));
-    const gender = decodeURIComponent(new URLSearchParams(location.search).get('gender'));
-    console.log(categoryFilter);
-    console.log('keyWord: ', keyWord);
-    console.log('gender: ', gender);
-    console.log('category: ', category);
+    const { keyWord,category,gender } = useParams();
+    // const category = decodeURIComponent(new URLSearchParams(location.search).get('category'));
+    // const gender = decodeURIComponent(new URLSearchParams(location.search).get('gender'));
     useEffect(() => {
         if (error) { 
             alert.show(error);
             dispatch(clearErrors());
         }
-        //link = `/api/v1/products/getallproducts?keyword=${keyWord}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}&gender=${gender}`;
-        if (category) {
-            dispatch(getProduct(keyWord, currentPage, price, category, rating, gender));
+        if (category!='All' || gender!='null') {
+            dispatch(getProduct(keyWord, currentPage, price, category, rating, gender))
         } else {
-            dispatch(getProduct(keyWord, currentPage, price, categoryFilter, rating, gender));
+            dispatch(getProduct(keyWord, currentPage, price, categoryFilter,rating,genderSelected));
         }
-    }, [dispatch, keyWord, currentPage, price, category, rating, error, categoryFilter,alert, gender]);
+    }, [dispatch, keyWord, currentPage, price, category, rating, categoryFilter, error, alert, gender, genderSelected]);
+
     
     const menuItems = [
-        { label: 'Recommended', value: 'Recom' },
-        { label: 'Whats new?', value: 'whn' },
-        { label: 'Popularity', value: 'pop' },
-        { label: 'Price: Low-high', value: 'PLH' },
-        { label: 'Price: High-low', value: 'PHL' },
+        { h6: 'Recommended', value: 'Recom' },
+        { h6: 'Whats new?', value: 'whn' },
+        { h6: 'Popularity', value: 'pop' },
+        { h6: 'Price: Low-high', value: 'PLH' },
+        { h6: 'Price: High-low', value: 'PHL' },
         // ...
     ];
     return (
@@ -107,7 +106,7 @@ const Products = () => {
                             >
                                 {menuItems.map((menu) => (
                                    <Option key={menu.value} value={menu.value} >
-                                        <Tooltip placement='top' title={menu.label}>{menu.label}</Tooltip>
+                                        <Tooltip placement='top' title={menu.h6}>{menu.h6}</Tooltip>
                                     </Option>
                                 ))}
                                 </Select>
@@ -149,69 +148,87 @@ const Products = () => {
                         <div className='MainSec'>
                             <div className="filterBox">
                                 <div className='genderSelection'> 
-                                    <div>
-                                        <input class="meninput" type="radio" value="Men" checked={genderSelected === 'Men'} onChange={handlegender} placeholder='Men' name="men"></input>
-                                        <input class="womeninput" type="radio" value="Women" checked={genderSelected === 'Women'} onChange={handlegender} name="women"></input>
-                                        <input class="kidsinput" type="radio" value="Kids" checked={genderSelected === 'Kids'} onChange={handlegender} name="kids" ></input>
-                                    </div>
-                                    <div>
-                                        <h6>Men</h6>
-                                        <h6>WoMen</h6>
-                                        <h6>kids</h6>
-                                    </div>
-
+                                        <div>
+                                            <h6 for="noinput">
+                                                All
+                                            </h6>
+                                        <Input type="radio" name="radios" id="noinput" value="All" checked={genderSelected === 'All'}
+                                        onChange={handlegender} ></Input>
+                                        </div>
+                                        <div >
+                                            <h6 for="meninput">
+                                                Men
+                                            </h6>
+                                        <Input type="radio" name="radios" id="meninput" value="M" checked={genderSelected === 'M'}
+                                            onChange={handlegender}></Input>
+                                        </div>
+                                        <div>
+                                            <h6 for="womeninput">
+                                                Women
+                                            </h6>
+                                        <Input type="radio" name="radios" id="womeninput" value="F" checked={genderSelected === 'F'}
+                                            onChange={handlegender}></Input>
+                                        </div>
+                                        <div>
+                                            <h6 for="kidsinput">
+                                               Kids
+                                            </h6>
+                                        <Input type="radio" name="radios" id="kidsinput" value="K" checked={genderSelected === 'K'}
+                                            onChange={handlegender}></Input>
+                                        </div>
                                 </div>
                                 <div>
                                 <hr />
                             <Typography>Price</Typography>
                                 <Slider
+                                className="priceSlider"
                                 value={price}
                                 valueLabelDisplay="auto"
                                 aria-labelledby="range-slider"
                                 onChange={priceHandler}
                                 min={0}
                                 max={3000}
-                                step={100}
+                                step={50}
                                     />
                                 </div>
                                  <hr />
-                        <div className="form-container">
+                        <div className="discountSec">
                         <h5 class="heading">Discount Range</h5>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" ></input>
-                                <label class="form-check-label" for="exampleRadios1">
+                            <div>
+                            <Input type="radio" name="exampleRadios" id="exampleRadios1" value="option1" ></Input>
+                                <h6 for="exampleRadios1">
                                 10% ABOVE
-                                </label>
+                                </h6>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></input>
-                                    <label class="form-check-label" for="exampleRadios2">
+                            <div >
+                                <Input type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></Input>
+                                    <h6 for="exampleRadios2">
                                     20% ABOVE
-                                    </label>
+                                    </h6>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" ></input>
-                                <label class="form-check-label" for="exampleRadios3">
+                            <div >
+                                <Input type="radio" name="exampleRadios" id="exampleRadios3" value="option3" ></Input>
+                                <h6 for="exampleRadios3">
                             30% ABOVE
-                                </label>
+                                </h6>
                                     </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option3" ></input>
-                                <label class="form-check-label" for="exampleRadios3">
+                            <div >
+                                <Input type="radio" name="exampleRadios" id="exampleRadios4" value="option3" ></Input>
+                                <h6  for="exampleRadios3">
                             40% ABOVE
-                                </label>
+                                </h6>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option3" ></input>
-                                <label class="form-check-label" for="exampleRadios3">
+                            <div>
+                                <Input type="radio" name="exampleRadios" id="exampleRadios5" value="option3" ></Input>
+                                <h6 for="exampleRadios3">
                             50% ABOVE
-                                </label>
+                                </h6>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="option3" ></input>
-                                <label class="form-check-label" for="exampleRadios3">
+                            <div>
+                                <Input type="radio" name="exampleRadios" id="exampleRadios6" value="option3" ></Input>
+                                <h6 for="exampleRadios3">
                             60% ABOVE
-                                </label>
+                                </h6>
                             </div>
                             </div>
                                 <hr />

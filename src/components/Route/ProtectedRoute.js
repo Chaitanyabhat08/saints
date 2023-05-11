@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter as useNavigate,Route, Routes } from 'react-router-dom';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
-    console.log(Component);
     const { loading, user, isAuthenticated } = useSelector((state) => state.user)
     const navigateTo = useNavigate();
     return (

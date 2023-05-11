@@ -10,6 +10,7 @@
 }
 .MainSec{
     display: flex;
+    margin-top: 100px;
 }
 .sort{
     display: flex;
@@ -17,14 +18,8 @@
     border-radius: 5px;
     align-items: flex-end;
     text-align: center;
-    height: 2.5vmax;
-    margin-top: 25px;
-    margin-right: 20px;
-    padding-bottom: 40px;
-}
-.sort:first-child{
-    width: 10vmax;
-    height: 2.5vmax;
+    height: 2.0vmax;
+    padding-top: 70px;
 }
 .titleSec>h1{
     text-align: center;
@@ -40,8 +35,6 @@
 
 .products{
     display: flex;
-    justify-content:safe;
-    flex-wrap: wrap;
     background-color: whitesmoke;
     border-radius: 10px;
     overflow-y: auto;
@@ -49,6 +42,7 @@
     overflow-x:auto;
     min-height: 30vmax;
     margin-top:30px; 
+    flex-wrap: wrap;
 }
   .container {
     display: flex;
@@ -148,21 +142,36 @@ input[type="radio"] {
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;
-    margin: 20px 20px;
-    width:18vmax;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 30px;
+    width:19vmax;
     height: 50vmax;
     margin-left: 3px;
     text-decoration: none;
     transition: all 0.5s;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
-    min-width: 200px;
+    min-width: 250px;
     border-radius: 5px;
     color:black;
     min-width: 17.5vmax;
-    object-fit: fill;
 }
-.genderSelection{
-    flex-wrap: wrap;
+.genderSelection> div{
+    display: flex;
+    margin:10px;
+
+}
+.genderSelection> div:Input{
+    margin:10px;
+}
+.discountSec{
+    align-items: center;
+}
+.discountSec> div{
+    display: flex;
+}
+.discountSec> div ::before{
+   margin:10px;
 }
 .categoryBox{
     padding-top:2vmax;
