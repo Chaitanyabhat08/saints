@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Product = ({ product }) => {
     const dispatch = useDispatch();
-    const handleAddToCart = async (id, quantity) => {
+    const handleAddToCart = (id, quantity) => {
         dispatch(addItemToCart(id, quantity));
     };
     let options = {
@@ -31,11 +31,11 @@ const Product = ({ product }) => {
             </Link>
             <div className='buttonSec'>
                 <div className='button'>
-                    <HeartOutlined onClick={console.log('clicked')} />
-                    <Button className='btn' onClick={()=>handleAddToCart(product._id,1)}>Add to cart</Button>
+                    <HeartOutlined click={console.log('clicked')} />
+                    <Button className='btn' click={()=>handleAddToCart(product._id,1)}>Add to cart</Button>
                 </div>
                 <div>
-                    <Button className='btn' onClick={console.log('clicked buy')}>Buy Now</Button>
+                    <Button className='btn' click={console.log('clicked buy')}>Buy Now</Button>
                 </div>
             </div>
         </div>

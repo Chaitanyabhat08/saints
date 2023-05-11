@@ -129,7 +129,7 @@
     text-decoration: none;
     color:rgb(48,48,48);
     margin:1.9vmax;
-    transition: all 0.5s;
+    transition: all 0.3s;
     padding-bottom: 0.5vmax;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     min-width: 200px;
@@ -193,13 +193,6 @@
   object-fit: fill;
   border-radius: 5px;
   padding: 2px;
-}
-.productCard > img:hover{
-    padding: 2px;
-    align-items: center;
-    border-radius: 3px;
-    background-color:whitesmoke;
-    transform: scale(1.15);
 }
 @media screen and (max-width:600px){
     .productCard>p{

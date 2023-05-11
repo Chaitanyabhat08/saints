@@ -1,23 +1,44 @@
-import axios from 'axios';
-import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../constants/userConstant';
+import {
+    ADD_TO_CART,
+    REMOVE_CART_ITEM,
+    SAVE_SHIPPING_INFO,
+} from "../constants/cartConstants";
+import axios from "axios";
+// Add to Cart
+export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
+    const { data } = await axios.get(`/api/v1/products/getProductDetails/${id}`);
 
-export const addItemToCart = (id, quantity) => async(dispatch,getState) => {
-    try {
-        const { data } = await axios.get(`/api/v1/products/getProductDetails/${id}`);
-        dispatch({
-            type: LOGIN_SUCCESS, payload: {
-                product: data.prduct._id,
-                name: data.product.name,
-                price: data.product.price,
-                image: data.product.images[0].url,
-                stock: data.product.stock,
-                quantity,
-            },
-        });
-        localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
-    } catch (error) {
-        dispatch({
-            type: LOGIN_FAILURE, payload: error.response
-        });
-    }
-}
+    dispatch({
+        type: ADD_TO_CART,
+        payload: {
+            product: data.product._id,
+            name: data.product.name,
+            price: data.product.price,
+            image: data.product.images[0].url,
+            stock: data.product.Stock,
+            quantity,
+        },
+    });
+
+    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
+
+// REMOVE FROM CART
+export const removeItemsFromCart = (id) => async (dispatch, getState) => {
+    dispatch({
+        type: REMOVE_CART_ITEM,
+        payload: id,
+    });
+
+    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
+
+// SAVE SHIPPING INFO
+export const saveShippingInfo = (data) => async (dispatch) => {
+    dispatch({
+        type: SAVE_SHIPPING_INFO,
+        payload: data,
+    });
+
+    localStorage.setItem("shippingInfo", JSON.stringify(data));
+};

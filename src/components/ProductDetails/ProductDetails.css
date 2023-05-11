@@ -1,12 +1,12 @@
 .ProductDetails{
-    background-color: rgb(227, 227, 205);
+    background-color: whitesmoke;
     width:100vw; 
     max-width: 100%;
     padding:6vmax;
     box-sizing: border-box;
     display:flex;
     border: none;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
 }
 .ProductDetails > div{
@@ -16,16 +16,32 @@
     padding: 2vmax;
     margin:10px;
     box-sizing: border-box;
-    box-shadow: 5px 10px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
 }
 .ProductDetails > div:last-child{
     align-items: flex-start;
 }
+h1{
+    font-family:500 Montessarat;
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+b{
+    font-family: Montessarat;
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .CarouselImage{
     width: 30vw;
     height: 30vw;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
     padding:3px;
     border-radius: 10px;
 }
@@ -74,7 +90,7 @@
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
     .addToCart:hover{
-        background-color: grey;
+        background-color: white;
         color:black;
         transform: scale(1.1);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -94,7 +110,7 @@
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
     .buyNow:hover{
-        background-color: grey;
+        background-color: white;
         color:black;
         transform: scale(1.1);
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -190,7 +206,7 @@
         align-items: center;
         margin:1vmax;
         padding: 3vmax;
-        background-color: rgb(227, 227, 205);
+        background-color: whitesmoke;
         border-radius: 10px;
     }
     .reviewCard > img{
