@@ -5,7 +5,7 @@ import "./loginSignup.css";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { clearErrors, Login,Register } from '../../actions/userAction';
 import { useAlert } from 'react-alert';
 import MetaData from '../layout/MetaData';
@@ -14,6 +14,7 @@ const LoginSignup = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const navigateTo = useNavigate();
+    const location = useLocation();
     const { error, loading, isAuthenticated } = useSelector(state => state.user);
     const loginTab = useRef(null);
     const registerTab = useRef(null);
@@ -43,15 +44,17 @@ const LoginSignup = () => {
         myForm.set("avatar", avatar);
         await dispatch(Register(myForm))
     }
+
+    const redirect = location.search ? location.search.split("=")[1] : "/users/getMyDetails" ;
     useEffect(() => {
         if (error) {
             alert.show(error);
             dispatchEvent(clearErrors());
         }
         if (user && isAuthenticated) {
-            navigateTo("/users/getMyDetails")
+            navigateTo(redirect)
         }
-    }, [dispatch, alert, error, navigateTo, user,isAuthenticated]);
+    }, [dispatch, alert, error, navigateTo, user,isAuthenticated,redirect]);
     
     const registerDataChange = (e) => {
         if (e.target.name === "avatar") {

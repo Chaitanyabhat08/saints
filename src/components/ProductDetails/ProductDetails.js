@@ -10,13 +10,16 @@ import ReviewCard from "./ReviewCard.js";
 import MetaData from '../layout/MetaData';
 import { useAlert } from 'react-alert';
 import { addItemToCart } from '../../actions/cartAction';
-
+// import StarRating from "../layout/StarRating"
+    
 const ProductDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const alert = useAlert();
     const { product,  loading, error } = useSelector((state) => state.productDetails);
     const [itemsCount, setItemsCount] = useState(1);
+    const [reviewForm, setReviewForm] = useState(false);
+    const [yourReview, setYourReview] = useState(null);
 
     useEffect(() => {
         if (error) {
@@ -47,6 +50,12 @@ const ProductDetails = () => {
         dispatch(addItemToCart(id, itemsCount));
         alert.success("Items added successfully");
     }
+    const reviewHandler = () => {
+        setReviewForm(true);
+    }
+    const submitReviewHandler = (value) => {
+        setYourReview(value);
+    }   
     return (
         loading ? <Loader /> 
             :
@@ -81,8 +90,8 @@ const ProductDetails = () => {
                     <div className="detailsBlock-3-1">
                         <div className="detailsBlock-3-2">
                             <button className='negative' onClick={handleDecrement}>-</button>
-                                    <input className="unitInput" value={itemsCount} type="number" readOnly/>
-                                    <button className='positive' onClick={handleIncrement}>+</button>
+                            <input className="unitInput" value={itemsCount} type="number" readOnly/>
+                            <button className='positive' onClick={handleIncrement}>+</button>
                         </div>{" "}
                         <div className="buttonSet">
                             <button className="addToCart" onClick={addToCartHandler}><b>ADD TO CART</b></button>
@@ -99,9 +108,20 @@ const ProductDetails = () => {
                 <div className="detailsBlock-4">
                     <b>DESCRIPTION:</b><p>{product.description}</p>
                 </div>
-                <button className="submitReview">SUBMIT REVIEW</button>
+                <button className="submitReview" onClick={reviewHandler}>SUBMIT REVIEW</button>
             </div>
-        </div>
+                </div>
+                    {reviewForm && 
+                        <div>
+                            <form className='reviewForm'>
+                                <p>your review on this</p>
+                            <input className="textInput" type="text" value={yourReview}></input>
+                            {/* <StarRating /> */}
+                            <button className="btn" onClick={(e) => submitReviewHandler(e.target.value)}>Submit</button>
+                            <button className="btn" onClick={() => setReviewForm(false)}>cancel</button>
+                            </form>
+                        </div>
+                    }
                 <h3 className="reviewsHeading">REVIEWS</h3>
                 {product.reviews && product.reviews[0] ? (
                     <div className="reviews">

@@ -2,7 +2,7 @@
     scroll-behavior: smooth;
 }
 .Banner{
-    background-image: url("../../images/new1.png");
+    /* background-image: url("../../images/new1.png"); */
     background-size: cover;
     height:100vmin;
     text-align: center;
@@ -14,10 +14,12 @@
 }
 .Banner > h1{
     margin:1vmax;
-    font:600 2.5vmax "Montessarat",
+    font:600 2.5vmax;
+    font-family: 'Montserrat', sans-serif;
 }
 .Banner >p{
-    font:300 1.4vmax "Montessarat"
+    font:300 1.4vmax;
+    font-family: 'Montserrat', sans-serif;
 }
 .productDiv{
     object-fit: fill;
@@ -26,7 +28,7 @@
     margin-bottom: 5vmax;
     size: 2vmax;
     cursor: pointer;
-    background-color: transparent;
+    background-color: rgb(159, 153, 153);
     border:1px rgba(144,144,144,255);
     border-radius: 20%;
     padding: 0.6vmax;
@@ -220,7 +222,8 @@
     }
     .productCard > div > span {
         margin: 0 0.5vmax;
-        font:300 1vmax "Montessarat"
+        font:300 1vmax;
+        font-family: 'Montserrat', sans-serif;
     }
     .productCard > img {
        width: 160px;

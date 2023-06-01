@@ -4,13 +4,16 @@ import ReactStars from 'react-rating-stars-component';
 import { Button } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import { addItemToCart } from '../../actions/cartAction';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAlert } from 'react-alert';
 
 const Product = ({ product }) => {
+    const alert = useAlert();
     const dispatch = useDispatch();
-    const handleAddToCart = (id, quantity) => {
-        dispatch(addItemToCart(id, quantity));
-    };
+    const addToCartHandler = (id, itemsCount) => {
+        dispatch(addItemToCart(id, itemsCount));
+        alert.success("Items added successfully");
+    }
     let options = {
         edit: false,
         color: "rgba(20,20,20,0.1)",
@@ -18,6 +21,9 @@ const Product = ({ product }) => {
         size: window.innerWidth < 300 ? 10 : 15,
         value: product.rating,
         isHalf: true
+    }
+    const addToWishlist = () => {
+        
     }
     return (
         <div className="productDiv">
@@ -31,11 +37,11 @@ const Product = ({ product }) => {
             </Link>
             <div className='buttonSec'>
                 <div className='button'>
-                    <HeartOutlined click={console.log('clicked')} />
-                    <Button className='btn' click={()=>handleAddToCart(product._id,1)}>Add to cart</Button>
+                    <HeartOutlined onClick={console.log('clicked')} />
+                    <Button className='btn' onClick={() => addToCartHandler(product._id,1)}>Add to cart</Button>
                 </div>
                 <div>
-                    <Button className='btn' click={console.log('clicked buy')}>Buy Now</Button>
+                    <Button className='btn' onClick={console.log('clicked buy')}>Buy Now</Button>
                 </div>
             </div>
         </div>

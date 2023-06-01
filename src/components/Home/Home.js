@@ -32,17 +32,17 @@ const Home = () => {
           </Fragment> :<> <Fragment>
           <MetaData title="Saints&Sinners"/>
             <div><Banner /></div>
-        <div className="Banner">
-          <p>Welcome To <b>Saints&Sinners</b></p>
-          <h1> Find Our Products Below</h1>
-          <a href="#container">
-            <button>
-              <BsFillSaveFill/>
-            </button>
+          </Fragment>
+            <div className="Banner">
+              <p><b>Welcome To Saints&Sinners</b></p>
+              <h1> Find Our Products Categories Below</h1>
+              <a href="#categorySection">
+                <button>
+                  <BsFillSaveFill />
+                </button>
               </a>
             </div>
-          </Fragment>
-          <div className="categorySection">
+          <div className="categorySection" id = "categorySection">
               <h2 className="homeHeading">Featured Categories</h2>
             <div className="container1" id="container1">
               <h3>For Him</h3>

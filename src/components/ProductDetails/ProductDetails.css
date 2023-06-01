@@ -23,7 +23,8 @@
     align-items: flex-start;
 }
 h1{
-    font-family:500 Montessarat;
+    font-family:500;
+    font-family: 'Montserrat', sans-serif;
     color: transparent;
     background-clip: text;
     background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
@@ -54,7 +55,7 @@ b{
 }
 .detailsBlock-1 > p{
     color:rgb(30, 32, 30);
-    font:200 0.6vmax cursive;
+    font:200 0.6vmax Montessarat;
 }
 .detailsBlock-2 {
     display: flex;
@@ -66,7 +67,7 @@ b{
     padding: 0.5vmax 0;
 }
 .detailsBlock-2 >span{
-    font:200 1vmax cursive;
+    font:200 1vmax Montessarat;
     padding-top:5px ;
     margin:2px;
     color: rgba(54,54,54,0.582);
@@ -207,6 +208,18 @@ b{
         margin:1vmax;
         padding: 3vmax;
         background-color: whitesmoke;
+         border-radius: 10px;
+    }
+    .reviewForm{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border:1px solid rgba(56,56,56,0.116);
+        width:30vmax;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin:1vmax;
+        padding: 3vmax;
+        background-color: whitesmoke;
         border-radius: 10px;
     }
     .reviewCard > img{
@@ -218,22 +231,20 @@ b{
     }
     .reviewCard > span{
         color:rgba(0,0,0,0.445);
-        font:300 0.8vmax cursive;
+        font:300 0.8vmax Montessarat;
     }
     .noReviews{
         align-items: center;
         text-align: center;
     }
     .firstButton{
-        background-color: rgba(89, 136, 224, 0.668);
+        background-color: rgba(141, 152, 171, 0.668);
         width:200px;
         height: 30px;
         border: none;
         border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.5s;
         margin-top:1vmax;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
         align-items: center;
     }
     .detailsBlock-3{

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import './Products.css';
     
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams,useLocation } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { clearErrors, getProduct } from '../../actions/productActions';
 import { useAlert } from 'react-alert';
 import Loader from '../layout/Loader/Loader';
@@ -36,7 +36,6 @@ const Ratings = [
 const Products = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
-    const location = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
     const [categoryFilter, setCategoryFilter] = useState('All');
@@ -69,7 +68,7 @@ const Products = () => {
             alert.show(error);
             dispatch(clearErrors());
         }
-        if (category!='All' || gender!='null') {
+        if (category!=='All' || gender!=='null') {
             dispatch(getProduct(keyWord, currentPage, price, category, rating, gender))
         } else {
             dispatch(getProduct(keyWord, currentPage, price, categoryFilter,rating,genderSelected));

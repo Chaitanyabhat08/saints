@@ -1,11 +1,12 @@
 footer {
-    margin-top: 10vmax;
-    padding:2vmax;
+    margin-top: 10px;
     background-color: whitesmoke;
     color: black;
     display: flex;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19); 
+    bottom: 0;
+    width: 100%;
     align-items: center;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .left{
@@ -32,7 +33,7 @@ background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(
     -webkit-text-fill-color: transparent;
 }
 .left > img {
-    width:5vmax;
+    width:3vmax;
     margin:1vmax;
     cursor: pointer;
 }
@@ -51,7 +52,7 @@ background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(
     -webkit-text-fill-color: transparent;
 }
 .mid > img {
-    width:150px;
+    width:90px;
     color:rgb(31, 4, 10);
 }
 .right{
@@ -61,8 +62,8 @@ background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(
     align-items: center;
 }
 .right > h4{
-    font-family: 600 1.5vmax Montserrat;
-    font-size: 1.4vmax;
+    font-family: 600 1.1vmax Montserrat;
+    font-size: 1.1vmax;
      background-clip: text;
     background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(187, 183, 183), gray);
     -webkit-background-clip: text;
@@ -70,7 +71,7 @@ background-image: linear-gradient(to right, gray, rgb(188, 185, 185), gray, rgb(
 }
 .right > a{
     text-decoration: none;
-    font-size: 1.3vmax;
+    font-size: 1.1vmax;
     margin:0.5vmax
 }
 .right > a:hover{

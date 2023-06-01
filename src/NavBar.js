@@ -4,6 +4,7 @@ import Header from './components/layout/Header/Header';
 import { useSelector } from 'react-redux';
 import UserOptions from "./components/layout/Header/UserOptions";
 import { useNavigate } from 'react-router-dom';
+import logo from './images/logo3.jpeg';
 
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -20,24 +21,25 @@ const Navbar = () => {
 }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" style={{position: "sticky"}}>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style={{position: "sticky"}}>
       <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{paddingLeft: "80px"}}>
         <ul className="navbar-nav mr-auto">
-          <Header/>
+          <Header />
           <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Contact US <span className="sr-only">(current)</span>
+            <a href="/" aria-label="Home"> 
+
+              <img src={logo} alt="LogoOFs&s" style={{ width: "40px", height: "40px", margin: "5px" }} />
             </a>
           </li>
           <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Find A Store <span className="sr-only">(current)</span>
+            <a className="nav-link" role="button" href="/products/getAllproducts">
+            Products<span className="sr-only">(current)</span>
             </a>
           </li>
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
-              href="#"
+              href="/"
               id="navbarDropdown"
               role="button"
               data-toggle="dropdown"
@@ -47,17 +49,17 @@ const Navbar = () => {
               MEN
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Shirts
               </a>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 T-Shirts
               </a>
               <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Trousers
               </a>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Shorts
               </a>
             </div>
@@ -65,7 +67,7 @@ const Navbar = () => {
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
-              href="#"
+              href="/"
               id="navbarDropdown"
               role="button"
               data-toggle="dropdown"
@@ -75,14 +77,14 @@ const Navbar = () => {
               WOMEN
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Pants
               </a>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Dresses
               </a>
               <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Sports Wear
               </a>
             </div>
@@ -90,7 +92,7 @@ const Navbar = () => {
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
-              href="#"
+              href="/"
               id="navbarDropdown"
               role="button"
               data-toggle="dropdown"
@@ -100,14 +102,14 @@ const Navbar = () => {
               KIDS
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Infants
               </a>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Girls
               </a>
               <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/">
                 Boys
               </a>
             </div>
@@ -141,4 +143,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-     
