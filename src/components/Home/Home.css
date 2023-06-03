@@ -196,6 +196,10 @@
   border-radius: 5px;
   padding: 2px;
 }
+.heart {
+  color: red;
+
+}
 @media screen and (max-width:600px){
     .productCard>p{
         font-size: 1.7vmax;

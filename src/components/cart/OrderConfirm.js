@@ -33,9 +33,7 @@ const OrderConfirm = () => {
       tax,
       totalPrice,
     };
-
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
-
     navigateTo("/payment/process");
   };
 
