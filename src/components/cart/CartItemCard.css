@@ -44,6 +44,7 @@
   align-items: flex-end;
   background-color: gray;
   padding:3px;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 600px) {
@@ -60,7 +61,7 @@
   }
 
   .CartItemCard > div > a {
-    font: 300 2vmax "Montessserrat";
+    font: 300 2vmax "Montessarat";
   }
 
   .CartItemCard > div > span {

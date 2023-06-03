@@ -17,8 +17,9 @@ import { LoadUser } from './actions/userAction';
 import Profile from './components/User/Profile.js';
 import Cart from './components/cart/Cart.js';
 import OrderConfirm from './components/cart/OrderConfirm.js';
-import Payment from './components/cart/Payment'
-import ProtectedRoute from './components/Route/ProtectedRoute';
+import Payment from './components/cart/Payment';
+import WishList from './components/cart/WishList.js';
+// import ProtectedRoute from './components/Route/ProtectedRoute';
 import UpdateProfileOption from './components/User/UpdateProfileOption.js';
 import UpdatePasswordOption from './components/User/UpdatePasswordOption.js';
 import ForgotPasswordOption from './components/User/ForgotPasswordOption.js';
@@ -35,14 +36,17 @@ function App() {
     const { data } = await axios.get("/api/v1/payment/stripeapikey");
     setStripeApiKey(data.stripeApiKey);
   }
+  const loadScript = (src) => {
+    return 
+  }
   useEffect(() => {
     WebFont.load({
       google: {
-        families: ["Montesserat", "Droid Sans", "Chilanka"]
+        families: ["Sans-serif", "Droid Sans", "Chilanka"]
       }
     })
-    Store.dispatch(LoadUser())
-    getStripeApiKey();
+    Store.dispatch(LoadUser());
+    loadScript("https://checkout.razorpay.com/v1/Payment.js")
   }, []);
   console.log("thisisisis", stripeApiKey)
   return (
@@ -65,6 +69,7 @@ function App() {
         <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
         {user && isAuthenticated && <Route path="/users/loginUser/shipping" element={<Shipping />}></Route>}
         {user && isAuthenticated && <Route path="/order/confirm" element={<OrderConfirm />}></Route>}
+        {user && isAuthenticated && <Route path="/wishlist" element={<WishList />}></Route>}
         {stripeApiKey && user && isAuthenticated && <Route path="/payment/process" element={
             <Elements stripe={loadStripe(stripeApiKey)}>
               <Payment />

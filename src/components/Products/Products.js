@@ -192,7 +192,7 @@ const Products = () => {
                                 </div>
                                  <hr />
                         <div className="discountSec">
-                        <h5 class="heading">Discount Range</h5>
+                        <h5 className="heading">Discount Range</h5>
                             <div>
                             <Input type="radio" name="exampleRadios" id="exampleRadios1" value="option1" ></Input>
                                 <h6 for="exampleRadios1">

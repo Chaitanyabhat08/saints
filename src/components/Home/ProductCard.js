@@ -1,9 +1,9 @@
-import React , { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import ReactStars from 'react-rating-stars-component';
 import { Button } from 'antd';
-import { HeartOutlined } from '@ant-design/icons';
-import { addItemToCart } from '../../actions/cartAction';
+import { addItemToCart, addtoWishlist } from '../../actions/cartAction';
 import { useDispatch } from 'react-redux';
 import { useAlert } from 'react-alert';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -16,7 +16,6 @@ const Product = ({ product }) => {
         dispatch(addItemToCart(id, itemsCount));
         alert.success("Items added successfully");
     }
-    const [isLiked, setIsLiked] = useState(false);
     let options = {
         edit: false,
         color: "rgba(20,20,20,0.1)",
@@ -25,12 +24,12 @@ const Product = ({ product }) => {
         value: product.rating,
         isHalf: true
     }
+    const { wishlistItems } = useSelector((state) => state.wishlist);
+    const isLiked = wishlistItems.some((item) => item.product === product._id);
 
     const addToWishlist = (productId) => {
-        // Add your logic for adding to the wishlist here
-        // You can also update the state based on the success of the operation
-
-        setIsLiked(!isLiked); // Toggle the liked state
+        dispatch(addtoWishlist(productId));
+        alert.success('Wishlisted');
     };
     return (
         <div className="productDiv">

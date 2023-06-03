@@ -2,7 +2,9 @@ import {
     ADD_TO_CART,
     REMOVE_CART_ITEM,
     SAVE_SHIPPING_INFO,
-    UPDATE_CART_ITEM
+    UPDATE_CART_ITEM,
+    ADD_TO_WISHLIST,
+    REMOVE_FROM_WISHLIST,
 } from "../constants/cartConstants";
 import axios from "axios";
 // Add to Cart
@@ -36,7 +38,7 @@ export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
                 name: data.product.name,
                 price: data.product.price,
                 image: data.product.images[0].url,
-                stock: data.product.Stock,
+                stock: data.product.stock,
                 quantity,
             },
         });
@@ -62,4 +64,40 @@ export const saveShippingInfo = (data) => async (dispatch) => {
     });
 
     localStorage.setItem("shippingInfo", JSON.stringify(data));
+};
+
+export const addtoWishlist = (id) => async (dispatch, getState)=>{
+    const { data } = await axios.get(`/api/v1/products/getProductDetails/${id}`);
+    console.log(data);
+    const { wishlistItems } = getState().wishlist;
+    const existingItemIndex = wishlistItems.findIndex(item => item.product === data.product._id);
+    if (existingItemIndex !== -1) {
+        // If the product is already in cartItems, update its quantity
+        dispatch({
+            type: REMOVE_FROM_WISHLIST,
+            payload: id,
+        });
+    } else {
+        // If the product is not in cartItems, add it as a new item
+        dispatch({
+            type: ADD_TO_WISHLIST,
+            payload: {
+                product: data.product._id,
+                name: data.product.name,
+                price: data.product.price,
+                image: data.product.images[0].url,
+                stock:data.product.stock,
+            },
+        });
+    }
+    localStorage.setItem("wishlistItems", JSON.stringify(getState().wishlist.wishlistItems));
+}
+
+export const removeItemsFromWishlist = (id) => async (dispatch, getState) => {
+    dispatch({
+        type: REMOVE_FROM_WISHLIST,
+        payload: id,
+    });
+
+    localStorage.setItem("wishlistItems", JSON.stringify(getState().wishlist.wishlistItems));
 };
