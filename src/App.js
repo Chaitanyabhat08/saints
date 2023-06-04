@@ -15,7 +15,7 @@ import Shipping from './components/cart/Shipping.js';
 import Store from "./Store";
 import { LoadUser } from './actions/userAction';
 import Profile from './components/User/Profile.js';
-import Cart from './components/cart/Cart.js';
+import Cart from './components/cart/cart.js';
 import OrderConfirm from './components/cart/OrderConfirm.js';
 import Payment from './components/cart/Payment';
 import WishList from './components/cart/WishList.js';
@@ -27,28 +27,35 @@ import ResetPasswordOption from './components/User/ResetPasswordOption.js';
 import Navbar from '../src/NavBar';
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from '@stripe/stripe-js';
+import CourseCard from './CourseCard';
 
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
-  const [stripeApiKey, setStripeApiKey] = useState("");
-  async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/payment/stripeapikey");
-    setStripeApiKey(data.stripeApiKey);
+  const loadScript= (src)=> {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () =>{
+        resolve(true);
+      }
+      script.onerror = () => {
+        resolve(false);
+      }
+      document.body.appendChild(script);
+    })
   }
-  const loadScript = (src) => {
-    return 
-  }
+  useEffect(() => {
+    loadScript("https://checkout.razorpay.com/v1/checkout.js");
+  })
   useEffect(() => {
     WebFont.load({
       google: {
         families: ["Sans-serif", "Droid Sans", "Chilanka"]
       }
     })
-    Store.dispatch(LoadUser());
-    loadScript("https://checkout.razorpay.com/v1/Payment.js")
+    Store.dispatch(LoadUser())
   }, []);
-  console.log("thisisisis", stripeApiKey)
   return (
     <Router>
       <Navbar />
@@ -69,12 +76,16 @@ function App() {
         <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
         {user && isAuthenticated && <Route path="/users/loginUser/shipping" element={<Shipping />}></Route>}
         {user && isAuthenticated && <Route path="/order/confirm" element={<OrderConfirm />}></Route>}
+        {user && isAuthenticated && 
+        <Route path="/payment/process" element={
+           <section className='card-list'>
+           <CourseCard/>
+         </section>
+        }>
+         </Route>
+        }
+      
         {user && isAuthenticated && <Route path="/wishlist" element={<WishList />}></Route>}
-        {stripeApiKey && user && isAuthenticated && <Route path="/payment/process" element={
-            <Elements stripe={loadStripe(stripeApiKey)}>
-              <Payment />
-            </Elements>
-          }></Route>}
       </Routes>
       <Footer />
     </Router>
