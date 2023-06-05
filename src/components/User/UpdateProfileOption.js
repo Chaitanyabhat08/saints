@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { MailOutline } from '@material-ui/icons';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import FaceIcon from '@mui/icons-material/Face';
-import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import Loader from "../layout/Loader/Loader";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";

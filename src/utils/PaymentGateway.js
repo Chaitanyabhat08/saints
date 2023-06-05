@@ -1,6 +1,11 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
+import { createOrder } from '../actions/orderAction';
+import { useDispatch } from 'react-redux';
 
 export default async function DisplayRazorPay() {
+  const dispatch = useDispatch();
+  const { cartItems, shippingInfo } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.user);
   const orderInfo = sessionStorage.getItem("orderInfo");
   const data = await fetch("http://localhost:3000/razorpay", {
     method: 'POST',
@@ -20,61 +25,30 @@ export default async function DisplayRazorPay() {
     order_id: data.id,
     handler: function (response) {
       console.log(response);
-      alert("PAYMENT ID:" + response.razorpay_payment_id);
-      alert("ORDER ID:" + response.razorpay_order_id);
+      const paymentInfo = {
+        order_id: response.razorpay_order_id,
+        payment_id: response.razorpay_payment_id,
+        razorpay_sign: response.razorpay_signature,
+        status: "Created",
+      }
+      const payload = {
+        shippingInfo,
+        orderItems:cartItems,
+        paymentInfo,
+        itemsPrice: orderInfo.subtotal,
+        taxPrice: orderInfo.tax,
+        shippingPrice: orderInfo.shippingCharges,
+        totalPrice: orderInfo.totalPrice,
+      }
+      dispatch(createOrder(payload))
     },
     prefill: {
-      name: 'Sam',
-      email: 'sam@example.com',
-      contact: '9900149624',
+      name: user.name,
+      email: user.email,
+      contact: user.phoneNumber,
     }
   };
   
   const paymentObject = new window.Razorpay(options)
   paymentObject.open();
 };
-
-
-// export default async function displayRazorPay() {
-//   const data = await fetch("http://localhost:3000/razorpay", {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(), // Replace `orderDetails` with your actual order data
-//   }).then((t) => t.json());
-//   console.log(data);
-
-//   const options = {
-//     key: "rzp_test_wBU9x1cN57zN3f",
-//     currency: data.currency,
-//     amount: data.amount,
-//     description: 'Wallet payment',
-//     image: "http://localhost:3000/logo.jpg",
-//     order_id: data.id,
-//     handler: async function (response) {
-//       console.log(response);
-//       alert("PAYMENT ID:" + response.razorpay_payment_id);
-//       alert("ORDER ID:" + response.razorpay_order_id);
-
-//       // Create a new order based on payment details
-//       const order = {
-//         paymentId: response.razorpay_payment_id,
-//         orderId: response.razorpay_order_id,
-//         // Include any other relevant payment details
-//       };
-//       dispatch(createOrder(order)); // Assuming `dispatch` is available
-
-//       // Redirect to the order success page or perform any other action
-//       // window.location.href = "/order-success"; // Example of redirection
-//     },
-//     prefill: {
-//       name: 'Sam',
-//       email: 'sam@example.com',
-//       contact: '9900149624',
-//     }
-//   };
-
-//   const paymentObject = new window.Razorpay(options)
-//   paymentObject.open();
-// };

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { BsFillSaveFill } from 'react-icons/bs';
 import './Home.css';
 import CategoryCard from './CategoryCard.js';
 import MetaData from '../layout/MetaData';

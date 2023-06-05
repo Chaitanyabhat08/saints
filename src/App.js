@@ -1,8 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useState,useEffect } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import WebFont from 'webfontloader';
 import Footer from './components/layout/Footer/Footer';
