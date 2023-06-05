@@ -34,9 +34,9 @@ const OrderConfirm = () => {
       totalPrice,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
-    DisplayRazorPay();
-  };
+    DisplayRazorPay(user,shippingInfo, cartItems);
 
+  };
   return (
     <Fragment>
       <MetaData title="Confirm Order" />

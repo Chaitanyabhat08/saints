@@ -1,11 +1,7 @@
-import { useSelector } from 'react-redux';
-import { createOrder } from '../actions/orderAction';
-import { useDispatch } from 'react-redux';
-
-export default async function DisplayRazorPay() {
+import { useDispatch } from "react-redux";
+import { createOrder} from "../actions/orderAction"
+const DisplayRazorPay = async (user, shippingInfo, cartItems) => {
   const dispatch = useDispatch();
-  const { cartItems, shippingInfo } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.user);
   const orderInfo = sessionStorage.getItem("orderInfo");
   const data = await fetch("http://localhost:3000/razorpay", {
     method: 'POST',
@@ -14,8 +10,7 @@ export default async function DisplayRazorPay() {
     },
     body: orderInfo,
   }).then((t) => t.json());
-  console.log(data);
-    
+  let paymentInfo = {};   
   const options = {
     key: "rzp_test_wBU9x1cN57zN3f",
     currency: data.currency,
@@ -24,8 +19,7 @@ export default async function DisplayRazorPay() {
     image: "http://localhost:3000/logo.jpg",
     order_id: data.id,
     handler: function (response) {
-      console.log(response);
-      const paymentInfo = {
+      paymentInfo = {
         order_id: response.razorpay_order_id,
         payment_id: response.razorpay_payment_id,
         razorpay_sign: response.razorpay_signature,
@@ -41,6 +35,7 @@ export default async function DisplayRazorPay() {
         totalPrice: orderInfo.totalPrice,
       }
       dispatch(createOrder(payload))
+
     },
     prefill: {
       name: user.name,
@@ -48,7 +43,9 @@ export default async function DisplayRazorPay() {
       contact: user.phoneNumber,
     }
   };
-  
   const paymentObject = new window.Razorpay(options)
   paymentObject.open();
+  return paymentInfo;
 };
+
+export default DisplayRazorPay;
