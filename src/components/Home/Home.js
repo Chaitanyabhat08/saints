@@ -33,7 +33,7 @@ const Home = () => {
           <MetaData title="Saints&Sinners"/>
             <div><Banner /></div>
           </Fragment>
-            <div className="Banner">
+            {/* <div className="Banner">
               <p><b>Welcome To Saints&Sinners</b></p>
               <h1> Find Our Products Categories Below</h1>
               <a href="#categorySection">
@@ -41,7 +41,7 @@ const Home = () => {
                   <BsFillSaveFill />
                 </button>
               </a>
-            </div>
+            </div> */}
           <div className="categorySection" id = "categorySection">
               <h2 className="homeHeading">Featured Categories</h2>
             <div className="container1" id="container1">

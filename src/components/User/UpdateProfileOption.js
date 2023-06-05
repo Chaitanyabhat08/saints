@@ -25,7 +25,7 @@ const UpdateProfileOption = () => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [address, setAddress] = useState("");
+    const [address, setAddress] = useState();
     const updateProfileSubmit = async (e) => {
         e.preventDefault();
         const myForm = new FormData();
@@ -113,16 +113,6 @@ const UpdateProfileOption = () => {
                                             value={phoneNumber}
                                             onChange={(e)=>setPhoneNumber(e.target.value)} />
                                     </div>
-                                    <div className="updatemailInput">
-                                        <HomeWorkIcon />
-                                        <input
-                                            type="text"
-                                            name="address"
-                                            placeholder="Saved Address"
-                                            required
-                                            value={address}
-                                            onChange={(e)=>setAddress(e.target.value)} />
-                                    </div>
                                     <img className="avaImage" src={avatarPreview} alt="Avatar Preview" />
                                     <div id="registerImage">
                                         <input
@@ -131,16 +121,17 @@ const UpdateProfileOption = () => {
                                             accept="image/*"
                                             onChange={updateProfileDataChange}
                                         />
-                                    </div>
+                                </div>
                                     <button type="submit"
                                         value="register"
                                         className="signupBtn"
                                         disabled={loading ? true : false}
                                     >Update</button>
                                 </form>
-                            </div>
                         </div>
-                    </div>
+
+                        </div>
+                </div>
             </Fragment>
     )
 }

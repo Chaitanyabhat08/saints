@@ -1,18 +1,15 @@
 .profileContainer{
     background-color: whitesmoke;
-    width:100vw; 
-    height:100vh;
     display: flex;
-    max-width: 100%;
     padding:6vmax;
-    box-sizing: border-box;
     border: none;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
-    overflow: hidden;
-    position:fixed;
+    overflow-y: scroll;
 }
-
+.profilepic{
+    width: 12vmax;
+    height: 12vmax;
+    border-radius: 50%;
+}
 .profileContainer > div:first-child{
     width:100%;
     display: flex;
@@ -20,11 +17,8 @@
     align-items: center;
     padding: 2vmax;
     margin:10px;
-    height: 70vh;
     max-width: 100%;
     box-sizing: border-box;
-    box-shadow: 5px 10px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px;
 }
 .profileContainer >div:first-child >h1{
     margin-top: 20px;
@@ -35,20 +29,12 @@
     position: sticky;
     transform:translateX(-10vmax) translateY(-2vmax); 
 }
-.profileContainer >div:first-child >img{
-    width:15vmax;
-    border-radius: 100%;
-    transition: all 0.5s;
-}
 .profileContainer >div:first-child > div > h4{
     margin:10px;
     font:400 1.5vmax;
     font-family: 'Montserrat', sans-serif;
 }
-.profileContainer > div:first-child >img:hover{
-    transform: scale(1.05);
-}
-.profileContainer > div:first-child >button{
+.profileContainer > div:first-child > a > button{
     border:none;
     background-color: grey;
     font:400 1vmax;
@@ -56,15 +42,15 @@
     color:white;
     text-align:center;
     justify-content: center;
-    width: 30%;
+    width: 50%;
     height: 45px;
     margin:4vmax;
     transition: all 0.5s;
 }
-.profileContainer > div:first-child >button:hover{
+.profileContainer > div:first-child >a > button:hover{
     background-color: rgb(96, 80, 80);
 }
-.profileContainer > div:first-child >button >a{
+.profileContainer > div:first-child > a > button {
     color: white;
     cursor: pointer;
 }
@@ -77,8 +63,6 @@
     margin:10px;
     height:36.2vmax;
     box-sizing: border-box;
-    box-shadow: 5px 10px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px;
     min-height: 35vmax;
 }
 .profileContainer>div:last-child > div >p{
@@ -119,6 +103,9 @@ align-items: flex-start;
 }
 .profileContainer>.buttonSet:hover{
     background-color: rgb(96, 80, 80);
+}
+.middle{
+    display: flex;
 }
 @media screen and (max-width: 600px){
     .profileContainer{

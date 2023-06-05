@@ -6,7 +6,7 @@ import "./OrderConfirm.css";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { useNavigate } from 'react-router';
-
+import DisplayRazorPay from '../../utils/PaymentGateway';
 
 const OrderConfirm = () => {
   const navigateTo = useNavigate();
@@ -20,9 +20,9 @@ const OrderConfirm = () => {
 
   const shippingCharges = subtotal > 1000 ? 0 : 200;
 
-  const tax = (subtotal * 0.18).toFixed(2);
+  const tax = Number((subtotal * 0.18).toFixed(2));
 
-  const totalPrice = subtotal + tax + shippingCharges;
+  const totalPrice = Math.floor(subtotal + tax + shippingCharges);
 
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
@@ -34,7 +34,7 @@ const OrderConfirm = () => {
       totalPrice,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
-    navigateTo("/payment/process");
+    DisplayRazorPay();
   };
 
   return (

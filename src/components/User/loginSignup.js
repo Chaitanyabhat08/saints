@@ -33,7 +33,7 @@ const LoginSignup = () => {
 
     const loginSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(Login(loginEmail, loginPassword))
+        dispatch(Login(loginEmail, loginPassword))
     }
     const registerSubmit = async (e) => {
         e.preventDefault();
@@ -86,7 +86,7 @@ const LoginSignup = () => {
                                     type="text"
                                     name="name"
                                     placeholder="User name"
-                                    required="true"
+                                    required
                                     value={name}
                                         onChange={registerDataChange} />
                                 </div>

@@ -25,6 +25,9 @@ import {
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAILURE,
+    ADD_NEW_ADDRESS,
+    ADD_ADDRESS_SUCCESS,
+    ADD_ADDRESS_FAILURE,
 } from "../constants/userConstant"
 export const userReducer = (state = { user: {} }, action) => {
     switch (action.type) {
@@ -174,6 +177,36 @@ export const resetPasswordReducer = (state = { user: {} }, action) => {
             return {
                 ...state,
                 error:null,
+            }
+        default:
+            return state;
+    }
+}
+
+export const addNewAddressReducer = (state = { user: {} }, action) => {
+    switch (action.type) {
+        case ADD_NEW_ADDRESS:
+            return {
+                loading: true,
+                isAuthenticated: false,
+                error: null,
+            }
+        case ADD_ADDRESS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                success: action.payload,
+            }
+        case ADD_ADDRESS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
             }
         default:
             return state;

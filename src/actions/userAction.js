@@ -22,6 +22,9 @@ import {
     FORGOT_PASSWORD_SUCCESS,
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
+    ADD_NEW_ADDRESS,
+    ADD_ADDRESS_SUCCESS,
+    ADD_ADDRESS_FAILURE,
 } from "../constants/userConstant";
 import axios from 'axios';
 
@@ -107,6 +110,16 @@ export const ResetPassword = (token, passwords) => async(dispatch) => {
     }
 }
 
+export const SaveNewAddress = (data) => async (dispatch) => {
+    try {
+        dispatch({ type: ADD_NEW_ADDRESS });
+        const config = { headers: { "Content-type": "application/json" } };
+        const { saved } = await axios.post(`/api/v1/users/addAddress`, data, config);
+        dispatch({ type: ADD_ADDRESS_SUCCESS, payload: saved.success })
+    } catch (error) {
+        dispatch({ type: ADD_ADDRESS_FAILURE, payload: error.response.data.error });
+    }
+}
 export const clearErrors = () => async (dispatch) => {
     dispatch({type:CLEAR_ERRORS})
 }

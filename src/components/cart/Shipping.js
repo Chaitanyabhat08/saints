@@ -39,6 +39,7 @@ const Shipping = () => {
   };
   return (
     <Fragment>
+      <div>
       <MetaData title="Shipping"></MetaData>
       <CheckoutSteps activestep={0} />
       <div className="shippingContainer">
@@ -128,6 +129,13 @@ const Shipping = () => {
             />
           </form>
         </div>
+        </div>
+      </div>
+      <div>
+        Pick From Saved Address
+        <select>
+          
+        </select>
       </div>
     </Fragment>
   )

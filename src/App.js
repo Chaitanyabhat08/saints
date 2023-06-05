@@ -15,20 +15,17 @@ import Shipping from './components/cart/Shipping.js';
 import Store from "./Store";
 import { LoadUser } from './actions/userAction';
 import Profile from './components/User/Profile.js';
-import Cart from './components/cart/cart.js';
+import Cart from './components/cart/Cart.js';
 import OrderConfirm from './components/cart/OrderConfirm.js';
-import Payment from './components/cart/Payment';
 import WishList from './components/cart/WishList.js';
 // import ProtectedRoute from './components/Route/ProtectedRoute';
 import UpdateProfileOption from './components/User/UpdateProfileOption.js';
 import UpdatePasswordOption from './components/User/UpdatePasswordOption.js';
+import SaveAddress from './components/User/saveAddress';
 import ForgotPasswordOption from './components/User/ForgotPasswordOption.js';
 import ResetPasswordOption from './components/User/ResetPasswordOption.js';
 import Navbar from '../src/NavBar';
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from '@stripe/stripe-js';
 import CourseCard from './CourseCard';
-
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -71,6 +68,7 @@ function App() {
         {user && isAuthenticated && <Route path="/users/getMyDetails" element={<Profile />}></Route>}
         {user && isAuthenticated && <Route path="/users/updateProfile" element={<UpdateProfileOption />}></Route>}
         {user && isAuthenticated && <Route path="/users/updatePassword" element={<UpdatePasswordOption />}></Route>}
+        {user && isAuthenticated && <Route path="/users/addAddress" element={<SaveAddress />}></Route>}
         {user && isAuthenticated && <Route path="/Cart" element={<Cart />}></Route>}
         <Route path="/users/forgotPassword" element={<ForgotPasswordOption />}></Route>
         <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
@@ -84,7 +82,6 @@ function App() {
         }>
          </Route>
         }
-      
         {user && isAuthenticated && <Route path="/wishlist" element={<WishList />}></Route>}
       </Routes>
       <Footer />
