@@ -22,10 +22,9 @@ const CheckoutSteps = ({ activestep }) => {
     },
   ];
   const stepStyles = {
-    "box-sizing": "border-box",
     "display": "flex",
-    "background-color": "whitesmoke",
-    "margin-bottom": "20px",
+    "backgroundColor": "whitesmoke",
+    "marginBottom": "20px",
     "connector": {
       "background-color": "tomato", // Change this to the desired color for active and completed steps
     },

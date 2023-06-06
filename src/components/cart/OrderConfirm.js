@@ -26,7 +26,8 @@ const OrderConfirm = () => {
 
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
-  const proceedToPayment = () => {
+  const proceedToPayment = async () => {
+    console.log(window);
     const data = {
       subtotal,
       shippingCharges,
@@ -34,8 +35,8 @@ const OrderConfirm = () => {
       totalPrice,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
-    DisplayRazorPay(user,shippingInfo, cartItems);
-
+    const paymentDetails = await DisplayRazorPay(user, shippingInfo, cartItems);
+    console.log("this is a[a[[a",paymentDetails)
   };
   return (
     <Fragment>

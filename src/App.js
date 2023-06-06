@@ -23,6 +23,8 @@ import UpdatePasswordOption from './components/User/UpdatePasswordOption.js';
 import SaveAddress from './components/User/saveAddress';
 import ForgotPasswordOption from './components/User/ForgotPasswordOption.js';
 import ResetPasswordOption from './components/User/ResetPasswordOption.js';
+import NewOrder from './components/cart/NewOrder.js';
+import PaymentFailed from './components/cart/PaymentFailed.js';
 import Navbar from '../src/NavBar';
 import CourseCard from './CourseCard';
 
@@ -72,16 +74,16 @@ function App() {
         <Route path="/users/forgotPassword" element={<ForgotPasswordOption />}></Route>
         <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
         {user && isAuthenticated && <Route path="/users/loginUser/shipping" element={<Shipping />}></Route>}
+        {user && isAuthenticated && <Route path="/wishlist" element={<WishList />}></Route>}
         {user && isAuthenticated && <Route path="/order/confirm" element={<OrderConfirm />}></Route>}
         {user && isAuthenticated && 
         <Route path="/payment/process" element={
            <section className='card-list'>
            <CourseCard/>
          </section>
-        }>
-         </Route>
-        }
-        {user && isAuthenticated && <Route path="/wishlist" element={<WishList />}></Route>}
+        }></Route>}
+        {user && isAuthenticated && <Route path="/payment/verified" element={<NewOrder />}></Route>}
+        {user && isAuthenticated && <Route path="/payment/failed" element={<PaymentFailed />}></Route>}
       </Routes>
       <Footer />
     </Router>
