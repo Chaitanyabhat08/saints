@@ -27,6 +27,7 @@ import NewOrder from './components/cart/NewOrder.js';
 import PaymentFailed from './components/cart/PaymentFailed.js';
 import Navbar from '../src/NavBar';
 import CourseCard from './CourseCard';
+import DashBoard from './components/admin/DashBoard'
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -84,6 +85,7 @@ function App() {
         }></Route>}
         {user && isAuthenticated && <Route path="/payment/verified" element={<NewOrder />}></Route>}
         {user && isAuthenticated && <Route path="/payment/failed" element={<PaymentFailed />}></Route>}
+        {user && isAuthenticated && <Route path="/admin/dashboard" element={<DashBoard />} />}
       </Routes>
       <Footer />
     </Router>

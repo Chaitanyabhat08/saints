@@ -20,6 +20,8 @@
     "axios": "^1.2.1",
     "country-state-city": "^3.1.4",
     "http-proxy-middleware": "^2.0.6",
+    "jqeury": "^0.0.1-security",
+    "jquery": "^3.7.0",
     "overlay-navbar": "^1.2.3",
     "react": "^18.2.0",
     "react-alert": "^7.0.3",
