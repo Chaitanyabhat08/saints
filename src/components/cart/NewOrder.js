@@ -8,6 +8,10 @@ const NewOrder = (data) =>{
   const viewproductHandler = () => {
     navigateTo('/products/getAllProducts');
   }
+  const viewOrderDetails = () => {
+    navigateTo('/order/viewOrderDetails');
+  }
+  
   useEffect(() => {
     
   },[])
@@ -21,7 +25,7 @@ const NewOrder = (data) =>{
         <p>We received your purchase request;<br /> we'll be in touch shortly!</p>
         <div className="buttonSet">
           <button onClick={viewproductHandler}>View Products</button>
-          <button>Order Details</button>
+          <button onClick={viewOrderDetails}>Order Details</button>
           <button>Invoice</button>
         </div>
       </div>

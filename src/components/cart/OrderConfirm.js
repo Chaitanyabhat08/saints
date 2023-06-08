@@ -1,17 +1,18 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import CheckoutSteps from "./CheckoutSteps";
 import { useSelector } from "react-redux";
 import MetaData from "../layout/MetaData";
 import "./OrderConfirm.css";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import { useNavigate } from 'react-router';
-import DisplayRazorPay from '../../utils/PaymentGateway';
+import { useNavigate } from "react-router";
+import DisplayRazorPay from "../../utils/PaymentGateway";
 
 const OrderConfirm = () => {
   const navigateTo = useNavigate();
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
+  const [orderId, setOrderId] = useState("");
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
@@ -26,18 +27,51 @@ const OrderConfirm = () => {
 
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
+  const generateOrderId = () => {
+    const timestamp = Date.now().toString();
+    const randomNumber = Math.floor(Math.random() * 10000).toString();
+    const orderId = timestamp + randomNumber;
+    return orderId;
+  };
+  const getCurrentDate = () => {
+    const today = new Date();
+    const date = today.getDate();
+    const month = today.getMonth() + 1; // Months are zero-based
+    const year = today.getFullYear();
+    return `${date}/${month}/${year}`;
+  };
+
   const proceedToPayment = async () => {
-    console.log(window);
     const data = {
       subtotal,
       shippingCharges,
       tax,
       totalPrice,
+      orderDate: getCurrentDate(),
     };
-    sessionStorage.setItem("orderInfo", JSON.stringify(data));
-    const paymentDetails = await DisplayRazorPay(user, shippingInfo, cartItems);
-    console.log("this is a[a[[a",paymentDetails)
+    
+
+    // Generate the order ID
+    const generatedOrderId = generateOrderId();
+
+    // Store the order ID along with the order information
+    const orderData = {
+      orderId: generatedOrderId,
+      ...data,
+    };
+    sessionStorage.setItem("orderInfo", JSON.stringify(orderData));
+
+    const paymentDetails = await DisplayRazorPay(
+      user,
+      shippingInfo,
+      cartItems,
+    );
+
+    console.log(paymentDetails);
+
+    setOrderId(generatedOrderId); // Update the orderId state
   };
+
   return (
     <Fragment>
       <MetaData title="Confirm Order" />

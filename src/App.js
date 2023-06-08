@@ -14,7 +14,7 @@ import Shipping from './components/cart/Shipping.js';
 import Store from "./Store";
 import { LoadUser } from './actions/userAction';
 import Profile from './components/User/Profile.js';
-import Cart from './components/cart/Cart.js';
+import Cart from './components/cart/cart.js';
 import OrderConfirm from './components/cart/OrderConfirm.js';
 import WishList from './components/cart/WishList.js';
 // import ProtectedRoute from './components/Route/ProtectedRoute';
@@ -28,6 +28,7 @@ import PaymentFailed from './components/cart/PaymentFailed.js';
 import Navbar from '../src/NavBar';
 import CourseCard from './CourseCard';
 import DashBoard from './components/admin/DashBoard'
+import OrderDetails from './components/OrderDetails/OrderDetails';
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -86,6 +87,8 @@ function App() {
         {user && isAuthenticated && <Route path="/payment/verified" element={<NewOrder />}></Route>}
         {user && isAuthenticated && <Route path="/payment/failed" element={<PaymentFailed />}></Route>}
         {user && isAuthenticated && <Route path="/admin/dashboard" element={<DashBoard />} />}
+        <Route path="/order/viewOrderDetails" element={<OrderDetails />} ></Route>
+
       </Routes>
       <Footer />
     </Router>
