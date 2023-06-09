@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useAlert } from 'react-alert';
 import { removeItemsFromWishlist, addItemToCart } from '../../actions/cartAction';
 import './WishlistPage.css';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import Typography from 'antd/es/typography/Typography';
 import { Link } from 'react-router-dom';
+import { Alert } from 'antd';
 
 const WishList = () => {
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
-  const alert = useAlert();
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleRemoveFromWishlist = (productId) => {
     dispatch(removeItemsFromWishlist(productId));
@@ -19,7 +19,7 @@ const WishList = () => {
   const handleAddToCart = (product) => {
     dispatch(addItemToCart(product.product, 1));
     dispatch(removeItemsFromWishlist(product.product));
-    alert.success("Items added successfully");
+    setShowAlert(true);
   };
 
   return (
@@ -32,6 +32,12 @@ const WishList = () => {
         </div>
       ) : (
           <div className="wishlistPage">
+            {showAlert && <Alert
+              message="Successfully added"
+              type="success"
+              showIcon
+              closable
+            />}
           {wishlistItems && wishlistItems.map((item) => (
             <div className='listItem'>
               <div className="product-image">

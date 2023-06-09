@@ -13,10 +13,10 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import { Country, State } from "country-state-city";
 import CheckoutSteps from '../cart/CheckoutSteps.js';
+import { Alert } from 'antd';
 
 const Shipping = () => {
   const dispatch = useDispatch();
-  const alert = useAlert();
   const navigateTo = useNavigate();
   const { shippingInfo } = useSelector((state) => state.cart);
   const [address, setAddress] = useState(shippingInfo.address);
@@ -25,11 +25,12 @@ const Shipping = () => {
   const [country, setCountry] = useState(shippingInfo.country);
   const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
   const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+  const [showAlert, setShowAlert] = useState(false);
   const shippingSubmit = (e) => {
     e.preventDefault();
 
     if (phoneNo.length < 10 || phoneNo.length > 10) {
-      alert.error("Phone Number should be 10 digits Long");
+      setShowAlert(true);
       return;
     }
     dispatch(
@@ -43,7 +44,14 @@ const Shipping = () => {
       <MetaData title="Shipping"></MetaData>
       <CheckoutSteps activestep={0} />
       <div className="shippingContainer">
-        <div className="shippingBox">
+          <div className="shippingBox">
+            {showAlert && <Alert
+              message="Phone Number"
+              description="Phone Number should be 10 digits"
+              type="warning"
+              showIcon
+              closable
+            />}
           <h2 className="shippingHeading">Shipping Details</h2>
           <form
             className="shippingForm"
@@ -134,7 +142,6 @@ const Shipping = () => {
       <div>
         Pick From Saved Address
         <select>
-          
         </select>
       </div>
     </Fragment>

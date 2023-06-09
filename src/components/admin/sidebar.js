@@ -1,22 +1,25 @@
+import React, { useState } from 'react';
 import "./sidebar.css";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import DashBoard from "./DashBoard";
+import ProductsPage from './ProductsPage';
 import {
   AccountCircleRounded,
   AssignmentTurnedInRounded,
   AttachMoneyRounded,
-  BarChartRounded,
   ColorLensRounded,
   DashboardRounded,
-  SettingsRemoteRounded,
   TocRounded,
 } from "@material-ui/icons";
+import PaidIcon from '@mui/icons-material/Paid';
+import CategoryRoundedIcon from '@mui/icons-material/CategoryRounded';
 import Item from "./component/Item";
-import { useState } from "react";
+
 function Sidebar() {
   const [open, setOpen] = useState(true);
+  const [selectedComponent, setSelectedComponent] = useState(<DashBoard />);
 
-  // for collpsing sidebar
+  // for collapsing sidebar
   const handleToggle = () => {
     setOpen(!open);
   };
@@ -35,7 +38,7 @@ function Sidebar() {
   const sidebarVariants = {
     true: {},
     false: {
-      width: "5rem",
+      width: "6.5rem",
       transition: {
         delay: 0.4,
       },
@@ -53,6 +56,21 @@ function Sidebar() {
       width: "5rem",
     },
   };
+
+  const PageHandler = (param) => {
+    switch (param) {
+      case 'dashboard':
+        setSelectedComponent(<DashBoard />);
+        break;
+      case 'products':
+        setSelectedComponent(<ProductsPage />);
+        break;
+      default:
+        setSelectedComponent(null);
+        break;
+    }
+  };
+
   return (
     <div className="App">
       <motion.div
@@ -105,10 +123,7 @@ function Sidebar() {
               cursor: "pointer",
             }}
           >
-            <img
-              src="/public/man.png"
-              alt="profile_img"
-            />
+            <img src="https://img.freepik.com/premium-vector/boy-is-working-web-page_118167-1706.jpg?w=2000" alt="profile_img" />
           </motion.div>
           {/* groups */}
           <div className="groups">
@@ -117,37 +132,21 @@ function Sidebar() {
               <motion.h3
                 animate={{ opacity: open ? 1 : 0, height: open ? "auto" : 0, width: open ? "auto" : 0 }}
               >
-                ANALYTICS
+                Components
               </motion.h3>
-              <Item icon={<DashboardRounded />} name="Dashboard" />
-              <Item icon={<BarChartRounded />} name="Products" />
+              <Item icon={<DashboardRounded />} name="Dashboard" onClick={()=>PageHandler('dashboard')} />
+              <Item icon={<CategoryRoundedIcon />} name="Products" onClick={()=>PageHandler('products')} />
+              <Item icon={<AttachMoneyRounded />} name="Sales" />
+              <Item icon={<AssignmentTurnedInRounded />} name="Orders" />
+              <Item icon={<AccountCircleRounded />} name="Customers" />
+              <Item icon={<PaidIcon />} name="Transaction" />
+              <Item icon={<ColorLensRounded />} name="Settings" />
             </div>
-          </div>
-          {/* group 2 */}
-          <div className="group">
-            <motion.h3
-              animate={{ opacity: open ? 1 : 0, height: open ? "auto" : 0, width: open ? "auto" : 0 }}
-            >
-              Content
-            </motion.h3>
-            <Item icon={<AttachMoneyRounded />} name="Sales" />
-            <Item icon={<AssignmentTurnedInRounded />} name="Checklist" />{" "}
-            <Item icon={<AccountCircleRounded />} name="Customers" />
-          </div>
-          {/* group 3 */}
-          <div className="group">
-            <motion.h3
-              animate={{ opacity: open ? 1 : 0, height: open ? "auto" : 0, width: open ? "auto" : 0 }}
-            >
-              CUSTOMIZATION
-            </motion.h3>
-            <Item icon={<SettingsRemoteRounded />} name="Segments" />
-            <Item icon={<ColorLensRounded />} name="Themems" />
           </div>
         </motion.div>
       </motion.div>
       <div className="body_container">
-
+        {selectedComponent}
       </div>
     </div>
   );

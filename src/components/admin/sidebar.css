@@ -1,8 +1,52 @@
+.profile {
+  align-self: flex-start;
+  margin-top: 2rem;
+  width: 3rem;
+}
+
+.sidebar_container {
+  width: 15rem;
+}
+
+.sidebar {
+  width: 3rem;
+}
+
+.lines_icon {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border: 1px solid rgb(255, 255, 255);
+  transition: 0.4s;
+}
+
+.profile:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+  border: 1px solid rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.group h3 {
+  opacity: 1;
+  height: auto;
+  width: auto;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
 .App {
   display: flex;
   font-family: "Helvetica Neue",Helvetica,Arial;
   color: whitesmoke;
   background: whitesmoke;
+  position: relative;
 }
 .body_container {
   flex: 1;
@@ -41,6 +85,7 @@
 }
 
 .profile{
+  
 display: flex;
 align-items: center;
 border-radius: 50%;
@@ -48,14 +93,23 @@ margin-bottom: 1rem;
 }
 
 .profile>img{
-  width: 100%;
-border-radius: 50%;
+width: 100%;
+  border-radius: 50%;
 }
 
 .groups{
   display: flex;
   flex-direction: column;
-  width: 100%
+  width: 100%;
+  align-items: center;
+}
+.groups > group{
+  text-align: center;
+  align-items: center;
+}
+.item{
+  align-items: center;
+  text-align: center;
 }
 .group{
   display: flex;

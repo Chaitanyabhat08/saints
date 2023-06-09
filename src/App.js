@@ -27,7 +27,8 @@ import NewOrder from './components/cart/NewOrder.js';
 import PaymentFailed from './components/cart/PaymentFailed.js';
 import Navbar from '../src/NavBar';
 import CourseCard from './CourseCard';
-import DashBoard from './components/admin/DashBoard'
+import Sidebar from './components/admin/sidebar';
+import CreateNewProd from './components/admin/CreateNewProd';
 import OrderDetails from './components/OrderDetails/OrderDetails';
 
 function App() {
@@ -86,8 +87,9 @@ function App() {
         }></Route>}
         {user && isAuthenticated && <Route path="/payment/verified" element={<NewOrder />}></Route>}
         {user && isAuthenticated && <Route path="/payment/failed" element={<PaymentFailed />}></Route>}
-        {user && isAuthenticated && <Route path="/admin/dashboard" element={<DashBoard />} />}
-        <Route path="/order/viewOrderDetails" element={<OrderDetails />} ></Route>
+        {user && isAuthenticated && <Route path="/admin/dashboard" element={<Sidebar />} />}
+        {user && isAuthenticated && <Route path="/admin/products/createnew" element={<CreateNewProd />} />}
+        {user && isAuthenticated && <Route path="/order/viewOrderDetails" element={<OrderDetails />} ></Route>}
 
       </Routes>
       <Footer />
