@@ -18,26 +18,25 @@ const CreateNewProd = () => {
     setSelectedImages((prevImages) => [...prevImages, ...files]);
   };
   const navigateTo = useNavigate();
-  const payload = {
-    name: productName,
-    description,
-    price,
-    stock,
-    category:selectedCategory,
-    gender:selectedGender,
-    images: selectedImages,
-  }
   const createNewProduct = async () => {
-    console.log("hey clicked");
+    const payload = {
+      name: productName,
+      description,
+      price,
+      stock,
+      category: selectedCategory,
+      gender: selectedGender,
+      images: selectedImages,
+    }
     try {
       const { data } = await axios.post('http://localhost:3000/api/v1/admin/products/createNewProduct',payload);
       if (data.success) {
-        setShowAlert(true); // Show the alert
+        setShowAlert(true);
         navigateTo('/admin/products');
       }
     } catch (error) {
       console.error(error);
-      setShowAlert(false); // Show error alert
+      setShowAlert(false); 
     }
   }
   return (
@@ -52,7 +51,7 @@ const CreateNewProd = () => {
         />
       )}
     <div id="createProdMain">
-        <form id="createProdForm" onSubmit={createNewProduct}>
+        <form id="createProdForm" onSubmit={createNewProduct} encType="multipart/form-data">
         <div className="form-group">
           <h6 htmlFor="productname">Name of the Product</h6>
           <input
@@ -61,7 +60,8 @@ const CreateNewProd = () => {
             className="form-control"
             id="productname"
             aria-describedby="Product Name"
-            placeholder="Enter Product Name"
+              placeholder="Enter Product Name"
+              required
             onChange={(e)=>setProductName(e.target.value)}
           />
         </div>
@@ -72,7 +72,8 @@ const CreateNewProd = () => {
             type="text"
             className="form-control"
             id="Description"
-            placeholder="Description"
+              placeholder="Description"
+              required
             onChange={(e) => setDescription(e.target.value)}  
           />
         </div>
@@ -83,7 +84,8 @@ const CreateNewProd = () => {
             type="number"
             className="form-control"
             id="Price"
-            placeholder="Price"
+              placeholder="Price"
+              required
             onChange={(e)=> setPrice((e.target.value))}  
           />
         </div>
@@ -94,13 +96,14 @@ const CreateNewProd = () => {
             type="number"
             className="form-control"
             id="Stock"
-              placeholder="Stock"
+            placeholder="Stock"
+            required
             onChange={(e)=> setStock(e.target.value)}
           />
         </div>
           <div className="form-group">
             <h6 htmlFor="Category">Category</h6>
-            <select className="form-control" id="Category" onChange={(event)=> setSelectedCategory(event.target.value)}>
+            <select className="form-control" id="Category" onChange={(event)=> setSelectedCategory(event.target.value)} required>
               <option value="">Select Category</option>
               <option value="Tshirt">Tshirt</option>
               <option value="Gadgets">Gadgets</option>
@@ -113,7 +116,7 @@ const CreateNewProd = () => {
           </div>
           <div className="form-group">
             <h6 htmlFor="Gender">Gender</h6>
-            <select className="form-control" id="Gender" onChange={(e) => setSelectedGender(e.target.value)}>
+            <select className="form-control" id="Gender" onChange={(e) => setSelectedGender(e.target.value)} required>
               <option value="">Select Gender</option>
               <option value="M">Male</option>
               <option value="F">Female</option>
@@ -123,6 +126,7 @@ const CreateNewProd = () => {
           <div className="form-group">
             <h6 htmlFor="Images">Images</h6>
             <input
+              required
               type="file"
               className="form-control-file"
               id="Images"
