@@ -14,7 +14,7 @@ import Shipping from './components/cart/Shipping.js';
 import Store from "./Store";
 import { LoadUser } from './actions/userAction';
 import Profile from './components/User/Profile.js';
-import Cart from './components/cart/Cart.js';
+import Cart from './components/cart/cart.js';
 import OrderConfirm from './components/cart/OrderConfirm.js';
 import WishList from './components/cart/WishList.js';
 // import ProtectedRoute from './components/Route/ProtectedRoute';
