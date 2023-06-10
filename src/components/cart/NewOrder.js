@@ -2,8 +2,16 @@ import { useNavigate } from "react-router";
 import { useSelector,useDispatch } from "react-redux";
 import './NewOrder.css'
 import { useEffect } from "react";
+import { createOrder } from "../../actions/orderAction"
+
 const NewOrder = (data) =>{
-  console.log(data); 
+  const shippingInfo = localStorage.getItem('shippingInfo') ? JSON.parse(localStorage.getItem('shippingInfo')) : {};
+  const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
+  const onCompleteValue = localStorage.getItem('onComplete');
+  const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+const onCompleteData = JSON.parse(onCompleteValue);
+
+  const dispatch = useDispatch();
   const navigateTo = useNavigate();
   const viewproductHandler = () => {
     navigateTo('/products/getAllProducts');
@@ -13,7 +21,7 @@ const NewOrder = (data) =>{
   }
   
   useEffect(() => {
-    
+    dispatch(createOrder(shippingInfo,orderInfo,cartItems));
   },[])
   return (
     <div className="mainDiv">

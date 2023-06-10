@@ -1,4 +1,4 @@
-const DisplayRazorPay = async (user) => {
+const DisplayRazorPay = async (user,shippingInfo,cartItems) => {
   const orderInfo = sessionStorage.getItem("orderInfo");
   const data = await fetch("http://localhost:3000/api/v1/razorpay", {
     method: 'POST',
