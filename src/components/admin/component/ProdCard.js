@@ -30,7 +30,7 @@ const ProdCard = ({ product }) => {
       <Link className="prodCard" to={`/products/getProductDetails/${product._id}`} style={{ textDecoration: 'none' }}>
         <img className="prodPic" src={product.images[0].url} alt={product.name} />
         <p>#id : {product._id}</p>
-        <p className="prodName">{product.name}</p>
+        <h6 className="prodName" style={{margin:0}}>{product.name}</h6>
         <span className="prodPrice">{`₹${product.price}`}</span>
         <span className="prodPrice">Stock : {product.stock}</span>
       </Link>

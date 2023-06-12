@@ -6,12 +6,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { useAlert } from 'react-alert';
+import SearchIcon from '@mui/icons-material/Search';
 
 const CustomerPage = () => {
   const [totalUsers, setTotalUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
   const [editableCells, setEditableCells] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [changedName, setChangedName] = useState('');
   const [changedEmail, setChangedEmail] = useState('');
   const [changedRole, setChangedRole] = useState('');
@@ -30,15 +33,19 @@ const CustomerPage = () => {
         const endIndex = startIndex + usersPerPage;
         const paginatedUsers = allUsers.slice(startIndex, endIndex);
 
+        const filteredUsers = paginatedUsers.filter(user =>
+          user.email.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
         setTotalUsers(paginatedUsers);
+        setFilteredUsers(filteredUsers);
         setEditableCells(new Array(paginatedUsers.length).fill(false));
       } catch (error) {
         console.log(error);
       }
     };
-
     fetchData();
-  }, [currentPage, usersPerPage]);
+  }, [currentPage, usersPerPage,searchQuery]);
 
   const handleEdit = (index, user) => {
     const updatedEditableCells = [...editableCells];
@@ -124,6 +131,18 @@ const CustomerPage = () => {
     <Fragment>
       <div className="CustomerPage">
         <h1>Our Customers</h1>
+        <div style={{ margin: "10px",padding:"30px" }}>
+          <form style={{ display: "flex", position: "fixed", right: 0 }}>
+            <input style={{ margin: 0, height: "2.8vmax", width: "18vmax" }}
+              placeholder="Search your product"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button type="button" style={{ backgroundColor: "gray", color: "whitesmoke", width: "60px", margin: 0, 'marginLeft': "5px" }}>
+              <SearchIcon />
+            </button>
+          </form>
+        </div>
         <table className="customerTable">
           <thead>
             <tr>
@@ -136,7 +155,7 @@ const CustomerPage = () => {
             </tr>
           </thead>
           <tbody>
-            {totalUsers.map((user, index) => (
+            {filteredUsers.map((user, index) => (
               <tr key={user._id}>
                 <td>
                   {editableCells[index] ? (
