@@ -3,8 +3,10 @@ import './CreateNewProd.css';
 import axios from 'axios';
 import { Alert } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 
 const CreateNewProd = () => {
+  const alert = useAlert();
   const navigateTo = useNavigate();
   const [selectedImages, setSelectedImages] = useState([]);
   const [productName, setProductName] = useState('');
@@ -28,32 +30,19 @@ const CreateNewProd = () => {
     formData.append('category', selectedCategory);
     formData.append('gender', selectedGender);
     selectedImages.forEach((image, index) => {
-      formData.append(`images[${index}]`, image);
+      formData.append('images', image, `image${index}`); // Assuming the field name is 'images'
     });
     try {
-      await axios.post('http://localhost:3000/api/v1/admin/products/createNewProduct', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      setShowAlert(true);
+      const { data } = await axios.post('http://localhost:3000/api/v1/admin/products/createNewProduct', formData);
+      if(data.success) alert.success("Product created successfully");
       navigateTo('/admin/products');
     } catch (error) {
-      console.error(error);
+      alert.error(error.message);
       setShowAlert(false);
     }
   };
   return (
     <div className="CreateprodDiv" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      {showAlert && (
-        <Alert
-          message={showAlert ? 'Product Created' : 'Error Creating Product'}
-          description={showAlert ? 'New Product created successfully' : 'Error occurred while creating the product'}
-          type={showAlert ? 'success' : 'error'}
-          showIcon
-          closable
-        />
-      )}
       <div id="createProdMain">
         <form id="createProdForm" onSubmit={createNewProduct} encType="multipart/form-data">
           <div className="form-group">
