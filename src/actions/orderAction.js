@@ -23,7 +23,7 @@ import {
 import axios from "axios";
 
 // Create Order
-export const createOrder = (shippingInfo, orderItems, orderInfo) => async (dispatch) => {
+export const createOrder = (shippingInfo, orderInfo, cartItems) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_ORDER_REQUEST });
 
@@ -35,8 +35,8 @@ export const createOrder = (shippingInfo, orderItems, orderInfo) => async (dispa
 
     const requestData = {
       shippingInfo,
-      orderItems,
       orderInfo,
+      cartItems
     };
 
     const { data } = await axios.post("/api/v1/order/new", requestData, config);
