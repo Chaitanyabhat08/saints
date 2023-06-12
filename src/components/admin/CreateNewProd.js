@@ -5,6 +5,7 @@ import { Alert } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 const CreateNewProd = () => {
+  const navigateTo = useNavigate();
   const [selectedImages, setSelectedImages] = useState([]);
   const [productName, setProductName] = useState('');
   const [description, setDescription] = useState('');
@@ -17,8 +18,7 @@ const CreateNewProd = () => {
     const files = Array.from(event.target.files);
     setSelectedImages((prevImages) => [...prevImages, ...files]);
   };
-  console.log(selectedImages);
-  const navigateTo = useNavigate();
+
   const createNewProduct = async () => {
     const formData = new FormData();
     formData.append('name', productName);
@@ -27,11 +27,9 @@ const CreateNewProd = () => {
     formData.append('stock', stock);
     formData.append('category', selectedCategory);
     formData.append('gender', selectedGender);
-  
     selectedImages.forEach((image, index) => {
-      formData.append(`images`, image);
+      formData.append(`images[${index}]`, image);
     });
-  
     try {
       await axios.post('http://localhost:3000/api/v1/admin/products/createNewProduct', formData, {
         headers: {

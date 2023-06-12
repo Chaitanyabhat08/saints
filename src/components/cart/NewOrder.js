@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useSelector,useDispatch } from "react-redux";
+import {useDispatch } from "react-redux";
 import './NewOrder.css'
 import { useEffect } from "react";
 import { createOrder } from "../../actions/orderAction"
@@ -9,7 +9,7 @@ const NewOrder = (data) =>{
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   const onCompleteValue = localStorage.getItem('onComplete');
   const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-const onCompleteData = JSON.parse(onCompleteValue);
+  const onCompleteData = JSON.parse(onCompleteValue);
 
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
@@ -22,7 +22,7 @@ const onCompleteData = JSON.parse(onCompleteValue);
   
   useEffect(() => {
     dispatch(createOrder(shippingInfo,orderInfo,cartItems));
-  },[])
+  }, [dispatch, shippingInfo, orderInfo, cartItems])
   return (
     <div className="mainDiv">
       <div class="card1">

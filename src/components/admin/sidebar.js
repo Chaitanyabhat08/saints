@@ -3,6 +3,7 @@ import "./sidebar.css";
 import { motion } from "framer-motion";
 import DashBoard from "./DashBoard";
 import ProductsPage from './ProductsPage';
+import CustomerPage from './CustomerPage';
 import {
   AccountCircleRounded,
   AssignmentTurnedInRounded,
@@ -64,6 +65,9 @@ function Sidebar() {
         break;
       case 'products':
         setSelectedComponent(<ProductsPage />);
+        break;
+      case 'customers':
+        setSelectedComponent(<CustomerPage />);
         break;
       default:
         setSelectedComponent(null);
@@ -138,7 +142,7 @@ function Sidebar() {
               <Item icon={<CategoryRoundedIcon />} name="Products" onClick={()=>PageHandler('products')} />
               <Item icon={<AttachMoneyRounded />} name="Sales" />
               <Item icon={<AssignmentTurnedInRounded />} name="Orders" />
-              <Item icon={<AccountCircleRounded />} name="Customers" />
+              <Item icon={<AccountCircleRounded />} onClick={() => PageHandler('customers')} name="Customers" />
               <Item icon={<PaidIcon />} name="Transaction" />
               <Item icon={<ColorLensRounded />} name="Settings" />
             </div>

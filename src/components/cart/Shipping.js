@@ -2,7 +2,6 @@ import React, { Fragment, useState } from 'react';
 import './Shipping.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useAlert } from 'react-alert';
 import { saveShippingInfo } from '../../actions/cartAction'; 
 import MetaData from '../layout/MetaData';
 import PinDropIcon from '@mui/icons-material/PinDrop';
