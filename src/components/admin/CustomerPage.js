@@ -141,9 +141,6 @@ const CustomerPage = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button type="button" style={{ backgroundColor: "gray", color: "whitesmoke", width: "60px", margin: 0, 'marginLeft': "5px" }}>
-              <SearchIcon />
-            </button>
           </form>
         </div>
         <table className="customerTable">

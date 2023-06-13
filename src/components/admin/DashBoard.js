@@ -7,6 +7,7 @@ import DoughnutChart from './component/DoughtnutChart';
 const DashBoard = () => {
   const [totalProducts, setTotalProducts] = useState([]);
   const [totalUsers, setTotalUsers] = useState([]);
+  const [totalOrders, setTotalOrders] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {

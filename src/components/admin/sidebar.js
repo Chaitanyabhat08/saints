@@ -5,6 +5,7 @@ import DashBoard from "./DashBoard";
 import ProductsPage from './ProductsPage';
 import CustomerPage from './CustomerPage';
 import Transaction from "./Transaction";
+import Orders from "./Orders";
 import {
   AccountCircleRounded,
   AssignmentTurnedInRounded,
@@ -72,6 +73,9 @@ function Sidebar() {
         break;
       case 'transaction':
         setSelectedComponent(<Transaction />);
+        break;
+      case 'orders':
+        setSelectedComponent(<Orders />);
         break;
       default:
         setSelectedComponent(null);
@@ -145,7 +149,7 @@ function Sidebar() {
               <Item icon={<DashboardRounded />} name="Dashboard" onClick={()=>PageHandler('dashboard')} />
               <Item icon={<CategoryRoundedIcon />} name="Products" onClick={() => PageHandler('products')} />
               <Item icon={<AccountCircleRounded />} onClick={() => PageHandler('customers')} name="Customers" />
-              <Item icon={<AssignmentTurnedInRounded />} name="Orders" />
+              <Item icon={<AssignmentTurnedInRounded />} onClick={() => PageHandler('orders')} name="Orders" />
               <Item icon={<PaidIcon />} onClick={() => PageHandler('transaction')} name="Transaction" />
               <Item icon={<ColorLensRounded />} name="Settings" />
             </div>
