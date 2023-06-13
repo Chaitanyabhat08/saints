@@ -3,10 +3,9 @@ import axios from 'axios';
 import './CustomerPage.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { useAlert } from 'react-alert';
 import SearchIcon from '@mui/icons-material/Search';
+import { Pagination } from 'antd';
 
 const CustomerPage = () => {
   const [totalUsers, setTotalUsers] = useState([]);
@@ -45,7 +44,7 @@ const CustomerPage = () => {
       }
     };
     fetchData();
-  }, [currentPage, usersPerPage,searchQuery]);
+  }, [currentPage, usersPerPage, searchQuery]);
 
   const handleEdit = (index, user) => {
     const updatedEditableCells = [...editableCells];
@@ -73,7 +72,7 @@ const CustomerPage = () => {
     setShowDeleteModal(true);
   };
 
-  const handleDeleteConfirm = async() => {
+  const handleDeleteConfirm = async () => {
     // Implement your delete logic here
     try {
       const { data } = await axios.delete(`http://localhost:3000/api/v1/admin/users/deleteProfile/${selectedUserId}`);
@@ -127,14 +126,18 @@ const CustomerPage = () => {
     }
   };
 
+  const paginate = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <Fragment>
       <div className="CustomerPage">
         <h1>Our Customers</h1>
-        <div style={{ margin: "10px",padding:"30px" }}>
+        <div style={{ margin: "10px", padding: "30px" }}>
           <form style={{ display: "flex", position: "fixed", right: 0 }}>
             <input style={{ margin: 0, height: "2.8vmax", width: "18vmax" }}
-              placeholder="Search your product"
+              placeholder="Search user"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -215,7 +218,7 @@ const CustomerPage = () => {
                 <td>
                   {editableCells[index] ? (
                     <div>
-                      <button style={{width:"50px", color:"green", backgroundColor:"white"}} onClick={() => handleSave(index)}>Save</button>
+                      <button style={{ width: "50px", color: "green", backgroundColor: "white" }} onClick={() => handleSave(index)}>Save</button>
                       <button style={{ width: "50px", color: "red", backgroundColor: "white" }} onClick={() => handleCancel(index)}>X</button>
                     </div>
                   ) : (
@@ -237,17 +240,13 @@ const CustomerPage = () => {
           </tbody>
         </table>
         <div className="pagination">
-          <button onClick={handlePreviousPage} disabled={currentPage === 1} style={{width:"30px", textAlign:"center"}}>
-            <ChevronLeftIcon />
-          </button>
-          <span>{currentPage}</span>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === Math.ceil(totalUsers.length / usersPerPage)}
-            style={{ width: "30px", alignItems: "center" }}
-          >
-            <ChevronRightIcon />
-          </button>
+          <Pagination
+            current={currentPage}
+            pageSize={usersPerPage}
+            total={totalUsers.length}
+            onChange={paginate}
+            style={{ marginTop: '20px' }}
+          />
         </div>
       </div>
       {showDeleteModal && (

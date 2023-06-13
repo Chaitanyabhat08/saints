@@ -6,7 +6,7 @@ import UserOptions from "./components/layout/Header/UserOptions";
 import { useNavigate } from 'react-router-dom';
 import logo from './images/logo3.jpeg';
 
-const Navbar = () => {
+const Navbar = ({ toggleTheme }) => {
   const { isAuthenticated, user } = useSelector(state => state.user);
   const history = useNavigate();
   const [searchData, setSearchData] = useState(null);
@@ -126,7 +126,7 @@ const Navbar = () => {
               onChange={(e) => setSearchData(e.target.value)}
             />
           </form>
-          <FaSearch onClick={searchProducts} style={{"cursor": "pointer", "margin":"5px"}} />
+          <FaSearch onClick={searchProducts} style={{ "cursor": "pointer", "margin": "5px",height:"20px",width:"20px",color:'white' }} />
           {user && isAuthenticated ? (
         <UserOptions user={user} />
 ) : (
@@ -134,7 +134,6 @@ const Navbar = () => {
     Login
   </button>
 )}
-
         </div>
       </div>
     </nav>

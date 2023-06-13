@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -34,6 +34,17 @@ import EditProduct from './components/admin/EditProduct';
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
   const loadScript= (src)=> {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -60,7 +71,7 @@ function App() {
   }, []);
   return (
     <Router>
-      <Navbar />
+      <Navbar toggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/products/getProductDetails/:id" element={<ProductDetails />} render={(props) => (
@@ -92,9 +103,8 @@ function App() {
         {user && isAuthenticated && <Route path="/admin/products/createnew" element={<CreateNewProd />} />}
         {user && isAuthenticated && <Route path="/admin/products/editproduct/:productId" element={<EditProduct />} />}
         {user && isAuthenticated && <Route path="/order/viewOrderDetails" element={<OrderDetails />} ></Route>}
-
       </Routes>
-      <Footer />
+        <Footer />
     </Router>
   );
 }

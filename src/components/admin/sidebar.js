@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import DashBoard from "./DashBoard";
 import ProductsPage from './ProductsPage';
 import CustomerPage from './CustomerPage';
+import Transaction from "./Transaction";
 import {
   AccountCircleRounded,
   AssignmentTurnedInRounded,
@@ -68,6 +69,9 @@ function Sidebar() {
         break;
       case 'customers':
         setSelectedComponent(<CustomerPage />);
+        break;
+      case 'transaction':
+        setSelectedComponent(<Transaction />);
         break;
       default:
         setSelectedComponent(null);
@@ -139,11 +143,10 @@ function Sidebar() {
                 Components
               </motion.h3>
               <Item icon={<DashboardRounded />} name="Dashboard" onClick={()=>PageHandler('dashboard')} />
-              <Item icon={<CategoryRoundedIcon />} name="Products" onClick={()=>PageHandler('products')} />
-              <Item icon={<AttachMoneyRounded />} name="Sales" />
-              <Item icon={<AssignmentTurnedInRounded />} name="Orders" />
+              <Item icon={<CategoryRoundedIcon />} name="Products" onClick={() => PageHandler('products')} />
               <Item icon={<AccountCircleRounded />} onClick={() => PageHandler('customers')} name="Customers" />
-              <Item icon={<PaidIcon />} name="Transaction" />
+              <Item icon={<AssignmentTurnedInRounded />} name="Orders" />
+              <Item icon={<PaidIcon />} onClick={() => PageHandler('transaction')} name="Transaction" />
               <Item icon={<ColorLensRounded />} name="Settings" />
             </div>
           </div>
