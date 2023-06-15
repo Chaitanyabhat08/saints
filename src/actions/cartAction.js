@@ -38,7 +38,6 @@ export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
                 name: data.product.name,
                 price: data.product.price,
                 image: data.product.images[0].url,
-                stock: data.product.stock,
                 quantity,
             },
         });
@@ -86,7 +85,6 @@ export const addtoWishlist = (id) => async (dispatch, getState)=>{
                 name: data.product.name,
                 price: data.product.price,
                 image: data.product.images[0].url,
-                stock:data.product.stock,
             },
         });
     }

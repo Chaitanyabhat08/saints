@@ -14,7 +14,7 @@ const ProdCard = ({ product }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [delObj, setDelObj] = useState("");
   const handleDelete = async (id) => {
-    const { data } = await axios.put(`http://localhost:3000/api/v1/admin/products/deleteProduct/${delObj}`);
+    const { data } = await axios.put(`/api/v1/admin/products/deleteProduct/${delObj}`);
     if (data.success) { 
       alert.success("Successfully deleted")
       navigateTo('/admin/dashboard')

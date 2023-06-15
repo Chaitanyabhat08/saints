@@ -41,19 +41,28 @@ const Product = ({ product }) => {
                 </div>
                 <span>{`₹${product.price}`}</span>
             </Link>
-            <div className='buttonSec'>
-                <div className='button'>
-                    <FavoriteIcon
-                        id="heart"
-                        onClick={() => addToWishlist(product._id)}
-                        style={{ color: isLiked ? 'red' : 'gray' }}
-                    />
-                    <Button className='btn' onClick={() => addToCartHandler(product._id,1)}>Add to cart</Button>
+            {product.stock>=1 ?
+                <div className='buttonSec'>
+                    <div className='button'>
+                        <FavoriteIcon
+                            id="heart"
+                            onClick={() => addToWishlist(product._id)}
+                            style={{ color: isLiked ? 'red' : 'gray' }}
+                        />
+                        <Button className='btn' onClick={() => addToCartHandler(product._id, 1)}>Add to cart</Button>
+                    </div>
+                    <div>
+                        <Button className='btn' onClick={() => console.log('clicked buy')}>Buy Now</Button>
+                    </div>
+                </div> 
+                :
+                <div className='buttonSec'>
+                    <Button className='btn' style={{backgroundColor:'tomato'}}>
+                        Out of stock
+                    </Button>
                 </div>
-                <div>
-                    <Button className='btn' onClick={()=> console.log('clicked buy')}>Buy Now</Button>
-                </div>
-            </div>
+               
+            }
         </div>
     )
 }

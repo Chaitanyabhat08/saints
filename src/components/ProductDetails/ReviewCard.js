@@ -7,16 +7,18 @@ const ReviewCard = ({ review }) => {
         edit: false,
         color: "rgba(20,20,20,0.1)",
         activeColor: "Tomato",
-        size: window.innerWidth < 600 ? 20 : 25,
+        size: window.innerWidth < 400 ? 15 : 20,
         value: review.rating,
         isHalf: true
     }
   return (
-      <div className="reviewCard">
+    <div className="reviewCard" style={{ height:'auto', width:'auto' }}>
           <img src={profilePng} alt="user" />
           <p>{review.name}</p>
           <ReactStars {...options} />
-          <span>{ review.comment }</span>
+      <p style={{whiteSpace:'pre-wrap'}}>
+        {review.comment}
+      </p>
     </div>
   )
 }

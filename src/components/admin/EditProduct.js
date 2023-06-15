@@ -19,7 +19,7 @@ const EditProduct = () => {
   useEffect(() => {
     const getProductDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/v1/products/getProductDetails/${productId}`);
+        const response = await axios.get(`/api/v1/products/getProductDetails/${productId}`);
         const product = response.data.product;
         setImage(product.images);
         setName(product.name);
@@ -44,7 +44,7 @@ const EditProduct = () => {
       description,
       category,
     }
-    const { data } = await axios.put(`http://localhost:3000/api/v1/admin/products/updateProduct/${productId}`, payload)
+    const { data } = await axios.put(`/api/v1/admin/products/updateProduct/${productId}`, payload)
     if (data.success) {
       alert.success("Successfully Updated the Product")
     } else {

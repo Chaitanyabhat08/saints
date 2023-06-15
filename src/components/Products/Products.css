@@ -37,13 +37,13 @@
     display: flex;
     background-color: whitesmoke;
     border-radius: 10px;
-    overflow-y: auto;
+    overflow: auto;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
-    overflow-x:auto;
     min-height: 30vmax;
     margin-top:30px; 
     flex-wrap: wrap;
     justify-content: space-evenly;
+    height: auto;
 }
   .container {
     display: flex;

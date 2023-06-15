@@ -201,14 +201,15 @@ b{
         flex: none;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border:1px solid rgba(56,56,56,0.116);
-        width:30vmax;
+        width:25vmax;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: left;
         margin:1vmax;
-        padding: 3vmax;
         background-color: whitesmoke;
-         border-radius: 10px;
+        border-radius: 10px;
+        object-fit: fill;
+        padding:10px;
     }
     .reviewForm{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -223,15 +224,11 @@ b{
         border-radius: 10px;
     }
     .reviewCard > img{
-        width:5vmax;
+        width:2vmax;
     }
     .reviewCard >p{
         color: rgba(0,0,0,0.836);
         font:600 0.9vmax "Roboto";
-    }
-    .reviewCard > span{
-        color:rgba(0,0,0,0.445);
-        font:300 0.8vmax Montessarat;
     }
     .noReviews{
         align-items: center;

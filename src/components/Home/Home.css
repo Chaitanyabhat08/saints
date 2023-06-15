@@ -95,7 +95,6 @@
     flex-direction: column;
     object-fit: cover;
     margin:0;
-
 }
 .button > button{
     background-color: gray;

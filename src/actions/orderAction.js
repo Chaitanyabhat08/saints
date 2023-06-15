@@ -22,7 +22,6 @@ import {
 
 import axios from "axios";
 
-// Create Order
 export const createOrder = (shippingInfo, orderInfo, cartItems) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_ORDER_REQUEST });
@@ -50,14 +49,10 @@ export const createOrder = (shippingInfo, orderInfo, cartItems) => async (dispat
   }
 };
 
-
-// My Orders
 export const myOrders = () => async (dispatch) => {
   try {
     dispatch({ type: MY_ORDERS_REQUEST });
-
-    const { data } = await axios.get("/api/v1/orders/me");
-
+    const { data } = await axios.get("http://localhost:3000/api/v1/order/getmyorders");
     dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
   } catch (error) {
     dispatch({
@@ -67,7 +62,6 @@ export const myOrders = () => async (dispatch) => {
   }
 };
 
-// Get All Orders (admin)
 export const getAllOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_ORDERS_REQUEST });
@@ -83,7 +77,6 @@ export const getAllOrders = () => async (dispatch) => {
   }
 };
 
-// Update Order
 export const updateOrder = (id, order) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_ORDER_REQUEST });
@@ -108,7 +101,6 @@ export const updateOrder = (id, order) => async (dispatch) => {
   }
 };
 
-// Delete Order
 export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
@@ -124,12 +116,11 @@ export const deleteOrder = (id) => async (dispatch) => {
   }
 };
 
-// Get Order Details
 export const getOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/order/${id}`);
+    const { data } = await axios.get(`http://localhost:3000/api/v1/order/getmyorder/${id}`);
 
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
   } catch (error) {
@@ -140,7 +131,6 @@ export const getOrderDetails = (id) => async (dispatch) => {
   }
 };
 
-// Clearing Errors
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };

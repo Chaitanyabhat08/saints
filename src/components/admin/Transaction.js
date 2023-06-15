@@ -11,7 +11,7 @@ const Transaction = () => {
 
   const fetchData = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/api/v1/payment/orders');
+      const { data } = await axios.get('/api/v1/payment/orders');
       setAllTransaction(data.items);
     } catch (error) {
       console.log(error);

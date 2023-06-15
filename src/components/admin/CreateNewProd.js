@@ -33,7 +33,7 @@ const CreateNewProd = () => {
       formData.append('images', image, `image${index}`); // Assuming the field name is 'images'
     });
     try {
-      const { data } = await axios.post('http://localhost:3000/api/v1/admin/products/createNewProduct', formData);
+      const { data } = await axios.post('/api/v1/admin/products/createNewProduct', formData);
       if(data.success) alert.success("Product created successfully");
       navigateTo('/admin/products');
     } catch (error) {

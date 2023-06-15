@@ -26,7 +26,7 @@ const CustomerPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/admin/getAllUsers');
+        const response = await axios.get('/api/v1/admin/getAllUsers');
         const allUsers = response.data.users;
         const startIndex = (currentPage - 1) * usersPerPage;
         const endIndex = startIndex + usersPerPage;
@@ -75,7 +75,7 @@ const CustomerPage = () => {
   const handleDeleteConfirm = async () => {
     // Implement your delete logic here
     try {
-      const { data } = await axios.delete(`http://localhost:3000/api/v1/admin/users/deleteProfile/${selectedUserId}`);
+      const { data } = await axios.delete(`/api/v1/admin/users/deleteProfile/${selectedUserId}`);
       if (data.success) {
         alert.success(data.message);
         window.location.reload(); // Reload the page after successful save
@@ -103,7 +103,7 @@ const CustomerPage = () => {
       phoneNumber: changedPhone,
     }
     try {
-      const { data } = await axios.put(`http://localhost:3000/api/v1/admin/users/updateProfile/${totalUsers[index]._id}`, payload);
+      const { data } = await axios.put(`/api/v1/admin/users/updateProfile/${totalUsers[index]._id}`, payload);
       if (data.success) {
         alert.success(data.message);
         window.location.reload(); // Reload the page after successful save

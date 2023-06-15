@@ -11,15 +11,17 @@ import MetaData from '../layout/MetaData';
 import { useAlert } from 'react-alert';
 import { addItemToCart } from '../../actions/cartAction';
 // import StarRating from "../layout/StarRating"
+import axios from 'axios';
     
 const ProductDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const alert = useAlert();
-    const { product,  loading, error } = useSelector((state) => state.productDetails);
+    const { product, loading, error } = useSelector((state) => state.productDetails);
     const [itemsCount, setItemsCount] = useState(1);
     const [reviewForm, setReviewForm] = useState(false);
     const [yourReview, setYourReview] = useState(null);
+    const [rating, setRating] = useState(0);
 
     useEffect(() => {
         if (error) {
@@ -53,9 +55,27 @@ const ProductDetails = () => {
     const reviewHandler = () => {
         setReviewForm(true);
     }
-    const submitReviewHandler = (value) => {
-        setYourReview(value);
+    const submitReviewHandler = async(id) => {
+        const payload = {
+            rating,
+            comment: yourReview,
+            productId:id,
+        }
+        axios
+            .put('/api/v1/products/review', payload)
+            .then((response) => {
+                if (response.data.success) {
+                    alert.success('Review submitted successfully');
+                }
+            })
+            .catch((error) => {
+                alert.error(error.message);
+            });
+
     }   
+    const handleRatingChange = (newRating) => {
+        setRating(newRating);
+    };
     return (
         loading ? <Loader /> 
             :
@@ -111,17 +131,22 @@ const ProductDetails = () => {
                 <button className="submitReview" onClick={reviewHandler}>SUBMIT REVIEW</button>
             </div>
                 </div>
-                    {reviewForm && 
-                        <div>
-                            <form className='reviewForm'>
-                                <p>your review on this</p>
-                            <input className="textInput" type="text" value={yourReview}></input>
-                            {/* <StarRating /> */}
-                            <button className="btn" onClick={(e) => submitReviewHandler(e.target.value)}>Submit</button>
-                            <button className="btn" onClick={() => setReviewForm(false)}>cancel</button>
-                            </form>
-                        </div>
-                    }
+                {reviewForm &&
+                    <div>
+                        <form className='reviewForm'>
+                            <p>Your review on this</p>
+                            <textarea className="textInput" type="text" value={yourReview} onChange={(e) => setYourReview(e.target.value)}></textarea>
+                            <ReactStars
+                                count={5}
+                                onChange={handleRatingChange}
+                                size={24}
+                                activeColor="#ffd700"
+                            />
+                            <button className="btn" onClick={()=>submitReviewHandler(product._id)}>Submit</button>
+                            <button className="btn" onClick={() => setReviewForm(false)}>Cancel</button>
+                        </form>
+                    </div>
+                }
                 <h3 className="reviewsHeading">REVIEWS</h3>
                 {product.reviews && product.reviews[0] ? (
                     <div className="reviews">

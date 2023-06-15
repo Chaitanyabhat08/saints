@@ -49,7 +49,7 @@ const Profile = () => {
                                 <input className="inputField" value={String(user.createdAt).substr(0, 10)} disabled></input>
                             </div>
                             <div className="but">
-                               <button className="buttonSet"> <Link to="/order/myOrders">My Orders</Link></button>
+                               <button className="buttonSet"> <Link to="/order/myorders">My Orders</Link></button>
                                 <button className="buttonSet"><Link to="/users/updatePassword">Update Password</Link></button>
                                 <button className="buttonSet"><Link to="/users/addAddress">Add Address</Link></button>
                             </div>

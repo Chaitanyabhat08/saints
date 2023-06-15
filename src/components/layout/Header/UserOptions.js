@@ -37,7 +37,7 @@ const UserOptions = ({ user }) => {
     navigateTo('/Cart');
   }
   function orders() {
-    navigateTo('/order/myOrders');
+    navigateTo('/order/myorders');
   }
   function wishList() {
     navigateTo('/wishlist')

@@ -1,7 +1,6 @@
-import React,{useState} from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import './App.css';
 import WebFont from 'webfontloader';
 import Footer from './components/layout/Footer/Footer';
@@ -17,7 +16,6 @@ import Profile from './components/User/Profile.js';
 import Cart from './components/cart/Cart.js';
 import OrderConfirm from './components/cart/OrderConfirm.js';
 import WishList from './components/cart/WishList.js';
-// import ProtectedRoute from './components/Route/ProtectedRoute';
 import UpdateProfileOption from './components/User/UpdateProfileOption.js';
 import UpdatePasswordOption from './components/User/UpdatePasswordOption.js';
 import SaveAddress from './components/User/saveAddress';
@@ -26,11 +24,12 @@ import ResetPasswordOption from './components/User/ResetPasswordOption.js';
 import NewOrder from './components/cart/NewOrder.js';
 import PaymentFailed from './components/cart/PaymentFailed.js';
 import Navbar from '../src/NavBar';
-import CourseCard from './CourseCard';
 import Sidebar from './components/admin/sidebar';
 import CreateNewProd from './components/admin/CreateNewProd';
 import OrderDetails from './components/OrderDetails/OrderDetails';
 import EditProduct from './components/admin/EditProduct';
+import MyOrder from './components/Order/MyOrder';
+import OrderDetail from './components/Order/OrderDetails';
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -42,25 +41,11 @@ function App() {
       setTheme('light');
     }
   };
+
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
-  const loadScript= (src)=> {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () =>{
-        resolve(true);
-      }
-      script.onerror = () => {
-        resolve(false);
-      }
-      document.body.appendChild(script);
-    })
-  }
-  useEffect(() => {
-    loadScript("https://checkout.razorpay.com/v1/checkout.js");
-  })
+
   useEffect(() => {
     WebFont.load({
       google: {
@@ -69,43 +54,54 @@ function App() {
     })
     Store.dispatch(LoadUser())
   }, []);
+
+  const isAdmin = user && user.role === 'admin';
+
   return (
-    <Router>
-      <Navbar toggleTheme={toggleTheme} />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/products/getProductDetails/:id" element={<ProductDetails />} render={(props) => (
-          <ProductDetails id={props.match.params.id} />
-        )}></Route>
-        <Route path="/products/getallproducts/" element={<Products />} ></Route>
-        <Route path="/products/getallproducts/:keyWord" element={<Products />}></Route>
-        <Route path="/Search" element={<Search />}></Route>
-        <Route path="/users/loginUser" element={<LoginSignup />}></Route>
-        {user && isAuthenticated && <Route path="/users/getMyDetails" element={<Profile />}></Route>}
-        {user && isAuthenticated && <Route path="/users/updateProfile" element={<UpdateProfileOption />}></Route>}
-        {user && isAuthenticated && <Route path="/users/updatePassword" element={<UpdatePasswordOption />}></Route>}
-        {user && isAuthenticated && <Route path="/users/addAddress" element={<SaveAddress />}></Route>}
-        {user && isAuthenticated && <Route path="/Cart" element={<Cart />}></Route>}
-        <Route path="/users/forgotPassword" element={<ForgotPasswordOption />}></Route>
-        <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />}></Route>
-        {user && isAuthenticated && <Route path="/users/loginUser/shipping" element={<Shipping />}></Route>}
-        {user && isAuthenticated && <Route path="/wishlist" element={<WishList />}></Route>}
-        {user && isAuthenticated && <Route path="/order/confirm" element={<OrderConfirm />}></Route>}
-        {user && isAuthenticated && 
-        <Route path="/payment/process" element={
-           <section className='card-list'>
-           <CourseCard/>
-         </section>
-        }></Route>}
-        {user && isAuthenticated && <Route path="/payment/verified" element={<NewOrder />}></Route>}
-        {user && isAuthenticated && <Route path="/payment/failed" element={<PaymentFailed />}></Route>}
-        {user && isAuthenticated && <Route path="/admin/dashboard" element={<Sidebar />} />}
-        {user && isAuthenticated && <Route path="/admin/products/createnew" element={<CreateNewProd />} />}
-        {user && isAuthenticated && <Route path="/admin/products/editproduct/:productId" element={<EditProduct />} />}
-        {user && isAuthenticated && <Route path="/order/viewOrderDetails" element={<OrderDetails />} ></Route>}
-      </Routes>
-        <Footer />
-    </Router>
+    <>
+      <Router>
+        <Navbar toggleTheme={toggleTheme} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products/getProductDetails/:id" element={<ProductDetails />} />
+          <Route path="/products/getallproducts/" element={<Products />} />
+          <Route path="/products/getallproducts/:keyWord" element={<Products />} />
+          <Route path="/Search" element={<Search />} />
+          <Route path="/users/loginUser" element={<LoginSignup />} />
+          {user && isAuthenticated && <Route path="/users/getMyDetails" element={<Profile />} />}
+          {user && isAuthenticated && <Route path="/users/updateProfile" element={<UpdateProfileOption />} />}
+          {user && isAuthenticated && <Route path="/users/updatePassword" element={<UpdatePasswordOption />} />}
+          {user && isAuthenticated && <Route path="/users/addAddress" element={<SaveAddress />} />}
+          {user && isAuthenticated && <Route path="/Cart" element={<Cart />} />}
+          <Route path="/users/forgotPassword" element={<ForgotPasswordOption />} />
+          <Route path="/users/resetPassword/:token" element={<ResetPasswordOption />} />
+          {user && isAuthenticated && <Route path="/users/loginUser/shipping" element={<Shipping />} />}
+          {user && isAuthenticated && <Route path="/wishlist" element={<WishList />} />}
+          {user && isAuthenticated && <Route path="/order/confirm" element={<OrderConfirm />} />}
+          {user && isAuthenticated && <Route path="/payment/verified" element={<NewOrder />} />}
+          {user && isAuthenticated && <Route path="/payment/failed" element={<PaymentFailed />} />}
+          {user && isAuthenticated && <Route path="/order/viewOrderDetails" element={<OrderDetails />} />}
+          {user && isAuthenticated && <Route path="/order/myorders" element={<MyOrder />} />}
+          {user && isAuthenticated && <Route path="/order/getmyorder/:id" element={<OrderDetail />} />}
+          {user && isAdmin && isAuthenticated ? (
+            <Route path="/admin/dashboard" element={<Sidebar />} />
+          ) : (
+              <Route path="/users/loginUser" element={<LoginSignup/>} />
+          )}
+          {user && isAdmin && isAuthenticated ? (
+            <Route path="/admin/products/createnew" element={<CreateNewProd />} />
+          ) : (
+              <Route path="/users/loginUser" element={<LoginSignup />} />
+          )}
+          {user && isAdmin && isAuthenticated ? (
+            <Route path="/admin/products/editproduct/:productId" element={<EditProduct />} />
+          ) : (
+              <Route path="/users/loginUser" element={<LoginSignup />} />
+          )}
+        </Routes>
+      </Router>
+      <Footer />
+    </>
   );
 }
 

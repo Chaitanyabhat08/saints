@@ -11,7 +11,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/products/getAllProducts');
+        const response = await axios.get('/api/v1/products/getAllProducts');
         const allProducts = response.data.products;
         const filteredProducts = allProducts.filter(product =>
           product._id.toLowerCase().includes(searchQuery.toLowerCase()) ||
