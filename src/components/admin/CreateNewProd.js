@@ -20,6 +20,9 @@ const CreateNewProd = () => {
     const files = Array.from(event.target.files);
     setSelectedImages((prevImages) => [...prevImages, ...files]);
   };
+  const removeImage = (index) => {
+    setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
 
   const createNewProduct = async () => {
     const formData = new FormData();
@@ -42,7 +45,7 @@ const CreateNewProd = () => {
     }
   };
   return (
-    <div className="CreateprodDiv" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div className="CreateprodDiv" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto', margin:'20px' }}>
       <div id="createProdMain">
         <form id="createProdForm" onSubmit={createNewProduct} encType="multipart/form-data">
           <div className="form-group">
@@ -118,11 +121,27 @@ const CreateNewProd = () => {
           </div>
           <div className="form-group">
             <h6 htmlFor="Images">Images</h6>
-            <input required type="file" className="form-control-file" id="Images" multiple onChange={handleFileChange} />
+            <input
+              required
+              type="file"
+              className="form-control-file"
+              id="Images"
+              multiple
+              onChange={handleFileChange}
+              disabled={selectedImages.length >= 5} // Disable the button when 5 images are selected
+            />
+            {selectedImages.length >= 5 && (
+              <p style={{ color: 'red', fontSize: '12px' }}>You can only upload up to 5 images</p>
+            )}
           </div>
           <div className="image-preview">
             {selectedImages.map((image, index) => (
-              <img key={index} src={URL.createObjectURL(image)} alt={`Preview ${index}`} className="preview-image" />
+              <div key={index} className="preview-container">
+                <img src={URL.createObjectURL(image)} alt={`Preview ${index}`} className="preview-image" />
+                <button type="button" className="remove-button" onClick={() => removeImage(index)}>
+                  X
+                </button>
+              </div>
             ))}
           </div>
           <button type="submit" style={{ backgroundColor: 'gray', color: 'white' }} className="btn btn-primary">

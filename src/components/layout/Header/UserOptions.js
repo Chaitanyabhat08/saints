@@ -12,6 +12,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import { LogOutUser } from '../../../actions/userAction';
 import Backdrop from "@material-ui/core/Backdrop";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { NotificationAdd } from '@mui/icons-material';
 
 const UserOptions = ({ user }) => {
   const navigateTo = useNavigate();
@@ -23,6 +24,7 @@ const UserOptions = ({ user }) => {
   const options = [       
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
+    { icon: <NotificationAdd />, name: "Notification", func: notifcation },
     { icon: <ShoppingCartCheckoutIcon style={{ color: cartItems.length >= 1 ? "tomato" : "unset" }} />, name: `Cart(${cartItems.length})`, func: cart },
     { icon: <FavoriteIcon style={{ color: wishlistItems.length >= 1 ? "tomato" : "unset" }} />, name: `Wishlist(${wishlistItems.length})`, func: wishList},
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
@@ -35,6 +37,9 @@ const UserOptions = ({ user }) => {
   }
   function cart() {
     navigateTo('/Cart');
+  }
+  function notifcation() {
+    navigateTo('/yournotifications')
   }
   function orders() {
     navigateTo('/order/myorders');

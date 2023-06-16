@@ -1,56 +1,41 @@
-import { Typography } from 'antd'
-import React, { Fragment } from 'react'
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import RedeemTwoToneIcon from '@mui/icons-material/RedeemTwoTone';
-import AccountBalanceTwoToneIcon from '@mui/icons-material/AccountBalanceTwoTone';
-import { Stepper, Step, StepLabel, Box} from '@mui/material';
+import { Steps, Typography } from 'antd';
+import { UserOutlined, SolutionOutlined, CreditCardOutlined } from '@ant-design/icons';
+import React, { Fragment } from 'react';
 import './CheckoutSteps.css';
 
-const CheckoutSteps = ({ activestep }) => {
+const { Step } = Steps;
+
+const CheckoutSteps = ({ activeStep }) => {
   const steps = [
     {
-      label: <Typography>Shipping Details</Typography>,
-      icon: <LocalShippingIcon />
+      title: 'Shipping Details',
+      icon: <UserOutlined />
     },
     {
-      label: <Typography>Confirm Order</Typography>,
-      icon: <RedeemTwoToneIcon />
+      title: 'Confirm Order',
+      icon: <SolutionOutlined />
     },
     {
-      label: <Typography>Payment</Typography>,
-      icon: <AccountBalanceTwoToneIcon />
+      title: 'Payment',
+      icon: <CreditCardOutlined />
     },
   ];
-  const stepStyles = {
-    "display": "flex",
-    "backgroundColor": "whitesmoke",
-    "marginBottom": "20px",
-    "connector": {
-      "background-color": "tomato", // Change this to the desired color for active and completed steps
-    },
-  }
+
   return (
     <Fragment>
-      <Box sx={{ width: '100%' }}>
-        <Stepper alternativeLabel activeStep={activestep} style={stepStyles} sx={stepStyles}>
+      <Steps current={activeStep} className="checkout-steps">
         {steps.map((item, index) => (
           <Step
             key={index}
-            active={activestep === index ? true : false}
-            completed={activestep >= index ? true : false}
-          >
-            <StepLabel
-              style={{
-                color: activestep >= index ? "black" : "rgba(0, 0, 0, 0.649)",
-              }}
-              icon={item.icon}
-            >{item.label}</StepLabel>
-          </Step>
+            title={item.title}
+            icon={item.icon}
+            className={activeStep >= index ? 'active' : ''}
+            status={activeStep > index ? 'finish' : 'wait'}
+          />
         ))}
-        </Stepper>
-      </Box>
+      </Steps>
     </Fragment>
-  )
-}
+  );
+};
 
-export default CheckoutSteps
+export default CheckoutSteps;

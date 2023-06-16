@@ -34,9 +34,31 @@
   margin-top: 20px;
 }
 
+.preview-container {
+  position: relative;
+  display: inline-block;
+}
+
+.remove-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(9, 9, 9);
+  color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  font-size: 12px;
+  cursor: pointer;
+  margin:0;
+  padding: 0;
+}
+
 .preview-image {
-  width: 100px;
-  height: 100px;
+  max-width: 150px;
+  max-height: 150px;
   object-fit: cover;
   margin-right: 10px;
   margin-bottom: 10px;

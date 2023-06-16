@@ -77,9 +77,9 @@ const Products = () => {
 
     
     const menuItems = [
-        { h6: 'Recommended', value: 'Recom' },
-        { h6: 'Whats new?', value: 'whn' },
-        { h6: 'Popularity', value: 'pop' },
+        { h6: 'Recommended', value: 'RECOM' },
+        { h6: 'Whats new?', value: 'WHN' },
+        { h6: 'Popularity', value: 'POP' },
         { h6: 'Price: Low-high', value: 'PLH' },
         { h6: 'Price: High-low', value: 'PHL' },
         // ...

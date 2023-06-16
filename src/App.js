@@ -30,6 +30,7 @@ import OrderDetails from './components/OrderDetails/OrderDetails';
 import EditProduct from './components/admin/EditProduct';
 import MyOrder from './components/Order/MyOrder';
 import OrderDetail from './components/Order/OrderDetails';
+import Notification from './components/Notifications/Notifications';
 
 function App() {
   const { isAuthenticated, user } = useSelector(state => state.user);
@@ -83,6 +84,7 @@ function App() {
           {user && isAuthenticated && <Route path="/order/viewOrderDetails" element={<OrderDetails />} />}
           {user && isAuthenticated && <Route path="/order/myorders" element={<MyOrder />} />}
           {user && isAuthenticated && <Route path="/order/getmyorder/:id" element={<OrderDetail />} />}
+          {user && isAuthenticated && <Route path="/yournotifications" element={<Notification />} />}
           {user && isAdmin && isAuthenticated ? (
             <Route path="/admin/dashboard" element={<Sidebar />} />
           ) : (

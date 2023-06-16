@@ -3,6 +3,7 @@ import {useDispatch } from "react-redux";
 import './NewOrder.css'
 import { useEffect } from "react";
 import { createOrder } from "../../actions/orderAction"
+import CheckoutSteps from "./CheckoutSteps";
 
 const NewOrder = (data) =>{
   const shippingInfo = localStorage.getItem('shippingInfo') ? JSON.parse(localStorage.getItem('shippingInfo')) : {};
@@ -25,6 +26,7 @@ const NewOrder = (data) =>{
   }, [dispatch, shippingInfo, orderInfo, cartItems])
   return (
     <div className="mainDiv">
+      <CheckoutSteps activeStep={1}/>
       <div class="card1">
         <div style={{ "border-radius":"200px","height":"200px", "width":"200px", "background": "#F8FAF5", "margin":"0 auto"}}>
           <i class="checkmark">✓</i>

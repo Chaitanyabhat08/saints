@@ -67,7 +67,6 @@ export const saveShippingInfo = (data) => async (dispatch) => {
 
 export const addtoWishlist = (id) => async (dispatch, getState)=>{
     const { data } = await axios.get(`/api/v1/products/getProductDetails/${id}`);
-    console.log(data);
     const { wishlistItems } = getState().wishlist;
     const existingItemIndex = wishlistItems.findIndex(item => item.product === data.product._id);
     if (existingItemIndex !== -1) {
