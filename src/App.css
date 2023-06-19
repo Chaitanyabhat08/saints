@@ -2,7 +2,15 @@
     margin: 0;
     scroll-behavior: smooth;
 }
-
+a{
+  text-decoration: none;
+}
+body{
+  cursor: url('/public/cursor.png'), auto;
+}
+a:hover{
+  text-decoration: none;
+}
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button{
     -webkit-appearance: none;

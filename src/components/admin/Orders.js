@@ -8,6 +8,7 @@ import { Cancel, Save } from '@material-ui/icons';
 import { Button, Pagination, Select } from 'antd';
 import { useDispatch } from 'react-redux';
 import { deleteOrder } from '../../actions/orderAction';
+import { useAlert } from 'react-alert';
 
 const { Option } = Select;
 
@@ -18,7 +19,17 @@ const Orders = () => {
   const [editMode, setEditMode] = useState(false);
   const [editedOrderStatus, setEditedOrderStatus] = useState('');
   const dispatch = useDispatch();
+  const alert = useAlert();
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedOrderId, setSelectedOrderId] = useState('');
+
+  // ... existing code ...
+
+  const handleDelete = (orderId) => {
+    setSelectedOrderId(orderId);
+    setShowDeleteModal(true);
+  };
   const fetchData = async () => {
     try {
       const { data } = await axios.get('/api/v1/admin/order/getAllOrders');
@@ -26,6 +37,24 @@ const Orders = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const DeleteConfirmationModal = ({ onConfirm, onCancel }) => {
+    return (
+      <div className="deleteModal">
+        <div className="deleteModalContent">
+          <h3>Confirm Delete</h3>
+          <p>Are you sure you want to delete this order?</p>
+          <div className="deleteModalButtons">
+            <button className="deleteCancelButton" onClick={onCancel}>
+              Cancel
+            </button>
+            <button className="deleteConfirmButton" onClick={onConfirm}>
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   useEffect(() => {
@@ -69,7 +98,6 @@ const Orders = () => {
       setEditMode(false);
       setEditedOrderStatus('');
       await axios.put('/api/v1/admin/order/updateOrderStatus', { orderId, status: editedOrderStatus });
-
       console.log('Order status updated successfully!');
     } catch (error) {
       console.log('Error updating order status:', error);
@@ -81,8 +109,22 @@ const Orders = () => {
     setEditedOrderStatus('');
   };
 
-  const handleDeleteOrder = (orderId) => {
-    dispatch(deleteOrder(orderId));
+  const handleDeleteConfirm = async (orderId) => {
+    // Implement your delete logic here
+    try {
+      const { data } = await axios.delete(`/api/v1/admin/order/deleteOrder/${orderId}`);
+      if (data.success) {
+        alert.success(data.message);
+        window.location.reload(); // Reload the page after successful delete
+      }
+    } catch (error) {
+      alert.error(error.message);
+    }
+    setShowDeleteModal(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteModal(false);
   };
 
   const handleClearSearch = () => {
@@ -140,7 +182,13 @@ const Orders = () => {
           <div style={{ color: 'black', display: 'flex', flexDirection: 'column',marginBottom:'10px' }} key={index}>
             <div className="card-header">
               <p>Order ID: {order._id}</p>
-              {editMode ? (
+              {showDeleteModal && (
+                <DeleteConfirmationModal
+                  onConfirm={() => handleDeleteConfirm(order._id)}
+                  onCancel={handleDeleteCancel}
+                />
+              )}
+              {editMode && order.orderStatus !== 'Delivered' ? (
                 <Select value={editedOrderStatus} onChange={handleOrderStatusChange} style={{width:'350px'}}>
                   <Option value="Created">Created</Option>
                   <Option value="Processing">Processing</Option>
@@ -159,7 +207,7 @@ const Orders = () => {
                 ) : (
                   <>
                     <EditIcon onClick={() => handleEditOrder(order._id)} />
-                    <DeleteIcon onClick={() => handleDeleteOrder(order._id)} />
+                      <DeleteIcon onClick={() => handleDelete(order._id)} />
                   </>
                 )}
               </div>

@@ -13,7 +13,7 @@ const Banner = () => {
         <h2 className="heading">Limited Time Offer!</h2>
         <p className="subheading">Get 20% off on all clothing items</p>
         <p className="coupon-code">Use coupon code CLOTHING20 at checkout</p>
-        <a className="btn-shop" href="/shop">Shop Now</a>
+        <a className="btn-shop" href="/products/getAllProducts">Shop Now</a>
       </div>
     </div>
   );

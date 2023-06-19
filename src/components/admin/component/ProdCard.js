@@ -30,17 +30,18 @@ const ProdCard = ({ product }) => {
       <Link className="prodCard" to={`/products/getProductDetails/${product._id}`} style={{ textDecoration: 'none' }}>
         <img className="prodPic" src={product.images[0].url} alt={product.name} />
         <p>#id : {product._id}</p>
+        {product.stock >= 1 ? <p style={{ color: 'green', backgroundColor: 'white', border: '1px solid black' }}>In stock</p> : <p style={{color:'tomato',backgroundColor:'pink',border:'1px solid black'}}>Out of stock</p>}
         <h6 className="prodName" style={{margin:0}}>{product.name}</h6>
         <span className="prodPrice">{`₹${product.price}`}</span>
         <span className="prodPrice">Stock : {product.stock}</span>
       </Link>
-      <div style={{ display: 'flex', justifyContent: "space-between" }}>
-        <Link to={`/admin/products/editproduct/${product._id}`}>
-        <Button className="btn" style={{cursor:"pointer"}}>
+      <div style={{ display: 'flex', justifyContent: "space-between",alignItems:'center' }}>
+        <Button className="btn" style={{ cursor: "pointer", border: '1px solid black', margin: '5px', textDecoration: 'none' }}>
+          <Link to={`/admin/products/editproduct/${product._id}`} >
           <BorderColorIcon />
+          </Link>
         </Button>
-        </Link>
-        <Button className="btn" onClick={() => beforedelete(product._id)} style={{ cursor: "pointer" }}>
+        <Button className="btn" onClick={() => beforedelete(product._id)} style={{ cursor: "pointer",border: '1px solid black', margin: '15px' }}>
           <DeleteIcon />
         </Button>
         <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} centered>

@@ -39,7 +39,7 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([0, 3000]);
     const [categoryFilter, setCategoryFilter] = useState('All');
-    const [sortOpt, SetSortOpt] = useState('Recom');
+    const [sortOpt, SetSortOpt] = useState('Recommended');
     const [rating, setRating] = useState();
     const [genderSelected, setGenderSelected] = useState();
     const setCurrentPageNo = (e) => {

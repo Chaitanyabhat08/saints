@@ -1,11 +1,10 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import { data } from "./Data";
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
 Chart.register(CategoryScale);
 
-export default function BarChart() {
+export default function BarChart({data}) {
   const options = {
     title: {
       display: true,

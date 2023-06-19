@@ -14,7 +14,7 @@ const DisplayRazorPay = async (user,shippingInfo,cartItems) => {
     amount: data.amount,
     description: 'Wallet payment',
     order_id: data.id,
-    callback_url: "/api/v1/payment/verify",
+    callback_url: "http://localhost:3000/api/v1/payment/verify",
     redirect:true,
     prefill: {
       name: user.name,

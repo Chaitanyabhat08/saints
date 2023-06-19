@@ -1,39 +1,50 @@
-import { Steps, Typography } from 'antd';
-import { UserOutlined, SolutionOutlined, CreditCardOutlined } from '@ant-design/icons';
-import React, { Fragment } from 'react';
-import './CheckoutSteps.css';
-
-const { Step } = Steps;
+import React, { Fragment } from "react";
+import { Typography, Stepper, StepLabel, Step } from "@material-ui/core";
+import LocalShippingIcon from "@material-ui/icons/LocalShipping";
+import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import "./CheckoutSteps.css";
 
 const CheckoutSteps = ({ activeStep }) => {
   const steps = [
     {
-      title: 'Shipping Details',
-      icon: <UserOutlined />
+      label: <Typography>Shipping Details</Typography>,
+      icon: <LocalShippingIcon />,
     },
     {
-      title: 'Confirm Order',
-      icon: <SolutionOutlined />
+      label: <Typography>Confirm Order</Typography>,
+      icon: <LibraryAddCheckIcon />,
     },
     {
-      title: 'Payment',
-      icon: <CreditCardOutlined />
+      label: <Typography>Payment</Typography>,
+      icon: <AccountBalanceIcon />,
     },
   ];
 
+  const stepStyles = {
+    boxSizing: "border-box",
+  };
+
   return (
     <Fragment>
-      <Steps current={activeStep} className="checkout-steps">
+      <Stepper alternativeLabel activeStep={activeStep} style={stepStyles}>
         {steps.map((item, index) => (
           <Step
             key={index}
-            title={item.title}
-            icon={item.icon}
-            className={activeStep >= index ? 'active' : ''}
-            status={activeStep > index ? 'finish' : 'wait'}
-          />
+            active={activeStep === index ? true : false}
+            completed={activeStep >= index ? true : false}
+          >
+            <StepLabel
+              style={{
+                color: activeStep >= index ? "green" : "rgba(0, 0, 0, 0.649)",
+              }}
+              icon={item.icon}
+            >
+              {item.label}
+            </StepLabel>
+          </Step>
         ))}
-      </Steps>
+      </Stepper>
     </Fragment>
   );
 };

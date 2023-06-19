@@ -9,6 +9,7 @@ const DashBoard = () => {
   const [totalProducts, setTotalProducts] = useState([]);
   const [totalUsers, setTotalUsers] = useState([]);
   const [totalOrders, setTotalOrders] = useState([]);
+  const [totalSum,setTotalSum] = useState(0);
   const alert = useAlert();
   useEffect(() => {
     const fetchData = async () => {
@@ -17,16 +18,54 @@ const DashBoard = () => {
         setTotalProducts(response.data.products);
         const users = await axios.get('/api/v1/admin/getAllUsers');
         setTotalUsers(users.data.users);
-        const orders = await axios.get('/api/v1/admin/order/getAllOrders');
+        const orders = await axios.get('/api/v1/admin/order/getAllOrders', {
+          headers: {
+            'Cache-Control': 'no-cache',
+          },
+        });
         setTotalOrders(orders.data.orders);
+        setTotalSum(orders.data.totalSum)
       } catch (error) {
-          alert.error(error.message);
-        }
-    }
+        alert.error(error.message);
+      }
+    };
+
     fetchData();
   }, [alert]);
-  const totalSum = totalOrders.reduce((sum, order) => sum + order.paymentInfo.totalPrice, 0);
-  console.log(totalOrders)
+
+  const totalSumPerMonth = () => {
+    // Calculate the total sum per month
+    const monthlySum = totalOrders.reduce((sum, order) => {
+      const month = new Date(order.createdAt).getMonth();
+      sum[month] = (sum[month] || 0) + order.paymentInfo.totalPrice;
+      return sum;
+    }, []);
+    return monthlySum;
+  };
+  const data = {
+    bar: {
+      title: "Total Earnings of the Year",
+      labels: ["Jan", "Feb", "March", "April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      datasets: [
+        {
+          label: "Earnings per Month",
+          data: totalSumPerMonth(), // Use the totalSum per month as data
+          backgroundColor: "lightblue",
+        },
+      ],
+    },
+
+    line: {
+      labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      datasets: [
+        {
+          label: "Earnings per Month",
+          data: totalSumPerMonth(), // Use the totalSum per month as data
+          backgroundColor: "rgba(255, 99, 132, 0.6)",
+        },
+      ],
+    },
+  };
   return (
     <Fragment>
       <div className='DashboardDiv'>
@@ -54,7 +93,7 @@ const DashBoard = () => {
           </div>
         </div>
         <div className='Chartsec'>
-          <BarChart/>
+          <BarChart data={data} />
           <DoughnutChart/>
         </div>
         <div className="ordercard" style={{ width: "100%", height: "22rem", color: "gray", textAlign: "center" }}>

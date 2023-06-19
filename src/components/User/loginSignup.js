@@ -78,8 +78,8 @@ const LoginSignup = () => {
                     <div className="main">
                         <input type="checkbox" id="chk" aria-hidden="true" />
                         <div className="signup">
-                            <form ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit}>
-                                <label for="chk" aria-hidden="true">Sign up :)</label>
+                            <form ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit} autoComplete='false'>
+                                <label for="chk" aria-hidden="true">Sign Up</label>
                                 <div className="registermailInput">
                                 <FaceIcon/>
                                 <input
@@ -112,7 +112,7 @@ const LoginSignup = () => {
                                     />                
                                 </div>
                                 <img className="avaImage" src={avatarPreview} alt="Avatar Preview" />
-                                <div id="registerImage">
+                                <div id="registerImage" style={{height:'auto',overflow:'scroll'}}>
                                 <input
                                     type="file"
                                     name="avatar"
@@ -129,7 +129,7 @@ const LoginSignup = () => {
                         </div>
                         <div className="login">
                             <form className="login_form" ref={loginTab} onSubmit={loginSubmit}>
-                                <label for="chk" aria-hidden="true" >Login:)</label>
+                                <label for="chk" aria-hidden="true" >Login</label>
                                 <div className="loginmailInput">
                                     <MailOutline />
                                     <input
